@@ -1,11 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ['server.booklyz.com'],
+    domains: ['yappy-evita-shamas-8c6ecf16.koyeb.app'],
   },
   experimental: {
     serverActions: {
-      allowedOrigins: ['booklyz.com', '*.booklyz.com'],
+      allowedOrigins: ['vercel.app', '*.vercel.app', 'vapococco.vercel.app'],
     },
   },
 };
