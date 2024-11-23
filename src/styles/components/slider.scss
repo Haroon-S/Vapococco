@@ -1,0 +1,37 @@
+@import "../common/colors.scss";
+
+.swiper-pagination {
+  position: relative;
+  margin-top: 40px;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  & .swiper-pagination-bullet {
+    height: 28px;
+    width: 28px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    opacity: 1;
+    transition: all 250ms;
+
+    &:hover {
+      border: 1px solid $primary !important;
+    }
+
+    & .swiper-pagination-bullet-dot {
+      background-color: $primary;
+      height: 7px !important;
+      width: 7px !important;
+      border-radius: 50%;
+      display: block;
+    }
+  }
+
+  & .swiper-pagination-bullet-active {
+    border: 1px solid $primary;
+  }
+}
