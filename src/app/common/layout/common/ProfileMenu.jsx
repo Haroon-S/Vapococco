@@ -59,7 +59,7 @@ function ProfileMenu({ anchorEl, handleClose }) {
           onClick={async () => {
             handleClose();
             await handleLogout();
-            router.push('/auth/signin');
+            router.push('/');
           }}
         >
           <ListItemText>Logout</ListItemText>

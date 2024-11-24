@@ -11,7 +11,7 @@ import propTypes from 'prop-types';
 import Image from 'next/image';
 
 // STYLES & ASSETS
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { ErrorBoundary } from 'next/dist/client/components/error-boundary';
 import { User } from 'lucide-react';
 import uk from '@/assets/countries-icons/united-kingdom.png';
@@ -38,8 +38,11 @@ import ModalHeader from '@/app/common/components/ModalHeader';
 import AuthModalHeader from '@/app/common/components/AuthModalHeader';
 import SignInForm from '@/app/auth/signin/components/SignInForm';
 import SignUpForm from '@/app/auth/signup/components/SignUpForm';
+import { useLoginMutation, useSignUpMutation } from '@/services/public/auth';
+import useHandleApiResponse from '@/customHooks/useHandleApiResponse';
 
 function Navbar({ toggleSidebar = () => {}, isPortal = false }) {
+  const router = useRouter();
   const pathname = usePathname();
   const isSearchPage = pathname.includes('/search');
 
@@ -50,6 +53,12 @@ function Navbar({ toggleSidebar = () => {}, isPortal = false }) {
   const [modalOpen, setModalOpen] = useState({ open: false, type: '' });
   const [showNavbar, setShowNavbar] = useState(false);
   const [selectedMenu, setSelectedMenu] = useState('');
+
+  // API HOOKS
+  const [signUp, { error, isSuccess }] = useSignUpMutation();
+  const [signIn, { error: loginError, isSuccess: loginSuccess }] = useLoginMutation();
+  useHandleApiResponse(error, isSuccess, 'The account activation link has been sent to your email');
+  useHandleApiResponse(loginError, loginSuccess, 'Logged In Successfully!');
 
   const menuRef = useRef(null);
 
@@ -119,7 +128,7 @@ function Navbar({ toggleSidebar = () => {}, isPortal = false }) {
               </Box>
             </Link>
             <Box
-              onClick={() => (isAuthenticated ? `/portal/profile/${user?.username}` : toggleModalOpen('signin'))}
+              onClick={() => (isAuthenticated ? router.push(`/portal/profile/${user?.username}`) : toggleModalOpen('signin'))}
               className=" bg-[#e5dcd3] rounded-full flex justify-center items-center w-10 h-10 cursor-pointer"
             >
               <User style={{ fontSize: '20px' }} />
@@ -197,22 +206,9 @@ function Navbar({ toggleSidebar = () => {}, isPortal = false }) {
           sx={{ paddingTop: isSearchPage ? '10px' : '0px' }}
           className="flex items-center justify-center h-full"
         >
-          <Box className=" flex justify-center items-center gap-2">
-            {isAuthenticated && (
-              <Box className="flex items-center gap-3">
-                <Box onClick={handleOpenMenu} className="flex items-center gap-2 cursor-pointer">
-                  <span className=" relative">
-                    <Avatar src={user?.profile?.image || ''} />
-                    <span
-                      className={styles.working_status_indicator}
-                      style={{ backgroundColor: statusOnline }}
-                    />
-                  </span>
-                </Box>
-              </Box>
-            )}
+          {/* <Box className=" flex justify-center items-center gap-2">
             <Menu className="block xl:hidden cursor-pointer" onClick={handleShowNavbar} />
-          </Box>
+          </Box> */}
         </Box>
 
         {isSearchPage && (
@@ -229,9 +225,9 @@ function Navbar({ toggleSidebar = () => {}, isPortal = false }) {
             <AuthModalHeader title={modalOpen.type === 'signin' ? 'Access your business account' : 'Request access to business space'}>
               <Box className=" w-full m-8 p-8 border-2 border-grey">
                 {modalOpen.type === 'signin' ? (
-                  <SignInForm toggle={toggleModalOpen} closeModal={toggleModalClose} />
+                  <SignInForm toggle={toggleModalOpen} handler={signIn} closeModal={toggleModalClose} />
                 ) : (
-                  <SignUpForm toggle={toggleModalOpen} closeModal={toggleModalClose} />
+                  <SignUpForm toggle={toggleModalOpen} handler={signUp} closeModal={toggleModalClose} />
                 )}
               </Box>
             </AuthModalHeader>

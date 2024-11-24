@@ -45,7 +45,7 @@ function ResetPasswordForm({ token }) {
       onSubmit={async values => {
         const resetResp = await reset({ ...values, token });
         if (!resetResp?.error) {
-          router.push('/auth/signin', { scroll: false });
+          router.push('/', { scroll: false });
         }
       }}
     >
@@ -75,7 +75,7 @@ function ResetPasswordForm({ token }) {
                   className="flex mb-1"
                 >
                   Already have an Account?{' '}
-                  <Link href="/auth/signin" className=" text-blue-600 mx-2 mb-0 underline">
+                  <Link href="/" className=" text-blue-600 mx-2 mb-0 underline">
                     Sign in
                   </Link>
                 </Typography>

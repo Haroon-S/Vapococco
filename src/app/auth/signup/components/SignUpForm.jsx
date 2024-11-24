@@ -25,11 +25,9 @@ import { getTransformedCountryOptions } from '@/utilities/transformers';
 import { formikAuthSelectStyles } from '@/styles/formik/formik-styles';
 import FormikFileField from '@/shared/components/form/FormikFileField';
 
-function SignUpForm({ toggle, closeModal }) {
+function SignUpForm({ toggle, closeModal, handler }) {
   const { data: countries } = useGetCountriesQuery();
   const countriesOptions = getTransformedCountryOptions(countries);
-  const [signUp, { error, isSuccess }] = useSignUpMutation();
-  useHandleApiResponse(error, isSuccess, 'The account activation link has been sent to your email');
 
   return (
     <Formik
@@ -40,18 +38,18 @@ function SignUpForm({ toggle, closeModal }) {
         formData.append('email', values?.email);
         formData.append('username', values?.username);
         formData.append('password', values?.password);
-        formData.append('title', values?.title);
-        formData.append('first_name', values?.first_name);
-        formData.append('last_name', values?.last_name);
-        formData.append('company', values?.company);
-        formData.append('phone', values?.phone);
-        formData.append('country', values?.country);
-        formData.append('siret', values?.siret);
-        formData.append('vat', values?.vat);
+        // Add profile fields as nested keys
+        formData.append('profile.title', values?.title);
+        formData.append('profile.first_name', values?.first_name);
+        formData.append('profile.last_name', values?.last_name);
+        formData.append('profile.company', values?.company);
+        formData.append('profile.phone', values?.phone);
+        formData.append('profile.siret', values?.siret);
+        formData.append('profile.vat', values?.vat);
         if (values?.image) {
-          formData.append('image', values?.image, values?.image?.name);
+          formData.append('profile.image', values?.image, values?.image?.name);
         }
-        const signupResp = await signUp(formData);
+        const signupResp = await handler(formData);
         if ('error' in signupResp) {
           const fieldErrors = {};
           Object.keys(signupResp.error.data).forEach(key => {
@@ -148,6 +146,7 @@ function SignUpForm({ toggle, closeModal }) {
 SignUpForm.propTypes = {
   toggle: propTypes.func.isRequired,
   closeModal: propTypes.func.isRequired,
+  handler: propTypes.func.isRequired,
 };
 
 export default SignUpForm;

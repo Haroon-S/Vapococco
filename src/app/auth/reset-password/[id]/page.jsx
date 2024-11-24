@@ -3,8 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
 import Image from 'next/image';
-import backgroundImage from '@/assets/auth-banner3.jpg';
-import logo from '@/assets/Booklyz.svg';
+import logo from '@/assets/Vaprico.svg';
 import { primary } from '@/styles/common/colors';
 import ResetPasswordForm from './components/ResetPasswordForm';
 
@@ -13,9 +12,6 @@ function ResetPassword({ params: { id } }) {
     <Box
       className=" flex justify-center items-center"
       sx={{
-        backgroundImage: `url(${backgroundImage.src})`,
-        backgroundRepeat: 'no-repeat',
-        backgroundSize: 'cover',
         backgroundPositionY: '-100px',
         backgroundColor: '#e9e9e7',
         minHeight: '100vh',

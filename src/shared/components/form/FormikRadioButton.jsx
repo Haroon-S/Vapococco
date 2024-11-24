@@ -33,6 +33,7 @@ function FormikRadioButtons({ label, options, name, onChange = () => {}, }) {
             <RadioGroup
               aria-labelledby="demo-controlled-radio-buttons-group"
               name={name}
+              value={value}
               onChange={handleChange}
               className=" w-full flex flex-col gap-4"
             >

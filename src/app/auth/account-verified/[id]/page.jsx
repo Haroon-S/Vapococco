@@ -8,7 +8,7 @@ import { useRouter } from 'next/navigation';
 import SubmitBtn from '@/app/common/components/SubmitBtn';
 import { useVerifyTokenMutation } from '@/services/public/auth';
 import useHandleApiResponse from '@/customHooks/useHandleApiResponse';
-import logo from '@/assets/Booklyz.svg';
+import logo from '@/assets/Vaprico.svg';
 
 function AccountVerified({ params: { id } }) {
   const router = useRouter();
@@ -18,7 +18,7 @@ function AccountVerified({ params: { id } }) {
   const handleVerify = async () => {
     const resp = await verify(id);
     if (!resp?.error) {
-      router.push('/auth/signin', { scroll: false });
+      router.push('/', { scroll: false });
     }
   };
   return (

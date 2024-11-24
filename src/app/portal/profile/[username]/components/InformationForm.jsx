@@ -21,13 +21,11 @@ function InformationForm({ username }) {
 
   useEffect(() => {
     setProfileInitValues({
-      title: '',
-      first_name: '',
-      last_name: '',
-      company: '',
-      email: '',
-      password: '',
-      confirmPassword: '',
+      title: user?.title || 'Mr',
+      first_name: user?.first_name || '',
+      last_name: user?.last_name || '',
+      company: user?.company || '',
+      email: user?.email || '',
     });
   }, [user]);
 

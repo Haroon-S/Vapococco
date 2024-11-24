@@ -8,7 +8,7 @@ import SubmitBtn from '@/app/common/components/SubmitBtn';
 import { primary } from '@/styles/common/colors';
 import { useForgotPasswordMutation } from '@/services/public/auth';
 import useHandleApiResponse from '@/customHooks/useHandleApiResponse';
-import logo from '@/assets/Booklyz.svg';
+import logo from '@/assets/Vaprico.svg';
 
 function VerifyEmail() {
   const searchParams = useSearchParams();

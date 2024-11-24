@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { primary } from '@/styles/common/colors';
 import SignInForm from './components/SignInForm';
 import backgroundImage from '@/assets/auth-banner3.jpg';
-import logo from '@/assets/Booklyz.svg';
+import logo from '@/assets/Vaprico.svg';
 
 function SignIn() {
   return (

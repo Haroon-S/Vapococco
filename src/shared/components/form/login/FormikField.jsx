@@ -1,7 +1,7 @@
 'use client';
 
 /* eslint-disable no-nested-ternary */
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import propTypes from 'prop-types';
 import { Box, InputAdornment, Typography } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
@@ -15,24 +15,44 @@ function FormikField({
   placeholder = '',
   className = '',
   disabled = false,
+  onValueChangeValidator = null,
   onChange = () => {},
   onBlur = () => {},
   icon = null,
   isRequired = false,
 }) {
+  const [innerValue, setInnerValue] = useState('');
   const [isVisible, setVisible] = useState(false);
-
   const [field, meta] = useField(name);
   const { value, onChange: onValueChange, onBlur: onFieldBlur } = field;
   const { error, touched } = meta;
 
+  useEffect(() => {
+    if (value !== undefined && value !== null) {
+      setInnerValue(value);
+    } else {
+      setInnerValue('');
+    }
+  }, [value]);
+
   const handleChange = useCallback(
     e => {
-      onValueChange(e);
-
-      if (onChange) onChange(e);
+      if (onValueChangeValidator) {
+        const newValue = e.target.value;
+        const isValid = onValueChangeValidator(newValue);
+        if (isValid) {
+          onValueChange(e);
+          setInnerValue(newValue);
+          if (onChange) onChange(newValue, name);
+        }
+      } else {
+        const newValue = e.target.value;
+        onValueChange(e);
+        setInnerValue(newValue);
+        if (onChange) onChange(newValue, name);
+      }
     },
-    [value]
+    [value, onValueChangeValidator]
   );
 
   const handleBlur = useCallback(e => {
@@ -56,6 +76,7 @@ function FormikField({
         className={className}
         onChange={handleChange}
         onBlur={handleBlur}
+        value={innerValue}
         fullWidth
         InputProps={{
           startAdornment: icon ? <InputAdornment position="start">{icon}</InputAdornment> : undefined,
@@ -83,6 +104,7 @@ FormikField.propTypes = {
   disabled: propTypes.bool,
   isRequired: propTypes.bool,
   label: propTypes.string,
+  onValueChangeValidator: propTypes.func,
   placeholder: propTypes.string,
   type: propTypes.string,
   className: propTypes.string,

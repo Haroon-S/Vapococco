@@ -11,7 +11,7 @@ import propTypes from 'prop-types';
 import Link from 'next/link';
 import styles from '@/styles/containers/layout/portal/login.module.scss';
 import { contrastText, primary } from '@/styles/common/colors';
-import logo from '@/assets/Booklyz.svg';
+import logo from '@/assets/Vaprico.svg';
 // import backgroundImage from '@/assets/authbg.png';
 import backgroundImage from '@/assets/auth-banner2.jpg';
 

@@ -1,11 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import propTypes from 'prop-types';
-import { Box, Rating, Typography } from '@mui/material';
+import { Box, Modal, Rating, Typography } from '@mui/material';
 import Image from 'next/image';
 import { Favorite } from '@mui/icons-material';
 import ProductSelectionForm from './ProductSelectionForm';
+import ModalHeader from '../common/components/ModalHeader';
+import { fileViewModalStyles } from '@/styles/mui/common/modal-styles';
+import ProductDetail from './ProductDetail';
 
 function Product({ color, image, title, description, rating = 0 }) {
+  const [modalOpen, setModalOpen] = useState(false);
+  const toggleModal = () => setModalOpen(prev => !prev);
+
   return (
     <Box className="w-full py-3 flex items-center pl-28" sx={{ backgroundColor: color }}>
       <Box className=" max-w-[990px] flex">
@@ -18,7 +24,7 @@ function Product({ color, image, title, description, rating = 0 }) {
               <Favorite style={{ fontSize: '18px' }} />
             </Box>
             <Box>
-              <Typography variant="h6" className=" font-extrabold text-black">
+              <Typography onClick={toggleModal} variant="h6" className=" font-extrabold text-black cursor-pointer">
                 {title}
               </Typography>
               <Rating value={rating} readOnly />
@@ -30,6 +36,12 @@ function Product({ color, image, title, description, rating = 0 }) {
         </Box>
         <ProductSelectionForm />
       </Box>
+      <Modal open={modalOpen} onClose={toggleModal}>
+        <Box sx={{ ...fileViewModalStyles, paddingX: '20px', paddingY: '40px', width: '900px' }}>
+          <ModalHeader title={title} onClose={toggleModal} />
+          <ProductDetail title={title} image={image} description={description} />
+        </Box>
+      </Modal>
     </Box>
   );
 }

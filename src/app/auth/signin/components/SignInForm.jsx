@@ -21,23 +21,20 @@ import SubmitBtn from '@/app/common/components/SubmitBtn';
 import { initialValues, validationSchema } from '../utilities/formUtils';
 import { createPaymentCookie, createTokenCookie } from '@/utilities/cookiesHelpers';
 
-function SignInForm({ toggle, closeModal }) {
+function SignInForm({ toggle, closeModal, handler }) {
   const dispatch = useDispatch();
   const router = useRouter();
-  const [signIn, { error, isSuccess }] = useLoginMutation();
-  useHandleApiResponse(error, isSuccess, 'Logged In Successfully!');
 
   return (
     <Formik
       initialValues={initialValues}
       validationSchema={validationSchema}
       onSubmit={async values => {
-        const signInResp = await signIn({ ...values, email: values?.email?.toLowerCase() });
+        const signInResp = await handler({ ...values, email: values?.email?.toLowerCase() });
         if (signInResp?.data) {
           await createTokenCookie(signInResp?.data);
-          await createPaymentCookie(signInResp?.data);
           dispatch(onLoggedIn(signInResp?.data));
-          router.push('/');
+          window.location.href = '/';
         }
       }}
     >
@@ -75,9 +72,9 @@ function SignInForm({ toggle, closeModal }) {
             </Grid>
             <Box className=" flex items-center gap-4">
               <SubmitBtn label="Confirm" className="my-3 font-bold uppercase" isLoading={isSubmitting} />
-              <Button variant="contained" color="secondary" className="my-3 font-bold uppercase">
+              <Link href="/auth/forgot-password" className="my-3 font-bold uppercase py-2 px-4 bg-grey text-white hover:bg-black transition-all duration-300 rounded hover:text-white">
                 Forgot Password?
-              </Button>
+              </Link>
             </Box>
           </Grid>
         </Form>
@@ -89,6 +86,7 @@ function SignInForm({ toggle, closeModal }) {
 SignInForm.propTypes = {
   toggle: propTypes.func.isRequired,
   closeModal: propTypes.func.isRequired,
+  handler: propTypes.func.isRequired
 };
 
 export default SignInForm;

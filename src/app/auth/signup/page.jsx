@@ -4,7 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { primary } from '@/styles/common/colors';
 import SignUpForm from './components/SignUpForm';
-import logo from '@/assets/Booklyz.svg';
+import logo from '@/assets/Vaprico.svg';
 import backgroundImage from '@/assets/auth-banner3.jpg';
 
 function SignUp() {

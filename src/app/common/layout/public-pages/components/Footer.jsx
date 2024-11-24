@@ -13,7 +13,7 @@ import { Apple, Shop } from '@mui/icons-material';
 import styles from '@/styles/containers/layout/footer.module.scss';
 import { footerDividerStyles, footerLinksStyles } from '@/styles/mui/containers/layout/footer-styles';
 import { footerContainerStyles } from '@/styles/mui/components/footer-top-sections-styles';
-import logo from '@/assets/Booklyz.svg';
+import logo from '@/assets/Vaprico.svg';
 import paymentIcon1 from '@/assets/icons/payment-method-mastercard.svg';
 import paymentIcon2 from '@/assets/icons/payment-method-visa.svg';
 import paymentIcon3 from '@/assets/icons/payment-method-paypal.png';

@@ -10,7 +10,7 @@ import Image from 'next/image';
 // STYLES & ASSETS
 import styles from '@/styles/containers/layout/portal/topbar.module.scss';
 import { statusOnline } from '@/styles/common/colors';
-import logo from '@/assets/Booklyz.svg';
+import logo from '@/assets/Vaprico.svg';
 
 // CUSTOM HOOKS
 import useGetMenuHandlers from '@/customHooks/useGetMenuHandlers';
@@ -98,7 +98,7 @@ function Topbar({ toggleSidebar = () => {}, isPortal = false }) {
             <>
               <NavLinkItem
                 label="Sign in"
-                path="/auth/signin"
+                path="/"
                 navClassName={`no-underline hidden sm:block navbar-nav-item ${styles.navbarNavItem} `}
               />
 
