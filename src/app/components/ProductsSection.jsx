@@ -11,6 +11,7 @@ import iconMonoFruits from '@/assets/menu-icons/MONO-FRUIT.png';
 import iconCocktail from '@/assets/menu-icons/Cocktail.png';
 import Product from './Product';
 import CartSection from './CartSection';
+import WhyUsSection from './WhyUsSection';
 
 function ProductsSection() {
   const [activeTab, setActiveTab] = useState(0);
@@ -53,6 +54,7 @@ function ProductsSection() {
           <Product color="#ffc384" image={iconCocktail} title="Cocktail" description="description" rating={4} />
           <Product color="#fb727a" image={iconMonoFruits} title="Mono Fruits" description="description" rating={4} />
         </TabPanel>
+        <WhyUsSection />
         <Box className=" absolute top-0 right-28 bg-black h-full">
           <CartSection />
         </Box>

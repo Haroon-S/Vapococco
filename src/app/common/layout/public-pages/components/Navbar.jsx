@@ -54,6 +54,8 @@ function Navbar({ toggleSidebar = () => {}, isPortal = false }) {
   const [showNavbar, setShowNavbar] = useState(false);
   const [selectedMenu, setSelectedMenu] = useState('');
 
+  console.log('selectedMenu ==> ', selectedMenu);
+
   // API HOOKS
   const [signUp, { error, isSuccess }] = useSignUpMutation();
   const [signIn, { error: loginError, isSuccess: loginSuccess }] = useLoginMutation();
@@ -158,7 +160,7 @@ function Navbar({ toggleSidebar = () => {}, isPortal = false }) {
           <NavLinkItem
             id="cbd"
             label="CBD"
-            toggle={handleMenuSelect}
+            // toggle={handleMenuSelect}
             isSelected={selectedMenu === 'cbd'}
             menu
           />
@@ -186,7 +188,7 @@ function Navbar({ toggleSidebar = () => {}, isPortal = false }) {
           {selectedMenu && (
             <Box
               ref={menuRef}
-              className=" w-full flex flex-grow items-center justify-center gap-3 absolute top-[100%] bg-black text-white px-14 py-6 rounded-b-2xl shadow-lg"
+              className=" w-fit min-w-full flex flex-grow items-center justify-center gap-1 absolute top-[100%] bg-black text-white px-10 py-6 rounded-b-2xl shadow-lg"
             >
               {menuItems[selectedMenu]?.map(item => (
                 <MenuLinkItem

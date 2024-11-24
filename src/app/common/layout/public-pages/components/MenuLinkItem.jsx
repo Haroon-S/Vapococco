@@ -17,6 +17,7 @@ function MenuLinkItem({
   return (
     <Link href={path}>
       <Box className=" flex flex-col justify-center items-center gap-3">
+        {icon && (
         <Box className=" relative h-28 w-28">
           <Image
             src={icon}
@@ -25,12 +26,13 @@ function MenuLinkItem({
             className=" object-contain"
           />
         </Box>
+        )}
         <Typography
           variant="body3"
           fontSize="inherit"
           fontWeight="inherit"
           color="inherit"
-          className=" text-white uppercase"
+          className=" text-white uppercase w-28 text-center"
         >
           {label}
         </Typography>

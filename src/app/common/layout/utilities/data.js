@@ -196,32 +196,61 @@ export const menuItems = {
     {
       id: v4(),
       path: '/',
-      title: 'DIY Booster',
-      icon: iconDiyBooster.src
+      title: 'Tous Nos Aromes',
     },
     {
       id: v4(),
       path: '/',
-      title: 'DIY Accessories',
-      icon: iconDiyAccessories.src
+      title: 'Classic',
+      icon: iconClassic.src
     },
     {
       id: v4(),
       path: '/',
-      title: 'DIY Additif',
+      title: 'Menthe',
+      icon: iconMenthe.src
+    },
+    {
+      id: v4(),
+      path: '/',
+      title: 'Mix Fruits',
+      icon: iconMixFruits.src
+    },
+    {
+      id: v4(),
+      path: '/',
+      title: 'Mono Fruits',
+      icon: iconMonoFruits.src
+    },
+    {
+      id: v4(),
+      path: '/',
+      title: 'Cocktail',
+      icon: iconCocktail.src
+    },
+    {
+      id: v4(),
+      path: '/',
+      title: 'Base',
       icon: iconDiyAdditif.src
     },
     {
       id: v4(),
       path: '/',
-      title: 'DIY Base',
-      icon: iconDiyBase.src
+      title: 'Booster',
+      icon: iconDiyAdditif.src
     },
     {
       id: v4(),
       path: '/',
-      title: 'Sels Nicotine',
-      icon: iconSelsNicotine.src
+      title: 'Additif',
+      icon: iconDiyAdditif.src
+    },
+    {
+      id: v4(),
+      path: '/',
+      title: 'Accessories',
+      icon: iconDiyAdditif.src
     },
   ],
   cbd: [

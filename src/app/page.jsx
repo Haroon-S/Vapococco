@@ -1,6 +1,7 @@
 import React from 'react';
 import { Box } from '@mui/material';
 import PageWrapper from './common/components/PageWrapper';
+// import shipping from '@/assets/icons/shipping.jpeg';
 import { primary } from '@/styles/common/colors';
 import image from '@/assets/home-banner2.JPG';
 import ProductsSection from './components/ProductsSection';

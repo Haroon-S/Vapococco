@@ -29,8 +29,8 @@ function NavLinkItem({
 
   return (
     <Box
-      onClick={() => menu && toggle(id)}
-      className={`${navClassName || getNavLinkClassName()} flex items-center gap-1 mx-2 cursor-pointer`}
+      onMouseEnter={() => menu && toggle(id)}
+      className={`${navClassName || getNavLinkClassName()} hover flex items-center gap-1 mx-2 cursor-pointer`}
     >
       <Typography variant="body3" fontSize="inherit" fontWeight="inherit" color="inherit">
         {!menu ? (
