@@ -108,7 +108,7 @@ function ProductsSection() {
             rating={4}
           />
         </TabPanel>
-        <Box className=" mr-[700px]">
+        <Box className=" mr-[768px]">
           <WhyUsSection />
         </Box>
         <Box className=" absolute top-0 ml-[990px] bg-black h-full">

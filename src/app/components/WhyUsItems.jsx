@@ -8,7 +8,7 @@ function WhyUsItems({ image, title }) {
   return (
     <Box className=" flex flex-col justify-center items-center group relative cursor-pointer transition-all duration-300">
       <Box className=" rounded-full p-5 border-4 border-themePrimary overflow-hidden">
-        <Image src={image.src} alt="Logo" width={70} height={70} />
+        <Image src={image.src} alt="Logo" width={50} height={50} />
       </Box>
       <Box
         sx={{ backgroundColor: primary }}
