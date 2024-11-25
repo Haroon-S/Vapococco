@@ -30,9 +30,7 @@ function HeroSlider() {
             },
           }}
         >
-          <ArrowBack
-            sx={{ fontSize: '30px', color: primary, cursor: 'pointer' }}
-          />
+          <ArrowBack sx={{ fontSize: '30px', color: primary, cursor: 'pointer' }} />
         </IconButton>
         <IconButton
           className="button-next"
@@ -46,9 +44,7 @@ function HeroSlider() {
             },
           }}
         >
-          <ArrowForward
-            sx={{ fontSize: '30px', color: primary, cursor: 'pointer' }}
-          />
+          <ArrowForward sx={{ fontSize: '30px', color: primary, cursor: 'pointer' }} />
         </IconButton>
       </Box>
       <Swiper
@@ -68,7 +64,17 @@ function HeroSlider() {
       >
         {images?.map(item => (
           <SwiperSlide>
-            <Image src={item.src} alt="slide" width={2600} height={300} />
+            <Box
+              className=" relative w-full"
+              sx={{
+                height: '300px',
+                '@media (min-width: 2560px)': {
+                  height: '500px',
+                },
+              }}
+            >
+              <Image src={item.src} alt="slide" fill />
+            </Box>
           </SwiperSlide>
         ))}
       </Swiper>
