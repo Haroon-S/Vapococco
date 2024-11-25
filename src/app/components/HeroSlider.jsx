@@ -68,7 +68,7 @@ function HeroSlider() {
       >
         {images?.map(item => (
           <SwiperSlide>
-            <Image src={item.src} alt="slide" width={1700} height={300} />
+            <Image src={item.src} alt="slide" width={2600} height={300} />
           </SwiperSlide>
         ))}
       </Swiper>

@@ -13,9 +13,10 @@ function Product({ color, image, title, description, rating = 0 }) {
   const toggleModal = () => setModalOpen(prev => !prev);
 
   return (
-    <Box className="w-full py-3 flex items-center pl-28" sx={{ backgroundColor: color }}>
-      <Box className=" max-w-[990px] flex">
-        <Box className=" flex gap-10 mx-0">
+    <Box className=" w-full relative py-3 flex items-center justify-center" sx={{ backgroundColor: color }}>
+      <Box className=" w-screen h-full absolute -z-10 " sx={{ backgroundColor: color }} />
+      <Box className=" max-w-[990px] mr-80 flex">
+        <Box className=" flex gap-6 mx-0">
           <Box>
             <Image src={image.src} alt="Logo" width={140} height={140} />
           </Box>
@@ -24,7 +25,7 @@ function Product({ color, image, title, description, rating = 0 }) {
               <Favorite style={{ fontSize: '18px' }} />
             </Box>
             <Box>
-              <Typography onClick={toggleModal} variant="h6" className=" font-extrabold text-black cursor-pointer">
+              <Typography onClick={toggleModal} variant="h6" noWrap className=" font-extrabold text-black cursor-pointer">
                 {title}
               </Typography>
               <Rating value={rating} readOnly />

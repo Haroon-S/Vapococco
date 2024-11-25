@@ -36,12 +36,16 @@ function PrivateLayoutWrapper({ children }) {
       <Box className=" relative">
         <Navbar />
 
-        <Box sx={getSidebarWrapperStyles(true, drawerWidth)}>
-          <Sidebar collapse />
+        <Box className=" w-full flex justify-center">
+          <Box sx={getSidebarWrapperStyles(true, drawerWidth)}>
+            <Sidebar collapse />
+          </Box>
         </Box>
       </Box>
 
-      <Box sx={getBoxWrapperStyles(true, drawerWidth)}>{children}</Box>
+      <Box className=" w-full flex justify-center" sx={getBoxWrapperStyles(true, drawerWidth)}>
+        {children}
+      </Box>
     </Box>
   );
 }

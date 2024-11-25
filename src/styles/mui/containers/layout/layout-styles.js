@@ -1,6 +1,6 @@
 import { border, dark, grey, primary } from '@/styles/common/colors';
 
-const miniVariantWidth = '260px';
+const miniVariantWidth = '220px';
 export const getListItemBtnStyles = (isActive = false) => ({
   mx: '8px',
   justifyContent: 'center',
@@ -68,7 +68,6 @@ export const sidebarMenuStyles = {
 
 export const getSidebarWrapperStyles = (isSidebarCollapsed, drawerWidth) => ({
   position: 'fixed',
-  left: '150px',
   top: '0',
   bottom: '0',
   borderRadius: '20px',
@@ -81,6 +80,7 @@ export const getSidebarWrapperStyles = (isSidebarCollapsed, drawerWidth) => ({
   boxShadow: '2px 0px 10px #b3b3b3',
   height: 'fit-content',
   marginTop: '300px',
+  marginRight: '1020px',
   // zIndex: 0,
   '::-webkit-scrollbar': { width: '3px' },
   '::-webkit-scrollbar-thumb': { background: primary },
@@ -91,11 +91,10 @@ export const getSidebarWrapperStyles = (isSidebarCollapsed, drawerWidth) => ({
   },
 });
 
-export const getBoxWrapperStyles = (isSidebarCollapsed, drawerWidth) => ({
+export const getBoxWrapperStyles = isSidebarCollapsed => ({
   minHeight: 'calc(100vh - 195px)',
   padding: '105px 25px 35px 25px',
   marginTop: '195px',
-  marginLeft: isSidebarCollapsed ? '410px' : drawerWidth,
   transition: '0.2s ease-in-out',
 
   '@media screen and (max-width: 768px)': {

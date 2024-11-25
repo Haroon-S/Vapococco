@@ -29,33 +29,89 @@ function ProductsSection() {
           <CustomTab wrapped label="Promotions" className=" text-base normal-case" />
         </CustomTabs>
       </Box>
-      <Box className=" relative pt-2 bg-black w-full overflow-hidden ">
+      <Box className=" relative border-t-8 border-t-black w-full overflow-hidden flex flex-col justify-center items-center ">
         <TabPanel stateValue={activeTab} index={0}>
           <Product color="#886142" image={iconClassic} title="Classic" description="description" rating={4} />
           <Product color="#d0c5bf" image={iconMenthe} title="Menthe" description="description" rating={4} />
-          <Product color="#e5d2aa" image={iconMixFruits} title="Mix Fruits" description="description" rating={4} />
+          <Product
+            color="#e5d2aa"
+            image={iconMixFruits}
+            title="Mix Fruits"
+            description="description"
+            rating={4}
+          />
           <Product color="#efe5ca" image={iconClassic} title="Classic" description="description" rating={4} />
-          <Product color="#ffc384" image={iconCocktail} title="Cocktail" description="description" rating={4} />
-          <Product color="#fb727a" image={iconMonoFruits} title="Mono Fruits" description="description" rating={4} />
+          <Product
+            color="#ffc384"
+            image={iconCocktail}
+            title="Cocktail"
+            description="description"
+            rating={4}
+          />
+          <Product
+            color="#fb727a"
+            image={iconMonoFruits}
+            title="Mono Fruits"
+            description="description"
+            rating={4}
+          />
         </TabPanel>
         <TabPanel stateValue={activeTab} index={1}>
           <Product color="#886142" image={iconClassic} title="Classic" description="description" rating={4} />
           <Product color="#d0c5bf" image={iconMenthe} title="Menthe" description="description" rating={4} />
-          <Product color="#e5d2aa" image={iconMixFruits} title="Mix Fruits" description="description" rating={4} />
+          <Product
+            color="#e5d2aa"
+            image={iconMixFruits}
+            title="Mix Fruits"
+            description="description"
+            rating={4}
+          />
           <Product color="#efe5ca" image={iconClassic} title="Classic" description="description" rating={4} />
-          <Product color="#ffc384" image={iconCocktail} title="Cocktail" description="description" rating={4} />
-          <Product color="#fb727a" image={iconMonoFruits} title="Mono Fruits" description="description" rating={4} />
+          <Product
+            color="#ffc384"
+            image={iconCocktail}
+            title="Cocktail"
+            description="description"
+            rating={4}
+          />
+          <Product
+            color="#fb727a"
+            image={iconMonoFruits}
+            title="Mono Fruits"
+            description="description"
+            rating={4}
+          />
         </TabPanel>
         <TabPanel stateValue={activeTab} index={2}>
           <Product color="#886142" image={iconClassic} title="Classic" description="description" rating={4} />
           <Product color="#d0c5bf" image={iconMenthe} title="Menthe" description="description" rating={4} />
-          <Product color="#e5d2aa" image={iconMixFruits} title="Mix Fruits" description="description" rating={4} />
+          <Product
+            color="#e5d2aa"
+            image={iconMixFruits}
+            title="Mix Fruits"
+            description="description"
+            rating={4}
+          />
           <Product color="#efe5ca" image={iconClassic} title="Classic" description="description" rating={4} />
-          <Product color="#ffc384" image={iconCocktail} title="Cocktail" description="description" rating={4} />
-          <Product color="#fb727a" image={iconMonoFruits} title="Mono Fruits" description="description" rating={4} />
+          <Product
+            color="#ffc384"
+            image={iconCocktail}
+            title="Cocktail"
+            description="description"
+            rating={4}
+          />
+          <Product
+            color="#fb727a"
+            image={iconMonoFruits}
+            title="Mono Fruits"
+            description="description"
+            rating={4}
+          />
         </TabPanel>
-        <WhyUsSection />
-        <Box className=" absolute top-0 right-28 bg-black h-full">
+        <Box className=" mr-[700px]">
+          <WhyUsSection />
+        </Box>
+        <Box className=" absolute top-0 ml-[990px] bg-black h-full">
           <CartSection />
         </Box>
       </Box>

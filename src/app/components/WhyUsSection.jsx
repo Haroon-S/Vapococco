@@ -8,7 +8,7 @@ import WhyUsItems from './WhyUsItems';
 
 function WhyUsSection() {
   return (
-    <Box className="w-full py-6 flex items-center pl-28 bg-white">
+    <Box className="w-full py-6 flex items-center bg-white">
       <Box className=" max-w-[990px] flex items-center gap-10">
         <WhyUsItems image={shipping} title="Frais de port offerts à partir de 350€ HT" />
         <WhyUsItems image={packageIcon} title="Expédition le jour même si commande passée avant 14h30" />
