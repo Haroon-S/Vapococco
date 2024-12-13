@@ -9,11 +9,7 @@ export const deleteTokenCookie = async () => {
 export const createTokenCookie = async data => {
   'use server';
 
-  const twelveHours = 12 * 60 * 60 * 1000;
-
-  cookies().set('token', data?.access, {
-    expires: Date.now() + twelveHours,
-  });
+  cookies().set('token', data?.access);
 };
 
 export const getTokenCookie = () => {

@@ -193,3 +193,18 @@ iframe.skiptranslate {
   font-size: inherit !important;
   font-family: inherit !important;
 }
+
+@keyframes slideFade {
+  0% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(200px);
+  }
+}
+
+.animate-slide-fade {
+  animation: slideFade 1s ease-out forwards;
+}

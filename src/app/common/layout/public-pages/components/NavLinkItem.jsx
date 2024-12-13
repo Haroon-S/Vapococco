@@ -29,17 +29,13 @@ function NavLinkItem({
 
   return (
     <Box
-      onClick={() => menu && toggle(id)}
+      onMouseEnter={() => (menu ? toggle(id) : toggle(''))}
       className={`${navClassName || getNavLinkClassName()} hover flex items-center gap-1 mx-2 cursor-pointer`}
     >
       <Typography variant="body3" fontSize="inherit" fontWeight="inherit" color="inherit">
         {!menu ? (
           external ? (
-            <a
-              href={path}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <a href={path} target="_blank" rel="noopener noreferrer">
               <span className=" mr-1">{icon}</span>
               {label}
             </a>

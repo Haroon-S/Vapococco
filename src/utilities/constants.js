@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 export const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 // ROLES

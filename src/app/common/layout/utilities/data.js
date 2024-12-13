@@ -145,49 +145,49 @@ export const menuItems = {
   eliquid: [
     {
       id: v4(),
-      path: '/',
+      path: '/product?sub_category=eliquid&sub_category__category=10ml',
       title: '10ml',
-      icon: icon10ml.src
+      icon: icon10ml.src,
     },
     {
       id: v4(),
-      path: '/',
+      path: '/product?sub_category=eliquid&sub_category__category=50ml',
       title: '50ml et +',
       icon: icon50mlEtPlus.src
     },
     {
       id: v4(),
-      path: '/',
+      path: '/product?sub_category=eliquid&sub_category__category=sels-nicotine',
       title: 'Sels Nicotine',
       icon: iconSelsNicotine.src
     },
     {
       id: v4(),
-      path: '/',
+      path: '/product?sub_category=eliquid&sub_category__category=classic',
       title: 'Classic',
       icon: iconClassic.src
     },
     {
       id: v4(),
-      path: '/',
+      path: '/product?sub_category=eliquid&sub_category__category=menthe',
       title: 'Menthe',
       icon: iconMenthe.src
     },
     {
       id: v4(),
-      path: '/',
+      path: '/product?sub_category=eliquid&sub_category__category=mix-fruits',
       title: 'Mix Fruits',
       icon: iconMixFruits.src
     },
     {
       id: v4(),
-      path: '/',
+      path: '/product?sub_category=eliquid&sub_category__category=mono-fruits',
       title: 'Mono Fruits',
       icon: iconMonoFruits.src
     },
     {
       id: v4(),
-      path: '/',
+      path: '/product?sub_category=eliquid&sub_category__category=cocktail',
       title: 'Cocktail',
       icon: iconCocktail.src
     },
@@ -195,60 +195,60 @@ export const menuItems = {
   diy: [
     {
       id: v4(),
-      path: '/',
+      path: '/product?sub_category=diy&sub_category__category=Tous-Nos-Aromes',
       title: 'Tous Nos Aromes',
     },
     {
       id: v4(),
-      path: '/',
+      path: '/product?sub_category=diy&sub_category__category=classic',
       title: 'Classic',
       icon: iconClassic.src
     },
     {
       id: v4(),
-      path: '/',
+      path: '/product?sub_category=diy&sub_category__category=menthe',
       title: 'Menthe',
       icon: iconMenthe.src
     },
     {
       id: v4(),
-      path: '/',
+      path: '/product?sub_category=diy&sub_category__category=mix-fruits',
       title: 'Mix Fruits',
       icon: iconMixFruits.src
     },
     {
       id: v4(),
-      path: '/',
+      path: '/product?sub_category=diy&sub_category__category=mono-fruits',
       title: 'Mono Fruits',
       icon: iconMonoFruits.src
     },
     {
       id: v4(),
-      path: '/',
+      path: '/product?sub_category=diy&sub_category__category=cocktail',
       title: 'Cocktail',
       icon: iconCocktail.src
     },
     {
       id: v4(),
-      path: '/',
+      path: '/product?sub_category=diy&sub_category__category=base',
       title: 'Base',
       icon: iconDiyAdditif.src
     },
     {
       id: v4(),
-      path: '/',
+      path: '/product?sub_category=diy&sub_category__category=booster',
       title: 'Booster',
       icon: iconDiyAdditif.src
     },
     {
       id: v4(),
-      path: '/',
+      path: '/product?sub_category=diy&sub_category__category=additif',
       title: 'Additif',
       icon: iconDiyAdditif.src
     },
     {
       id: v4(),
-      path: '/',
+      path: '/product?sub_category=diy&sub_category__category=accessories',
       title: 'Accessories',
       icon: iconDiyAdditif.src
     },
@@ -256,49 +256,49 @@ export const menuItems = {
   cbd: [
     {
       id: v4(),
-      path: '/',
+      path: '/product?sub_category=cbd&sub_category__category=10ml',
       title: '10ml',
       icon: icon10ml.src
     },
     {
       id: v4(),
-      path: '/',
+      path: '/product?sub_category=cbd&sub_category__category=50ml',
       title: '50ml et +',
       icon: icon50mlEtPlus.src
     },
     {
       id: v4(),
-      path: '/',
+      path: '/product?sub_category=cbd&sub_category__category=sels-nicotine',
       title: 'Sels Nicotine',
       icon: iconSelsNicotine.src
     },
     {
       id: v4(),
-      path: '/',
+      path: '/product?sub_category=cbd&sub_category__category=classic',
       title: 'Classic',
       icon: iconClassic.src
     },
     {
       id: v4(),
-      path: '/',
+      path: '/product?sub_category=cbd&sub_category__category=menthe',
       title: 'Menthe',
       icon: iconMenthe.src
     },
     {
       id: v4(),
-      path: '/',
+      path: '/product?sub_category=cbd&sub_category__category=mix-fruits',
       title: 'Mix Fruits',
       icon: iconMixFruits.src
     },
     {
       id: v4(),
-      path: '/',
+      path: '/product?sub_category=cbd&sub_category__category=mono-fruits',
       title: 'Mono Fruits',
       icon: iconMonoFruits.src
     },
     {
       id: v4(),
-      path: '/',
+      path: '/product?sub_category=cbd&sub_category__category=cocktail',
       title: 'Cocktail',
       icon: iconCocktail.src
     },

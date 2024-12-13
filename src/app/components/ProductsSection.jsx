@@ -1,17 +1,14 @@
+/* eslint-disable no-unused-vars */
+
 'use client';
 
 import { Box } from '@mui/material';
 import React, { useState } from 'react';
 import TabPanel from '@/shared/components/TabPanel';
 import { CustomTab, CustomTabs } from '../common/components/styled/StyledTabs';
-import iconClassic from '@/assets/menu-icons/Classic.png';
-import iconMenthe from '@/assets/menu-icons/Menthe.png';
-import iconMixFruits from '@/assets/menu-icons/MIX-FRUITS.png';
-import iconMonoFruits from '@/assets/menu-icons/MONO-FRUIT.png';
-import iconCocktail from '@/assets/menu-icons/Cocktail.png';
-import Product from './Product';
 import CartSection from './CartSection';
 import WhyUsSection from './WhyUsSection';
+import ProductList from './ProductList';
 
 function ProductsSection() {
   const [activeTab, setActiveTab] = useState(0);
@@ -31,82 +28,13 @@ function ProductsSection() {
       </Box>
       <Box className=" relative border-t-8 border-t-black w-full overflow-hidden flex flex-col justify-center items-center ">
         <TabPanel stateValue={activeTab} index={0}>
-          <Product color="#886142" image={iconClassic} title="Classic" description="description" rating={4} />
-          <Product color="#d0c5bf" image={iconMenthe} title="Menthe" description="description" rating={4} />
-          <Product
-            color="#e5d2aa"
-            image={iconMixFruits}
-            title="Mix Fruits"
-            description="description"
-            rating={4}
-          />
-          <Product color="#efe5ca" image={iconClassic} title="Classic" description="description" rating={4} />
-          <Product
-            color="#ffc384"
-            image={iconCocktail}
-            title="Cocktail"
-            description="description"
-            rating={4}
-          />
-          <Product
-            color="#fb727a"
-            image={iconMonoFruits}
-            title="Mono Fruits"
-            description="description"
-            rating={4}
-          />
+          <ProductList filter="is_new" />
         </TabPanel>
         <TabPanel stateValue={activeTab} index={1}>
-          <Product color="#886142" image={iconClassic} title="Classic" description="description" rating={4} />
-          <Product color="#d0c5bf" image={iconMenthe} title="Menthe" description="description" rating={4} />
-          <Product
-            color="#e5d2aa"
-            image={iconMixFruits}
-            title="Mix Fruits"
-            description="description"
-            rating={4}
-          />
-          <Product color="#efe5ca" image={iconClassic} title="Classic" description="description" rating={4} />
-          <Product
-            color="#ffc384"
-            image={iconCocktail}
-            title="Cocktail"
-            description="description"
-            rating={4}
-          />
-          <Product
-            color="#fb727a"
-            image={iconMonoFruits}
-            title="Mono Fruits"
-            description="description"
-            rating={4}
-          />
+          <ProductList filter="is_essential" />
         </TabPanel>
         <TabPanel stateValue={activeTab} index={2}>
-          <Product color="#886142" image={iconClassic} title="Classic" description="description" rating={4} />
-          <Product color="#d0c5bf" image={iconMenthe} title="Menthe" description="description" rating={4} />
-          <Product
-            color="#e5d2aa"
-            image={iconMixFruits}
-            title="Mix Fruits"
-            description="description"
-            rating={4}
-          />
-          <Product color="#efe5ca" image={iconClassic} title="Classic" description="description" rating={4} />
-          <Product
-            color="#ffc384"
-            image={iconCocktail}
-            title="Cocktail"
-            description="description"
-            rating={4}
-          />
-          <Product
-            color="#fb727a"
-            image={iconMonoFruits}
-            title="Mono Fruits"
-            description="description"
-            rating={4}
-          />
+          <ProductList filter="is_promoted" />
         </TabPanel>
         <Box className=" mr-[768px]">
           <WhyUsSection />

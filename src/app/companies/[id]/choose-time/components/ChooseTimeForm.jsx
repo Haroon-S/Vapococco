@@ -17,7 +17,7 @@ import PropTypes from 'prop-types';
 import { useRouter } from 'next/navigation';
 import Grid2 from '@mui/material/Unstable_Grid2/Grid2';
 import moment from 'moment';
-import { useLazyGetServiceTimeSlotsQuery } from '@/services/private/services';
+import { useLazyGetServiceTimeSlotsQuery } from '@/services/private/product';
 import SubmitBtn from '@/app/common/components/SubmitBtn';
 import { slotFormInitVals, slotFormValSchema } from './data';
 import FormikDatePicker from '@/shared/components/form/FormikDatePicker';

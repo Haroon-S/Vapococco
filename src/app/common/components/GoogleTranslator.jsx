@@ -9,7 +9,7 @@ const googleTranslateElementInit = () => {
   new window.google.translate.TranslateElement(
     {
       pageLanguage: 'en',
-      includedLanguages: 'bg,en',
+      includedLanguages: 'fr,en',
       autoDisplay: false,
     },
     'google-translator-element'
@@ -50,11 +50,11 @@ function GoogleTranslator() {
           // Add an event listener to reset the language options
           selectField.addEventListener('change', () => {
             const firstOption = selectField.querySelector('option[value=""]');
-            const arabicOption = selectField.querySelector('option[value="bg"]');
+            const arabicOption = selectField.querySelector('option[value="fr"]');
             const englishOption = selectField.querySelector('option[value="en"]');
 
             if (firstOption) firstOption.textContent = 'Language';
-            if (arabicOption) arabicOption.textContent = 'Bulgarian';
+            if (arabicOption) arabicOption.textContent = 'French';
             if (englishOption) {
               window.location.reload();
             }

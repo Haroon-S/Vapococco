@@ -10,10 +10,10 @@ export const profileApi = privateAPi.injectEndpoints({
     // update user profile
 
     updateUserProfile: build.mutation({
-      query: ({ formData, username }) => ({
-        url: `/user-profile/user-profile/${username}/`,
+      query: body => ({
+        url: `/user-profile/user-profile/${body?.username}/`,
         method: 'PUT',
-        body: formData,
+        body,
       }),
       invalidatesTags: ['UserProfile'],
     }),

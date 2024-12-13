@@ -10,7 +10,7 @@ import { border } from '@/styles/common/colors';
 
 // API & CUSTOM HOOKS
 import useHandleApiResponse from '@/customHooks/useHandleApiResponse';
-import { useUpdateServiceStatusMutation } from '@/services/private/services';
+import { useUpdateServiceStatusMutation } from '@/services/private/product';
 
 function ServiceCardFooter({ serviceSlug = '', status = 'Pending', isPortal = false }) {
   const [updateServiceStatus, { error: statusError, isSuccess: isStatusSuccess }] =

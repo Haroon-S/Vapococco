@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import propTypes from 'prop-types';
 import { useField } from 'formik';
 import { Box } from '@mui/material';
+import { Search } from '@mui/icons-material';
 import styles from '@/styles/containers/layout/navbar.module.scss';
 
 function FormikSearchInput({
@@ -9,7 +10,6 @@ function FormikSearchInput({
   placeholder = '',
   disabled = false,
   className = '',
-  icon = null,
   onChange = () => {},
   onBlur = () => {},
   onValueChangeValidator = null,
@@ -61,7 +61,7 @@ function FormikSearchInput({
   return (
     <Box className={styles.searchFieldBox} id="search-input">
       <Box className={`${styles.inputSearchIcon} flex justify-center items-center`} ref={searchInputRef}>
-        {icon}
+        <Search />
       </Box>
       <input
         name={name}
@@ -71,7 +71,7 @@ function FormikSearchInput({
         onChange={handleChange}
         onBlur={handleBlur}
         value={innerValue}
-        className={`${styles.customFormikSearchField} ${className} `}
+        className={`${styles.customFormikSearchField} ${className} shadow-md `}
       />
     </Box>
   );
@@ -80,7 +80,6 @@ function FormikSearchInput({
 FormikSearchInput.propTypes = {
   name: propTypes.string.isRequired,
   placeholder: propTypes.string,
-  icon: propTypes.element,
   disabled: propTypes.bool,
   className: propTypes.string,
   onChange: propTypes.func,

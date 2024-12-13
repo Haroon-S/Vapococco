@@ -66,3 +66,73 @@ export const titleOptions = [
     value: 'Mrs',
   },
 ];
+
+export const categoriesOptions = [
+  {
+    label: 'Eliquid',
+    value: 'eliquid',
+  },
+  {
+    label: 'DIY',
+    value: 'diy',
+  },
+  {
+    label: 'CBD',
+    value: 'cbd',
+  },
+];
+
+export const subCategoriesOptions = [
+  {
+    label: '10ml',
+    value: '10ml',
+  },
+  {
+    label: '50ml',
+    value: '50ml',
+  },
+  {
+    label: 'Sels Nicotine',
+    value: 'sels-nicotine',
+  },
+  {
+    label: 'Classic',
+    value: 'classic',
+  },
+  {
+    label: 'Menthe',
+    value: 'menthe',
+  },
+  {
+    label: 'Mix Fruits',
+    value: 'mix-fruits',
+  },
+  {
+    label: 'Mono Fruits',
+    value: 'mono-fruits',
+  },
+  {
+    label: 'Cocktail',
+    value: 'cocktail',
+  },
+  {
+    label: 'Tous Nos Aromes',
+    value: 'Tous-Nos-Aromes',
+  },
+  {
+    label: 'Base',
+    value: 'base',
+  },
+  {
+    label: 'Booster',
+    value: 'booster',
+  },
+  {
+    label: 'Additif',
+    value: 'additif',
+  },
+  {
+    label: 'accessories',
+    value: 'Accessories',
+  },
+];

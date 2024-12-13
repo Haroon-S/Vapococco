@@ -1,12 +1,12 @@
 'use client';
 
-import { Box, Card, Grid, Pagination, Typography } from '@mui/material';
+import { Box, Grid, Pagination, Typography } from '@mui/material';
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 // API & HOOKS
 import useGetUserRoles from '@/customHooks/useGetUserRoles';
-import { useGetServiceQuery } from '@/services/private/services';
+import { useGetServiceQuery } from '@/services/private/product';
 
 // ASSETS
 import dummyImage from '@/assets/images/dummyImage.png';
@@ -57,9 +57,9 @@ function ServicesCards({ search, isPortal }) {
         </Grid>
       )}
       {!loading && data?.results?.length === 0 && (
-        <Card p={2} sx={{ height: '30vh' }} className=" w-full flex justify-center items-center">
+        <Box p={2} sx={{ height: '30vh' }} className=" w-full flex justify-center items-center">
           <Typography variant="body1">No Record Found!</Typography>
-        </Card>
+        </Box>
       )}
       <Box className=" flex items-center justify-end" py="29px">
         <Pagination

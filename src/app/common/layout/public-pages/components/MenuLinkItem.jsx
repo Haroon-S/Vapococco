@@ -9,10 +9,7 @@ function MenuLinkItem({
   label,
   id = '',
   path = '',
-  toggle = () => {},
   icon = null,
-  external = false,
-  menu = false,
 }) {
   return (
     <Link href={path}>
@@ -46,9 +43,6 @@ MenuLinkItem.propTypes = {
   path: propTypes.string,
   label: propTypes.string.isRequired,
   icon: propTypes.element,
-  menu: propTypes.bool,
-  external: propTypes.bool,
-  toggle: propTypes.func,
 };
 
 export default MenuLinkItem;

@@ -43,6 +43,7 @@ function SignUpForm({ toggle, closeModal, handler }) {
         formData.append('profile.first_name', values?.first_name);
         formData.append('profile.last_name', values?.last_name);
         formData.append('profile.company', values?.company);
+        formData.append('profile.country', values?.country);
         formData.append('profile.phone', values?.phone);
         formData.append('profile.siret', values?.siret);
         formData.append('profile.vat', values?.vat);

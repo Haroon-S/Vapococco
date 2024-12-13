@@ -4,6 +4,7 @@ export const initialValues = {
   title: 'Mr',
   first_name: '',
   last_name: '',
+  address: '',
   company: '',
   email: '',
   password: '',
@@ -49,5 +50,6 @@ export const validationSchema = yup.object({
     ),
   first_name: yup.string().required('Required'),
   last_name: yup.string().required('Required'),
+  address: yup.string().required('Required'),
   company: yup.string().required('Required'),
 });

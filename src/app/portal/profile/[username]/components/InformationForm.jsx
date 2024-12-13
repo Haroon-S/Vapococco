@@ -22,6 +22,7 @@ function InformationForm({ username }) {
   useEffect(() => {
     setProfileInitValues({
       title: user?.title || 'Mr',
+      address: user?.address || '',
       first_name: user?.first_name || '',
       last_name: user?.last_name || '',
       company: user?.company || '',
@@ -35,12 +36,13 @@ function InformationForm({ username }) {
       initialValues={profileInitValues}
       validationSchema={validationSchema}
       onSubmit={async values => {
-        await updateUserProfile(values);
+        await updateUserProfile({ username: user?.username, ...values });
       }}
     >
-      {({ isSubmitting, setFieldValue, values }) => (
+      {({ isSubmitting, setFieldValue, values, errors }) => (
         <Form className=" flex flex-col items-center justify-center w-full gap-2 px-6 sm:px-0">
           <Grid justifyContent="center" alignItems="center" columnSpacing={2} rowGap={2} container>
+            {console.log('errors ==>', errors)}
             <Grid item xs={12}>
               <Box className=" w-full flex flex-col justify-center items-center">
                 <Typography className=" text-sm text-[#a6a6a6]">Title</Typography>
@@ -61,11 +63,14 @@ function InformationForm({ username }) {
             <Grid item xs={12} md={6}>
               <FormikField type="text" name="email" placeholder="Type your email" />
             </Grid>
+            <Grid item xs={12} md={12}>
+              <FormikField type="text" name="address" placeholder="Type your address" />
+            </Grid>
             <Grid item xs={12} md={6}>
               <FormikField type="password" name="password" placeholder="Password" />
             </Grid>
             <Grid item xs={12} md={6}>
-              <FormikField type="password" name="password" placeholder="Confirm Password" />
+              <FormikField type="password" name="confirmPassword" placeholder="Confirm Password" />
             </Grid>
             <Grid item className=" mt-6">
               <SubmitBtn label="SAVE" isLoading={isSubmitting} />

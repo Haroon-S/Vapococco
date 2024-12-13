@@ -10,7 +10,7 @@ import { Box, Button, Divider, Modal, Stack, Tooltip, Typography } from '@mui/ma
 import { useAddOrderMutation } from '@/services/private/orders';
 import { useCreateRoomMutation } from '@/services/private/chat';
 import useHandleApiResponse from '@/customHooks/useHandleApiResponse';
-import { useDeleteServiceMutation, useUpdateServiceStatusMutation } from '@/services/private/services';
+import { useDeleteServiceMutation, useUpdateServiceStatusMutation } from '@/services/private/product';
 
 // STYLES
 import { border, primary } from '@/styles/common/colors';
