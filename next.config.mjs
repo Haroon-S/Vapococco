@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ['yappy-evita-shamas-8c6ecf16.koyeb.app'],
+    domains: ['yappy-evita-shamas-8c6ecf16.koyeb.app', 'https://yappy-evita-shamas-8c6ecf16.koyeb.app'],
   },
   experimental: {
     serverActions: {
