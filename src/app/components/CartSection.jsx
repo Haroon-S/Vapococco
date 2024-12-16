@@ -73,7 +73,7 @@ function CartSection() {
             onClick={handleOrder}
             variant="contained"
             disabled={!(data?.items?.length > 0) || orderLoading}
-            className="text-white font-bold w-full mt-2 disabled:text-gray-500 disabled:bg-primaryHover"
+            className="text-black font-bold w-full mt-2 bg-white disabled:bg-themeMuted"
           >
             BUY
           </Button>
