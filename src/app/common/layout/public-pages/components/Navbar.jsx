@@ -160,7 +160,8 @@ function Navbar({ toggleSidebar = () => {}, isPortal = false }) {
             id="mes-produits"
             toggle={handleMenuSelect}
             label="Mes Produits"
-            path="/mes-produits"
+            // path="/mes-produits"
+            path="/"
           />
           <NavLinkItem
             id="eliquid"
