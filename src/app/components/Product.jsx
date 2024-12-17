@@ -55,8 +55,6 @@ function Product({
     setFavorite(prev => !prev);
   };
 
-  console.log('primaryImage ==> ', primaryImage);
-
   return (
     <Box className=" w-full relative py-3 flex items-center justify-center" sx={{ backgroundColor: color }}>
       <Box className=" w-screen h-full absolute -z-10 " sx={{ backgroundColor: color }} />
@@ -88,7 +86,7 @@ function Product({
                 {title}
               </Typography>
               <Rating value={rating} readOnly />
-              <Typography variant="body2" className="text-black">
+              <Typography variant="body2" className="text-black cursor-pointer" onClick={toggleModal}>
                 {description}
               </Typography>
             </Box>
@@ -127,7 +125,7 @@ function Product({
       <Modal open={modalOpen} onClose={toggleModal}>
         <Box sx={{ ...fileViewModalStyles, paddingX: '20px', paddingY: '40px', width: '900px' }}>
           <ModalHeader title={title} onClose={toggleModal} />
-          <ProductDetail title={title} image={image} description={description} />
+          <ProductDetail title={title} image={primaryImage} description={description} />
         </Box>
       </Modal>
     </Box>

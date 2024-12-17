@@ -29,22 +29,22 @@ function ProductSelectionForm({ variations, sizes, product, handler, isLoading, 
         enableReinitialize
         initialValues={initialValues}
         onSubmit={async values => {
-          const transformedArray = Object.entries(values).map(([key, quantity]) => {
-            // Split the key to extract variation ID and size ID
-            const [, variationID, sizeID] = key.split('-');
+          const transformedArray = Object.entries(values)
+            .filter(([_, quantity]) => quantity > 0) // Filter out items with quantity === 0
+            .map(([key, quantity]) => {
+              // Split the key to extract variation ID and size ID
+              const [, variationID, sizeID] = key.split('-');
 
-            // Return the transformed object
-            return {
-              product,
-              variations: parseInt(variationID, 10),
-              size: parseInt(sizeID, 10),
-              quantity,
-            };
-          });
+              // Return the transformed object
+              return {
+                product,
+                variations: parseInt(variationID, 10),
+                size: parseInt(sizeID, 10),
+                quantity,
+              };
+            });
 
-          transformedArray?.forEach(async item => {
-            await handler(item);
-          });
+          await Promise.all(transformedArray.map(item => handler(item)));
         }}
       >
         {({ isSubmitting }) => (

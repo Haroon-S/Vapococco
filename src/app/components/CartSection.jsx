@@ -2,18 +2,23 @@
 
 'use client';
 
-import { Box, Button, CircularProgress, Typography } from '@mui/material';
-import React from 'react';
+import { Box, Button, CircularProgress, Modal, Typography } from '@mui/material';
+import React, { useState } from 'react';
 import CartsObject from './CartsObject';
 import { useAddOrderMutation } from '@/services/private/orders';
 import useHandleApiResponse from '@/customHooks/useHandleApiResponse';
 import { useGetCartQuery } from '@/services/private/cart';
 import SectionLoader from '../common/loaders/SectionLoader';
+import ModalHeader from '../common/components/ModalHeader';
+import { fileViewModalStyles, formModalStyles } from '@/styles/mui/common/modal-styles';
+import OrderFormModal from './OrderFormModal';
 
 function CartSection() {
   const [addOrder, { error, isSuccess, isLoading: orderLoading }] = useAddOrderMutation();
   useHandleApiResponse(error, isSuccess, 'Order Placed successfully!');
   const { data, isLoading, isFetching } = useGetCartQuery();
+  const [modalOpen, setModalOpen] = useState(false);
+  const toggleModal = () => setModalOpen(prev => !prev);
 
   const loading = isLoading || isFetching;
 
@@ -70,7 +75,7 @@ function CartSection() {
           </Box>
           <Button
             startIcon={orderLoading ? <CircularProgress size={20} /> : undefined}
-            onClick={handleOrder}
+            onClick={toggleModal}
             variant="contained"
             disabled={!(data?.items?.length > 0) || orderLoading}
             className="text-black font-bold w-full mt-2 bg-white disabled:bg-themeMuted"
@@ -79,6 +84,12 @@ function CartSection() {
           </Button>
         </Box>
       </Box>
+      <Modal open={modalOpen} onClose={toggleModal}>
+        <Box sx={formModalStyles}>
+          <ModalHeader title="Place Order" onClose={toggleModal} />
+          <OrderFormModal />
+        </Box>
+      </Modal>
     </Box>
   );
 }

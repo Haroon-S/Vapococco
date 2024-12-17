@@ -4,8 +4,6 @@ import { Box, Typography } from '@mui/material';
 import Image from 'next/image';
 
 function ProductDetail({ image, title, description }) {
-  console.log('image ==> ', image);
-
   return (
     <Box className="w-full mt-8">
       <Typography variant="h3" className=" text-center">{title}</Typography>

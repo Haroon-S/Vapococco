@@ -229,7 +229,6 @@ function Navbar({ toggleSidebar = () => {}, isPortal = false }) {
         </Box>
 
         <ProfileMenu anchorEl={topbarMenu} handleClose={handleCloseMenu} />
-        {/* <CategoryMenu anchor={categoryMenu} toggle={handleCloseCategoryMenu} categoriesData={menuItems[selectedMenu]} /> */}
         <Drawer key={showNavbar} showNavbar={showNavbar} handleShowNavbar={handleShowNavbar} />
         <Modal open={modalOpen.open} onClose={toggleModalClose}>
           <Box sx={{ ...fileViewModalStyles, paddingX: '20px', paddingY: '40px', width: '900px' }}>
