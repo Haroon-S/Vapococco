@@ -29,7 +29,7 @@ function MenuLinkItem({
           fontSize="inherit"
           fontWeight="inherit"
           color="inherit"
-          className=" text-white uppercase w-28 text-center"
+          className=" text-white uppercase w-28 text-center notranslate"
         >
           {label}
         </Typography>

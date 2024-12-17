@@ -34,7 +34,7 @@ function ProductList({ filter }) {
             color={item?.color_code || '#886142'}
             variations={item?.variations}
             sizes={item?.sizes}
-            image={item?.images[0]}
+            image={item?.images}
             title={item?.title}
             description={item?.short_description}
             price={item?.sale_price}

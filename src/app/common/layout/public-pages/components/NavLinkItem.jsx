@@ -32,7 +32,7 @@ function NavLinkItem({
       onMouseEnter={() => (menu ? toggle(id) : toggle(''))}
       className={`${navClassName || getNavLinkClassName()} hover flex items-center gap-1 mx-2 cursor-pointer`}
     >
-      <Typography variant="body3" fontSize="inherit" fontWeight="inherit" color="inherit">
+      <Typography variant="body3" fontSize="inherit" fontWeight="inherit" color="inherit" className={menu ? 'notranslate text-nowrap' : 'text-nowrap'}>
         {!menu ? (
           external ? (
             <a href={path} target="_blank" rel="noopener noreferrer">

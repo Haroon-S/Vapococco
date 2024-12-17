@@ -1,20 +1,17 @@
-/* eslint-disable no-unused-vars */
-
 'use client';
 
-import { Box, Pagination, Typography } from '@mui/material';
 import React, { useState } from 'react';
 import propTypes from 'prop-types';
-import CartSection from '@/app/components/CartSection';
+import { Box, Pagination, Typography } from '@mui/material';
 import Product from '@/app/components/Product';
-import WhyUsSection from '@/app/components/WhyUsSection';
-import ProductFilterForm from './ProductFilterForm';
-import { useGetProductsQuery } from '@/services/private/product';
 import SectionLoader from '@/app/common/loaders/SectionLoader';
+import WhyUsSection from '@/app/components/WhyUsSection';
+import CartSection from '@/app/components/CartSection';
+import { useGetProductsQuery } from '@/services/private/product';
+import ProductFilterForm from '@/app/product/components/ProductFilterForm';
 
 function ProductsSection({ searchParams }) {
   const [initValues, setInitValues] = useState(searchParams);
-
   const rowsPerPage = 6;
   const [page, setPage] = useState(1);
 
@@ -34,6 +31,7 @@ function ProductsSection({ searchParams }) {
   const handleSetFilter = filters => {
     setInitValues(filters);
   };
+
   return (
     <Box>
       <Box className=" relative border-t-8 border-t-black w-full overflow-hidden flex flex-col justify-center items-center ">

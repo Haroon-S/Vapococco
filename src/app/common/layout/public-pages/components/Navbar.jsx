@@ -156,13 +156,14 @@ function Navbar({ toggleSidebar = () => {}, isPortal = false }) {
           </Box>
         </Box>
         <Box className=" w-full mt-8 flex justify-center items-center gap-8">
-          <NavLinkItem
-            id="mes-produits"
-            toggle={handleMenuSelect}
-            label="Mes Produits"
-            // path="/mes-produits"
-            path="/"
-          />
+          {isAuthenticated && (
+            <NavLinkItem
+              id="my-products"
+              toggle={handleMenuSelect}
+              label="Mes Produits"
+              path="/my-products"
+            />
+          )}
           <NavLinkItem
             id="eliquid"
             label="E-LIQUID"

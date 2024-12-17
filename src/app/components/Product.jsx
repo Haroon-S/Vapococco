@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import propTypes from 'prop-types';
 import { Box, Button, CircularProgress, IconButton, Modal, Rating, Typography } from '@mui/material';
 import { Favorite } from '@mui/icons-material';
@@ -17,11 +17,11 @@ import ExpandableImage from '../common/components/ExpandableImage ';
 function Product({
   id,
   color,
-  image,
   title,
   description,
   price,
   rating = 0,
+  image = [],
   variations = [],
   sizes = [],
   isFavorite = false,
@@ -38,6 +38,14 @@ function Product({
     await addToCart({ product: id, variations: variations[0]?.id, size: sizes[0]?.id, quantity: 1 });
   };
 
+  const primaryImage = useMemo(() => {
+    if (image?.length > 0) {
+      const primaryObj = image?.find(item => item.is_primary === true);
+      return primaryObj ? primaryObj?.image : '';
+    }
+    return '';
+  }, [image]);
+
   const handleAddFavorite = async () => {
     if (favorite) {
       await deleteFavorite(id);
@@ -47,6 +55,8 @@ function Product({
     setFavorite(prev => !prev);
   };
 
+  console.log('primaryImage ==> ', primaryImage);
+
   return (
     <Box className=" w-full relative py-3 flex items-center justify-center" sx={{ backgroundColor: color }}>
       <Box className=" w-screen h-full absolute -z-10 " sx={{ backgroundColor: color }} />
@@ -54,8 +64,8 @@ function Product({
         <Box className=" flex gap-6 mx-0">
           <Box>
             <ExpandableImage
-              src={image?.src}
-              alt="Product image"
+              src={primaryImage}
+              alt="Image"
               thumbnailClassName="w-64 h-64 object-cover rounded-lg"
               fullImageClassName="max-w-[90%] max-h-[90vh] object-contain"
               isProductImage
@@ -85,7 +95,14 @@ function Product({
           </Box>
         </Box>
         {variations.length > 1 && (
-          <ProductSelectionForm variations={variations} sizes={sizes} product={id} handler={addToCart} isLoading={isLoading} inStock={inStock} />
+          <ProductSelectionForm
+            variations={variations}
+            sizes={sizes}
+            product={id}
+            handler={addToCart}
+            isLoading={isLoading}
+            inStock={inStock}
+          />
         )}
         {variations.length === 1 && (
           <Box className="">
@@ -100,7 +117,7 @@ function Product({
               disabled={isLoading || !inStock}
               onClick={handleAddToCart}
               variant="contained"
-              className=" mt-2"
+              className=" mt-2 bg-black text-white"
             >
               {inStock ? 'ADD TO CART' : 'OUT OF STOCK'}
             </Button>
@@ -123,7 +140,7 @@ Product.propTypes = {
   variations: propTypes.array.isRequired,
   sizes: propTypes.array.isRequired,
   color: propTypes.string.isRequired,
-  image: propTypes.string.isRequired,
+  image: propTypes.array.isRequired,
   title: propTypes.string.isRequired,
   description: propTypes.string.isRequired,
   rating: propTypes.number,

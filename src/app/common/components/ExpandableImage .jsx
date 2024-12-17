@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable @next/next/no-img-element */
 import React, { useState } from 'react';
@@ -10,7 +11,7 @@ function ExpandableImage({
   src,
   alt,
   isProductImage = false,
-  fullImageClassName = 'max-w-full max-h-[90vh] object-contain',
+  fullImageClassName = 'w-full h-[90vh] max-h-[90vh] object-contain',
 }) {
   const [open, setOpen] = useState(false);
 
@@ -26,14 +27,9 @@ function ExpandableImage({
     <>
       {/* Thumbnail Image */}
       {isProductImage ? (
-        <Image
-          src={src}
-          alt={alt}
-          width={140}
-          height={140}
-          className=" cursor-pointer"
-          onClick={handleOpen}
-        />
+        <Box className=" relative h-24 w-24 flex justify-end items-end">
+          <Image src={src} alt={alt} className=" object-contain cursor-pointer" fill onClick={handleOpen} />
+        </Box>
       ) : (
         <Box className=" relative h-16 w-full flex justify-end items-end">
           <Image src={src} alt={alt} className=" object-contain cursor-pointer" fill onClick={handleOpen} />
@@ -41,7 +37,7 @@ function ExpandableImage({
       )}
 
       {/* Full Image Modal */}
-      <Dialog open={open} onClose={handleClose} maxWidth="xl" fullWidth>
+      <Dialog open={open} onClose={handleClose}>
         <Box className=" flex items-center justify-end">
 
           <IconButton onClick={handleClose} className="p-1">
@@ -52,7 +48,7 @@ function ExpandableImage({
           <img
             src={src}
             alt={alt}
-            className={fullImageClassName}
+            className="w-full min-h-[80vh] max-h-[90vh] object-contain overflow-hidden"
             onClick={handleClose} // Optional: allow closing by clicking the image
           />
         </DialogContent>

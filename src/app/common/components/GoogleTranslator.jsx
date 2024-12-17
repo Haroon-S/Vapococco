@@ -6,6 +6,7 @@ import { setSelectedLanguage } from '@/store/slices/languageSlice';
 const googleTranslateElementInit = () => {
   const element = document.getElementById('google-translator-element');
   if (element) element.innerHTML = '';
+
   new window.google.translate.TranslateElement(
     {
       pageLanguage: 'en',
@@ -19,6 +20,7 @@ const googleTranslateElementInit = () => {
 function GoogleTranslator() {
   const translatorRef = useRef(null);
   const dispatch = useDispatch();
+  const isFrenchSet = useRef(false); // Track if French was set once
 
   useEffect(() => {
     const addScript = document.createElement('script');
@@ -28,7 +30,21 @@ function GoogleTranslator() {
     );
     document.body.appendChild(addScript);
 
-    window.googleTranslateElementInit = googleTranslateElementInit;
+    window.googleTranslateElementInit = () => {
+      googleTranslateElementInit();
+
+      // Programmatically set to French ONLY ONCE
+      if (!isFrenchSet.current) {
+        setTimeout(() => {
+          const selectField = document.querySelector('.goog-te-combo');
+          if (selectField) {
+            selectField.value = 'fr'; // Set French as selected
+            selectField.dispatchEvent(new Event('change')); // Trigger change
+            isFrenchSet.current = true; // Prevent further execution
+          }
+        }, 1000); // Delay to ensure dropdown is initialized
+      }
+    };
 
     return () => {
       const element = document.getElementById('google-translator-element');
@@ -40,24 +56,18 @@ function GoogleTranslator() {
     if (translatorRef.current) {
       const timeoutId = setTimeout(() => {
         const selectField = translatorRef.current.querySelector('.goog-te-combo');
-        // Change "Select Language" to "Select"
         if (selectField) {
           const defaultOption = selectField.querySelector('option[value=""]');
           if (defaultOption) {
             defaultOption.textContent = 'Language';
           }
 
-          // Add an event listener to reset the language options
           selectField.addEventListener('change', () => {
             const firstOption = selectField.querySelector('option[value=""]');
-            const arabicOption = selectField.querySelector('option[value="fr"]');
-            const englishOption = selectField.querySelector('option[value="en"]');
+            const frenchOption = selectField.querySelector('option[value="fr"]');
 
             if (firstOption) firstOption.textContent = 'Language';
-            if (arabicOption) arabicOption.textContent = 'French';
-            if (englishOption) {
-              window.location.reload();
-            }
+            if (frenchOption) frenchOption.textContent = 'French';
           });
         }
 
@@ -65,7 +75,7 @@ function GoogleTranslator() {
         selectField?.addEventListener('change', e => {
           dispatch(setSelectedLanguage(e?.target?.value));
         });
-      }, [2500]);
+      }, 2500);
 
       return () => {
         clearTimeout(timeoutId);

@@ -65,7 +65,7 @@ function ProductSelectionForm({ variations, sizes, product, handler, isLoading, 
                   <Grid2 xs={2}>
                     <ExpandableImage
                       src={size?.image}
-                      alt="Size image"
+                      alt="image"
                       thumbnailClassName="w-64 h-64 object-cover rounded-lg"
                       fullImageClassName="max-w-[90%] max-h-[90vh] object-contain"
                     />
@@ -113,8 +113,13 @@ function ProductSelectionForm({ variations, sizes, product, handler, isLoading, 
                     </Grid2>
                   ))}
                   <Grid2 className=" flex justify-end" container xs={12} spacing={1}>
-                    <Grid2 className=" flex justify-end" xs={4}>
-                      <SubmitBtn label="ADD TO CART" className="w-full" isLoading={isSubmitting || isLoading} isDisabled={!inStock} />
+                    <Grid2 className=" flex justify-end" xs={10}>
+                      <SubmitBtn
+                        label={inStock ? 'ADD TO CART' : 'OUT OF STOCK'}
+                        className="w-full bg-black hover:bg-neutral-800 text-white"
+                        isLoading={isSubmitting || isLoading}
+                        isDisabled={!inStock}
+                      />
                     </Grid2>
                   </Grid2>
                 </Collapse>

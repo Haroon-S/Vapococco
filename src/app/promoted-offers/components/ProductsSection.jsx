@@ -44,7 +44,7 @@ function ProductsSection() {
               isFavorite={item?.is_favorite}
               inStock={item?.is_in_stock}
               color={item?.color_code || '#886142'}
-              image={item?.images[0]}
+              image={item?.images}
               variations={item?.variations}
               sizes={item?.sizes}
               title={item?.title}
