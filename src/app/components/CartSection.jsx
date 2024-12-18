@@ -5,7 +5,7 @@
 import { Box, Button, CircularProgress, Modal, Typography } from '@mui/material';
 import React, { useState } from 'react';
 import CartsObject from './CartsObject';
-import { useAddOrderMutation } from '@/services/private/orders';
+import { useAddOrderMutation, useAddOrderPaymentDetailMutation } from '@/services/private/orders';
 import useHandleApiResponse from '@/customHooks/useHandleApiResponse';
 import { useGetCartQuery } from '@/services/private/cart';
 import ModalHeader from '../common/components/ModalHeader';
@@ -16,6 +16,8 @@ import useGetSelectedLanguageText from '@/customHooks/useGetSelectedLanguageText
 function CartSection() {
   const { checkSelectedLanguageText } = useGetSelectedLanguageText();
   const [addOrder, { error, isSuccess, isLoading: orderLoading }] = useAddOrderMutation();
+  const [addPayment, { error: paymentError, isSuccess: paymentSuccess }] = useAddOrderPaymentDetailMutation();
+  useHandleApiResponse(paymentError, paymentSuccess, 'Payment Added successfully!');
   useHandleApiResponse(error, isSuccess, 'Order Placed successfully!');
   const { data, isLoading, isFetching } = useGetCartQuery();
   const [modalOpen, setModalOpen] = useState(false);
@@ -94,7 +96,7 @@ function CartSection() {
       >
         <Box sx={formModalStyles}>
           <ModalHeader title="Place Order" onClose={toggleModal} />
-          <OrderFormModal orderData={orderData.data} toggle={toggleModal} />
+          <OrderFormModal orderData={orderData.data} toggle={toggleModal} handler={addPayment} />
         </Box>
       </Modal>
     </Box>

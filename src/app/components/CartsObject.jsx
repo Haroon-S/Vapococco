@@ -8,23 +8,13 @@ import icon1L from '@/assets/bottle-size-img/1L.png';
 import { useDeleteCartMutation, useUpdateCartMutation } from '@/services/private/cart';
 
 function CartsObject({ id, name, totalQuantity, totalPrice, variation, size }) {
-  console.log(' id ==> ', id);
-
   const [updateItemQuantityAndPrice] = useUpdateCartMutation();
   const [deleteItem] = useDeleteCartMutation();
-  const [quantity, setQuantity] = useState(1);
-  const [price, setPrice] = useState(0);
-  const handleAddPrice = () => {
-    setPrice(prev => prev + 1);
-  };
-  const handleSubPrice = () => {
-    setPrice(prev => prev - 1);
-  };
   const handleAddQuantity = () => {
     updateItemQuantityAndPrice({ id, quantity: totalQuantity + 1 });
   };
   const handleSubQuantity = () => {
-    if (quantity !== 1) {
+    if (totalQuantity !== 1) {
       updateItemQuantityAndPrice({ id, quantity: totalQuantity - 1 });
     }
   };

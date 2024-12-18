@@ -7,14 +7,12 @@ import propTypes from 'prop-types';
 import { Form, Formik } from 'formik';
 import React from 'react';
 import moment from 'moment';
+import { useSelector } from 'react-redux';
 import SubmitBtn from '../common/components/SubmitBtn';
 import FormikFileField from '@/shared/components/form/FormikFileField';
-import { useAddOrderPaymentDetailMutation } from '@/services/private/orders';
-import useHandleApiResponse from '@/customHooks/useHandleApiResponse';
 
-function OrderFormModal({ orderData, toggle }) {
-  const [addPayment, { error, isSuccess }] = useAddOrderPaymentDetailMutation();
-  useHandleApiResponse(error, isSuccess, 'Payment Added successfully!');
+function OrderFormModal({ orderData, toggle, handler }) {
+  const { user } = useSelector(state => state.auth);
 
   return (
     <Box className=" w-full">
@@ -28,8 +26,10 @@ function OrderFormModal({ orderData, toggle }) {
         onSubmit={async (values, { resetForm }) => {
           if (values?.image) {
             const formData = new FormData();
+            formData.append('user', user?.profile?.id);
+            formData.append('order', orderData?.id);
             formData.append('image', values?.image, values?.image?.name);
-            const signupResp = await addPayment(formData);
+            const signupResp = await handler(formData);
             if (!signupResp?.error) {
               resetForm(values);
               toggle();
@@ -82,6 +82,7 @@ function OrderFormModal({ orderData, toggle }) {
 OrderFormModal.propTypes = {
   orderData: propTypes.object,
   toggle: propTypes.func,
+  handler: propTypes.func,
 };
 
 export default OrderFormModal;
