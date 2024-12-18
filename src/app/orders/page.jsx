@@ -4,12 +4,12 @@ import OrdersTable from './components/OrdersTable';
 
 function Orders() {
   return (
-    <Box className=" h-screen px-20 flex justify-center">
-      <Box className=" mt-[260px] mb-10 max-w-[1440px] w-full">
+    <Box className=" px-20 flex justify-center">
+      <Box className=" mt-[260px] pb-20 max-w-[1440px] w-full">
         <Typography variant="pageTitle" className=" text-start">
           Orders
         </Typography>
-        <Box className=" mt-4">
+        <Box className=" mt-4 pb-20">
           <OrdersTable />
         </Box>
       </Box>

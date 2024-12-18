@@ -1,9 +1,11 @@
+/* eslint-disable no-confusing-arrow */
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-nested-ternary */
 import React, { useCallback } from 'react';
 import propTypes from 'prop-types';
 import { Box, Typography } from '@mui/material';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import styles from '@/styles/containers/layout/navbar.module.scss';
 
 function NavLinkItem({
@@ -12,13 +14,17 @@ function NavLinkItem({
   path = '',
   navClassName = '',
   toggle = () => {},
+  toggleAuth = () => {},
   icon = null,
   isSelected = false,
   external = false,
   menu = false,
+  isOrder = false,
+  isAuthenticated = false,
 }) {
   const currentPath = usePathname();
   const isActive = path === currentPath;
+  const router = useRouter();
 
   const getNavLinkClassName = useCallback(() => {
     if (isActive || isSelected) {
@@ -30,21 +36,21 @@ function NavLinkItem({
   return (
     <Box
       onMouseEnter={() => (menu ? toggle(id) : toggle(''))}
+      onClick={() => isOrder ? isAuthenticated ? router.push('/orders') : toggleAuth('signin') : {}}
       className={`${navClassName || getNavLinkClassName()} hover flex items-center gap-1 mx-2 cursor-pointer`}
     >
-      <Typography variant="body3" fontSize="inherit" fontWeight="inherit" color="inherit" className={menu ? 'notranslate text-nowrap' : 'text-nowrap'}>
-        {!menu ? (
-          external ? (
-            <a href={path} target="_blank" rel="noopener noreferrer">
-              <span className=" mr-1">{icon}</span>
-              {label}
-            </a>
-          ) : (
-            <Link href={path}>
-              <span className=" mr-1">{icon}</span>
-              {label}
-            </Link>
-          )
+      <Typography
+        variant="body3"
+        fontSize="inherit"
+        fontWeight="inherit"
+        color="inherit"
+        className="notranslate text-nowrap"
+      >
+        {!menu && !isOrder ? (
+          <Link href={path}>
+            <span className=" mr-1">{icon}</span>
+            {label}
+          </Link>
         ) : (
           label
         )}
@@ -62,7 +68,10 @@ NavLinkItem.propTypes = {
   menu: propTypes.bool,
   isSelected: propTypes.bool,
   external: propTypes.bool,
+  isOrder: propTypes.bool,
+  isAuthenticated: propTypes.bool,
   toggle: propTypes.func,
+  toggleAuth: propTypes.func,
 };
 
 export default NavLinkItem;

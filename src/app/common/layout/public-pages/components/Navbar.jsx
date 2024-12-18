@@ -41,11 +41,13 @@ import SignUpForm from '@/app/auth/signup/components/SignUpForm';
 import { useLoginMutation, useSignUpMutation } from '@/services/public/auth';
 import useHandleApiResponse from '@/customHooks/useHandleApiResponse';
 import { useGetCartQuery } from '@/services/private/cart';
+import useGetSelectedLanguageText from '@/customHooks/useGetSelectedLanguageText';
 
 function Navbar({ toggleSidebar = () => {}, isPortal = false }) {
   const router = useRouter();
   const pathname = usePathname();
   const isSearchPage = pathname.includes('/search');
+  const { checkSelectedLanguageText } = useGetSelectedLanguageText();
 
   const { isAuthenticated, user } = useSelector(state => state.auth);
   const { userType } = useGetUserRoles();
@@ -142,11 +144,12 @@ function Navbar({ toggleSidebar = () => {}, isPortal = false }) {
                 <Call style={{ fontSize: '20px' }} />
               </Box>
             </Link>
-            <Link href="/orders">
-              <Box className=" bg-[#e5dcd3] rounded-full flex justify-center items-center w-10 h-10">
-                <Inventory style={{ fontSize: '20px' }} />
-              </Box>
-            </Link>
+            <Box
+              onClick={() => (isAuthenticated ? router.push('/orders') : toggleModalOpen('signin'))}
+              className=" bg-[#e5dcd3] rounded-full flex justify-center items-center w-10 h-10 cursor-pointer"
+            >
+              <Inventory style={{ fontSize: '20px' }} />
+            </Box>
             <Box
               onClick={() => (isAuthenticated ? router.push(`/portal/profile/${user?.username}`) : toggleModalOpen('signin'))}
               className=" bg-[#e5dcd3] rounded-full flex justify-center items-center w-10 h-10 cursor-pointer"
@@ -160,7 +163,7 @@ function Navbar({ toggleSidebar = () => {}, isPortal = false }) {
             <NavLinkItem
               id="my-products"
               toggle={handleMenuSelect}
-              label="Mes Produits"
+              label={checkSelectedLanguageText('MES PRODUITS', 'MY PRODUCTS')}
               path="/my-products"
             />
           )}
@@ -194,10 +197,18 @@ function Navbar({ toggleSidebar = () => {}, isPortal = false }) {
               // className="animate-slide-down"
             />
           </Box>
-          <NavLinkItem id="chart-list" label="Chart List" path="/orders" toggle={handleMenuSelect} />
+          <NavLinkItem
+            id="chart-list"
+            label={checkSelectedLanguageText("MA LISTE D'ACHATS", 'CHART LIST')}
+            path="/orders"
+            toggle={handleMenuSelect}
+            toggleAuth={toggleModalOpen}
+            isAuthenticated={isAuthenticated}
+            isOrder
+          />
           <NavLinkItem
             id="offre-semaine"
-            label="Offre De La Semaine"
+            label={checkSelectedLanguageText('OFFER DE LA SEMAINE', 'OFFER OF THE WEEK')}
             path="/promoted-offers"
             toggle={handleMenuSelect}
           />

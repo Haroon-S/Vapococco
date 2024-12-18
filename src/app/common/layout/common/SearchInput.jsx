@@ -3,8 +3,10 @@ import { Box, Divider } from '@mui/material';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { Search } from '@mui/icons-material';
 import styles from '@/styles/containers/layout/navbar.module.scss';
+import useGetSelectedLanguageText from '@/customHooks/useGetSelectedLanguageText';
 
 function SearchInput() {
+  const { checkSelectedLanguageText } = useGetSelectedLanguageText();
   const router = useRouter();
   const searchParams = useSearchParams();
   const path = usePathname();
@@ -44,11 +46,11 @@ function SearchInput() {
 
       <input
         value={searchText}
-        placeholder="Search Services..."
+        placeholder={checkSelectedLanguageText('RECHERCHES...', 'Search Services...')}
         onChange={handleChange}
         onKeyDown={event => handleKeyDown(event)}
         type="text"
-        className={styles.customSearchField}
+        className={`${styles.customSearchField} notranslate`}
       />
     </Box>
   );

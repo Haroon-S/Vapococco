@@ -7,7 +7,7 @@ import Product from '@/app/components/Product';
 import SectionLoader from '@/app/common/loaders/SectionLoader';
 import WhyUsSection from '@/app/components/WhyUsSection';
 import CartSection from '@/app/components/CartSection';
-import { useGetProductsQuery } from '@/services/private/product';
+import { useGetMyProductsQuery } from '@/services/private/product';
 import ProductFilterForm from '@/app/product/components/ProductFilterForm';
 
 function ProductsSection({ searchParams }) {
@@ -15,7 +15,7 @@ function ProductsSection({ searchParams }) {
   const rowsPerPage = 6;
   const [page, setPage] = useState(1);
 
-  const { data, isLoading, isFetching } = useGetProductsQuery({
+  const { data, isLoading, isFetching } = useGetMyProductsQuery({
     ...initValues,
     offset: (page - 1) * rowsPerPage,
     page,

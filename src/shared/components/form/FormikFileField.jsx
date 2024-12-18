@@ -102,7 +102,7 @@ function FormikFileField({
                 variant="subtitle2"
                 component="label"
               >
-                {btnText}
+                {addedFile ? `${addedFile?.name?.slice(0, 10)}...` : btnText}
               </Typography>
             </Button>
           )}

@@ -13,6 +13,7 @@ import {
   useDeleteFavoriteProductsMutation,
 } from '@/services/private/favorite';
 import ExpandableImage from '../common/components/ExpandableImage ';
+import useGetSelectedLanguageText from '@/customHooks/useGetSelectedLanguageText';
 
 function Product({
   id,
@@ -27,6 +28,7 @@ function Product({
   isFavorite = false,
   inStock = false,
 }) {
+  const { checkSelectedLanguageText } = useGetSelectedLanguageText();
   const [addToCart, { isLoading }] = useAddToCartMutation();
   const [addFavorite] = useAddFavoriteProductsMutation();
   const [deleteFavorite] = useDeleteFavoriteProductsMutation();
@@ -69,7 +71,7 @@ function Product({
               isProductImage
             />
           </Box>
-          <Box className=" w-fit flex gap-3">
+          <Box className=" w-44 flex gap-3">
             <IconButton
               onClick={handleAddFavorite}
               className=" w-7 h-7 flex items-center justify-center bg-white hover:bg-gray-200 rounded-full"
@@ -85,7 +87,7 @@ function Product({
               >
                 {title}
               </Typography>
-              <Rating value={rating} readOnly />
+              <Rating value={rating} readOnly style={{ color: '#F2E00F' }} />
               <Typography variant="body2" className="text-black cursor-pointer" onClick={toggleModal}>
                 {description}
               </Typography>
@@ -115,9 +117,9 @@ function Product({
               disabled={isLoading || !inStock}
               onClick={handleAddToCart}
               variant="contained"
-              className=" mt-2 bg-black text-white"
+              className=" mt-2 bg-black text-white notranslate"
             >
-              {inStock ? 'ADD TO CART' : 'OUT OF STOCK'}
+              {inStock ? checkSelectedLanguageText("J'ACHATE", 'ADD TO CART') : 'OUT OF STOCK'}
             </Button>
           </Box>
         )}

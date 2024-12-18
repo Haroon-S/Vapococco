@@ -11,6 +11,15 @@ export const productApi = privateAPi.injectEndpoints({
       providesTags: ['GetProduct'],
     }),
 
+    getMyProducts: build.query({
+      query: params => ({
+        url: '/products/my-products/',
+        method: 'GET',
+        params,
+      }),
+      providesTags: ['GetMyProducts'],
+    }),
+
     getPopularProducts: build.query({
       query: () => '/api/service/popular-services/',
       providesTags: ['GetPopularService'],
@@ -70,6 +79,7 @@ export const productApi = privateAPi.injectEndpoints({
 
 export const {
   useGetProductsQuery,
+  useGetMyProductsQuery,
   useGetPopularProductsQuery,
   useAddServiceMutation,
   useGetProductByIdQuery,

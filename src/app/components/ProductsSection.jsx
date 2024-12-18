@@ -9,8 +9,10 @@ import { CustomTab, CustomTabs } from '../common/components/styled/StyledTabs';
 import CartSection from './CartSection';
 import WhyUsSection from './WhyUsSection';
 import ProductList from './ProductList';
+import useGetSelectedLanguageText from '@/customHooks/useGetSelectedLanguageText';
 
 function ProductsSection() {
+  const { checkSelectedLanguageText } = useGetSelectedLanguageText();
   const [activeTab, setActiveTab] = useState(0);
   const handleTabChange = (e, newValue) => {
     setActiveTab(newValue);
@@ -19,11 +21,11 @@ function ProductsSection() {
     <Box>
       <Box className=" w-full flex items-center justify-center">
         <CustomTabs value={activeTab} onChange={handleTabChange}>
-          <CustomTab wrapped label="News" className=" text-base normal-case" />
+          <CustomTab wrapped label={checkSelectedLanguageText('NOUVEAUTES', 'NEW')} className=" text-base normal-case notranslate" />
 
-          <CustomTab wrapped label="Essentials" className=" text-base normal-case" />
+          <CustomTab wrapped label={checkSelectedLanguageText('INCONTOURNABLES', 'ESSENTIALS')} className=" text-base normal-case notranslate" />
 
-          <CustomTab wrapped label="Promotions" className=" text-base normal-case" />
+          <CustomTab wrapped label={checkSelectedLanguageText('PROMOTIONS', 'PROMOTIONS')} className=" text-base normal-case notranslate" />
         </CustomTabs>
       </Box>
       <Box className=" relative border-t-8 border-t-black w-full overflow-hidden flex flex-col justify-center items-center ">

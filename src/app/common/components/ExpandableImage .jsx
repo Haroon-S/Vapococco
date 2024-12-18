@@ -44,7 +44,7 @@ function ExpandableImage({
             <Close fontSize="medium" />
           </IconButton>
         </Box>
-        <DialogContent className="flex justify-center items-center p-4">
+        <DialogContent className="flex justify-center items-center p-4 min-w-64 ">
           <img
             src={src}
             alt={alt}

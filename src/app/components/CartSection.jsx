@@ -8,22 +8,26 @@ import CartsObject from './CartsObject';
 import { useAddOrderMutation } from '@/services/private/orders';
 import useHandleApiResponse from '@/customHooks/useHandleApiResponse';
 import { useGetCartQuery } from '@/services/private/cart';
-import SectionLoader from '../common/loaders/SectionLoader';
 import ModalHeader from '../common/components/ModalHeader';
-import { fileViewModalStyles, formModalStyles } from '@/styles/mui/common/modal-styles';
+import { formModalStyles } from '@/styles/mui/common/modal-styles';
 import OrderFormModal from './OrderFormModal';
+import useGetSelectedLanguageText from '@/customHooks/useGetSelectedLanguageText';
 
 function CartSection() {
+  const { checkSelectedLanguageText } = useGetSelectedLanguageText();
   const [addOrder, { error, isSuccess, isLoading: orderLoading }] = useAddOrderMutation();
   useHandleApiResponse(error, isSuccess, 'Order Placed successfully!');
   const { data, isLoading, isFetching } = useGetCartQuery();
   const [modalOpen, setModalOpen] = useState(false);
+  const [orderData, setOrderData] = useState({});
   const toggleModal = () => setModalOpen(prev => !prev);
 
   const loading = isLoading || isFetching;
 
-  const handleOrder = () => {
-    addOrder();
+  const handleOrder = async () => {
+    const resp = await addOrder();
+    setOrderData(resp);
+    toggleModal();
   };
 
   return (
@@ -75,19 +79,22 @@ function CartSection() {
           </Box>
           <Button
             startIcon={orderLoading ? <CircularProgress size={20} /> : undefined}
-            onClick={toggleModal}
+            onClick={handleOrder}
             variant="contained"
             disabled={!(data?.items?.length > 0) || orderLoading}
-            className="text-black font-bold w-full mt-2 bg-white disabled:bg-themeMuted"
+            className="text-black font-bold w-full mt-2 bg-white hover:text-white disabled:bg-themeMuted notranslate"
           >
-            BUY
+            {checkSelectedLanguageText('MON PANIER', 'ORDER NOW')}
           </Button>
         </Box>
       </Box>
-      <Modal open={modalOpen} onClose={toggleModal}>
+      <Modal
+        open={modalOpen}
+        onClose={toggleModal}
+      >
         <Box sx={formModalStyles}>
           <ModalHeader title="Place Order" onClose={toggleModal} />
-          <OrderFormModal />
+          <OrderFormModal orderData={orderData.data} toggle={toggleModal} />
         </Box>
       </Modal>
     </Box>

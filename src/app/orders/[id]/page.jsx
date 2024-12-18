@@ -34,7 +34,7 @@ function OrderDetail({ params: { id } }) {
   };
 
   return (
-    <Box className=" h-screen px-20 flex justify-center">
+    <Box className=" h-screen pb-20 px-20 flex justify-center">
       <Box className=" mt-[260px] max-w-[1440px] w-full">
         <Box className=" flex justify-between items-center">
           <Typography variant="pageTitle" className=" text-start">

@@ -1,9 +1,87 @@
-import React from 'react';
+'use client';
 
-function OrderFormModal() {
+/* eslint-disable no-unused-vars */
+import * as yup from 'yup';
+import { Box, Typography } from '@mui/material';
+import propTypes from 'prop-types';
+import { Form, Formik } from 'formik';
+import React from 'react';
+import moment from 'moment';
+import SubmitBtn from '../common/components/SubmitBtn';
+import FormikFileField from '@/shared/components/form/FormikFileField';
+import { useAddOrderPaymentDetailMutation } from '@/services/private/orders';
+import useHandleApiResponse from '@/customHooks/useHandleApiResponse';
+
+function OrderFormModal({ orderData, toggle }) {
+  const [addPayment, { error, isSuccess }] = useAddOrderPaymentDetailMutation();
+  useHandleApiResponse(error, isSuccess, 'Payment Added successfully!');
+
   return (
-    <div>OrderFormModal</div>
+    <Box className=" w-full">
+      <Formik
+        enableReinitialize
+        initialValues={{ image: '' }}
+        validationSchema={yup.object({
+          image: yup
+            .mixed().required('Must attach screenshot to Complete payment'),
+        })}
+        onSubmit={async (values, { resetForm }) => {
+          if (values?.image) {
+            const formData = new FormData();
+            formData.append('image', values?.image, values?.image?.name);
+            const signupResp = await addPayment(formData);
+            if (!signupResp?.error) {
+              resetForm(values);
+              toggle();
+            }
+          }
+        }}
+      >
+        {({ isSubmitting }) => (
+          <Form>
+            <Box className=" w-full flex flex-col gap-3 justify-between items-center py-4 border-b-2 border-gray-400">
+              <Box className=" w-full flex items-center justify-between">
+                <Typography variant="body1" className=" uppercase font-bold text-themeSecondary">
+                  Shipped
+                </Typography>
+                <Typography variant="body1">
+                  {moment(orderData?.ordered_date).format('DD MMM,YYYY')}
+                </Typography>
+              </Box>
+              <Box className=" w-full flex items-center justify-between">
+                <Typography variant="body1" className=" uppercase font-bold text-grey">
+                  Order number
+                </Typography>
+                <Typography variant="body1" className=" text-themeSecondary">
+                  ORD-{orderData?.id}
+                </Typography>
+              </Box>
+              <Box className=" w-full flex items-center justify-between">
+                <Typography variant="body1" className=" uppercase font-bold text-grey">
+                  Total price
+                </Typography>
+                <Typography variant="body1" className=" text-themeSecondary">
+                  {orderData?.total_price}
+                </Typography>
+              </Box>
+            </Box>
+            <Box className=" py-4 flex items-center gap-3 mt-5">
+              <Typography>Payment Screenshot</Typography>
+              <FormikFileField btnVariant="contained" minimal name="image" />
+            </Box>
+            <Box className=" w-full flex justify-end">
+              <SubmitBtn label="Submit" isLoading={isSubmitting} />
+            </Box>
+          </Form>
+        )}
+      </Formik>
+    </Box>
   );
 }
+
+OrderFormModal.propTypes = {
+  orderData: propTypes.object,
+  toggle: propTypes.func,
+};
 
 export default OrderFormModal;
