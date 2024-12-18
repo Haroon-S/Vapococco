@@ -34,16 +34,16 @@ function GoogleTranslator() {
       googleTranslateElementInit();
 
       // Programmatically set to French ONLY ONCE
-      // if (!isFrenchSet.current) {
-      //   setTimeout(() => {
-      //     const selectField = document.querySelector('.goog-te-combo');
-      //     if (selectField) {
-      //       selectField.value = 'fr'; // Set French as selected
-      //       selectField.dispatchEvent(new Event('change')); // Trigger change
-      //       isFrenchSet.current = true; // Prevent further execution
-      //     }
-      //   }, 1000); // Delay to ensure dropdown is initialized
-      // }
+      if (!isFrenchSet.current) {
+        setTimeout(() => {
+          const selectField = document.querySelector('.goog-te-combo');
+          if (selectField) {
+            selectField.value = 'fr'; // Set French as selected
+            selectField.dispatchEvent(new Event('change')); // Trigger change
+            isFrenchSet.current = true; // Prevent further execution
+          }
+        }, 1000); // Delay to ensure dropdown is initialized
+      }
     };
 
     return () => {
