@@ -42,7 +42,6 @@ function InformationForm({ username }) {
       {({ isSubmitting, setFieldValue, values, errors }) => (
         <Form className=" flex flex-col items-center justify-center w-full gap-2 px-6 sm:px-0">
           <Grid justifyContent="center" alignItems="center" columnSpacing={2} rowGap={2} container>
-            {console.log('errors ==>', errors)}
             <Grid item xs={12}>
               <Box className=" w-full flex flex-col justify-center items-center">
                 <Typography className=" text-sm text-[#a6a6a6]">Title</Typography>

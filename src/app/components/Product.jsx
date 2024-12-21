@@ -3,6 +3,7 @@ import React, { useMemo, useState } from 'react';
 import propTypes from 'prop-types';
 import { Box, Button, CircularProgress, IconButton, Modal, Rating, Typography } from '@mui/material';
 import { Favorite } from '@mui/icons-material';
+import { useDispatch } from 'react-redux';
 import ProductSelectionForm from './ProductSelectionForm';
 import ModalHeader from '../common/components/ModalHeader';
 import { fileViewModalStyles } from '@/styles/mui/common/modal-styles';
@@ -28,6 +29,7 @@ function Product({
   isFavorite = false,
   inStock = false,
 }) {
+  const dispatch = useDispatch();
   const { checkSelectedLanguageText } = useGetSelectedLanguageText();
   const [addToCart, { isLoading }] = useAddToCartMutation();
   const [addFavorite] = useAddFavoriteProductsMutation();
@@ -37,6 +39,7 @@ function Product({
   const [favorite, setFavorite] = useState(isFavorite);
 
   const handleAddToCart = async () => {
+    dispatch(addToCart({ product: id, variations: variations[0]?.id, size: sizes[0]?.id, quantity: 1 }));
     await addToCart({ product: id, variations: variations[0]?.id, size: sizes[0]?.id, quantity: 1 });
   };
 
@@ -99,6 +102,7 @@ function Product({
             variations={variations}
             sizes={sizes}
             product={id}
+            productTitle={title}
             handler={addToCart}
             isLoading={isLoading}
             inStock={inStock}

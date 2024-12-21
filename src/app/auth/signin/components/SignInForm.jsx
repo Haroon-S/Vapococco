@@ -20,8 +20,10 @@ import FormikField from '@/shared/components/form/login/FormikField';
 import SubmitBtn from '@/app/common/components/SubmitBtn';
 import { initialValues, validationSchema } from '../utilities/formUtils';
 import { createPaymentCookie, createTokenCookie } from '@/utilities/cookiesHelpers';
+import { useAddToCartMutation } from '@/services/private/cart';
 
 function SignInForm({ toggle, closeModal, handler }) {
+  const [addToCart] = useAddToCartMutation();
   const dispatch = useDispatch();
   const router = useRouter();
 
@@ -32,8 +34,12 @@ function SignInForm({ toggle, closeModal, handler }) {
       onSubmit={async values => {
         const signInResp = await handler({ ...values, email: values?.email?.toLowerCase() });
         if (signInResp?.data) {
+          const localCart = JSON.parse(localStorage.getItem('cart')) || {};
           await createTokenCookie(signInResp?.data);
           dispatch(onLoggedIn(signInResp?.data));
+          if (localCart?.items?.length > 0) {
+            await Promise.all(localCart?.items?.map(item => addToCart(item)));
+          }
           window.location.href = '/';
         }
       }}
@@ -72,7 +78,10 @@ function SignInForm({ toggle, closeModal, handler }) {
             </Grid>
             <Box className=" flex items-center gap-4">
               <SubmitBtn label="Confirm" className="my-3 font-bold uppercase" isLoading={isSubmitting} />
-              <Link href="/auth/forgot-password" className="my-3 font-bold uppercase py-2 px-4 bg-grey text-white hover:bg-black transition-all duration-300 rounded hover:text-white">
+              <Link
+                href="/auth/forgot-password"
+                className="my-3 font-bold uppercase py-2 px-4 bg-grey text-white hover:bg-black transition-all duration-300 rounded hover:text-white"
+              >
                 Forgot Password?
               </Link>
             </Box>
@@ -86,7 +95,7 @@ function SignInForm({ toggle, closeModal, handler }) {
 SignInForm.propTypes = {
   toggle: propTypes.func.isRequired,
   closeModal: propTypes.func.isRequired,
-  handler: propTypes.func.isRequired
+  handler: propTypes.func.isRequired,
 };
 
 export default SignInForm;

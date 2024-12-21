@@ -4,6 +4,7 @@
 
 import { Box, Button, CircularProgress, Modal, Typography } from '@mui/material';
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import CartsObject from './CartsObject';
 import { useAddOrderMutation, useAddOrderPaymentDetailMutation } from '@/services/private/orders';
 import useHandleApiResponse from '@/customHooks/useHandleApiResponse';
@@ -14,17 +15,15 @@ import OrderFormModal from './OrderFormModal';
 import useGetSelectedLanguageText from '@/customHooks/useGetSelectedLanguageText';
 
 function CartSection() {
+  const cartState = useSelector(state => state.cart);
   const { checkSelectedLanguageText } = useGetSelectedLanguageText();
   const [addOrder, { error, isSuccess, isLoading: orderLoading }] = useAddOrderMutation();
   const [addPayment, { error: paymentError, isSuccess: paymentSuccess }] = useAddOrderPaymentDetailMutation();
   useHandleApiResponse(paymentError, paymentSuccess, 'Payment Added successfully!');
   useHandleApiResponse(error, isSuccess, 'Order Placed successfully!');
-  const { data, isLoading, isFetching } = useGetCartQuery();
   const [modalOpen, setModalOpen] = useState(false);
   const [orderData, setOrderData] = useState({});
   const toggleModal = () => setModalOpen(prev => !prev);
-
-  const loading = isLoading || isFetching;
 
   const handleOrder = async () => {
     const resp = await addOrder();
@@ -38,17 +37,14 @@ function CartSection() {
         {/* Scrollable Content */}
         <Box className="flex-1 overflow-y-scroll">
           {/* <CartsObject /> */}
-          {loading && (
-            <Box className=" h-full w-full flex justify-center items-center">
-              <CircularProgress />
-            </Box>
-          )}
-          {!loading &&
-            data?.items?.length > 0 &&
-            data?.items?.map(item => (
+          {cartState?.items?.length > 0 &&
+            cartState?.items?.map(item => (
               <CartsObject
                 color="#886142"
                 id={item?.id}
+                productId={item?.product}
+                variationsId={item?.variations}
+                sizeId={item?.size}
                 variation={item?.variation_name}
                 image={item?.product_image}
                 name={item?.product_title}
@@ -59,7 +55,7 @@ function CartSection() {
                 rating={4}
               />
             ))}
-          {!loading && data?.items?.length === 0 && (
+          {cartState?.items?.length === 0 && (
             <Typography
               variant="body1"
               className=" text-white text-center h-full flex items-center justify-center"
@@ -76,14 +72,14 @@ function CartSection() {
               Total Price
             </Typography>
             <Typography variant="h6" className="text-white">
-              {data?.total_price}
+              {cartState?.total_price}
             </Typography>
           </Box>
           <Button
             startIcon={orderLoading ? <CircularProgress size={20} /> : undefined}
             onClick={handleOrder}
             variant="contained"
-            disabled={!(data?.items?.length > 0) || orderLoading}
+            disabled={!(cartState?.items?.length > 0) || orderLoading}
             className="text-black font-bold w-full mt-2 bg-white hover:text-white disabled:bg-themeMuted notranslate"
           >
             {checkSelectedLanguageText('MON PANIER', 'ORDER NOW')}

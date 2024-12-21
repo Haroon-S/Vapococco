@@ -8,10 +8,6 @@ import { topbarMenuStyles } from '@/styles/mui/containers/layout/layout-styles';
 // import SubCategoryMenuItem from '../../common/SubCategoryMenuItem';
 
 function CategoryMenu({ anchor = null, categoriesData = [], toggle }) {
-  console.log('anchor ==> ', anchor);
-
-  console.log(categoriesData);
-
   return (
     <Menu
       key={anchor}

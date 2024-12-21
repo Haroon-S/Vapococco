@@ -4,23 +4,64 @@ import propTypes from 'prop-types';
 import Image from 'next/image';
 import React, { useState } from 'react';
 import { Add, Close, Remove } from '@mui/icons-material';
+import { useDispatch, useSelector } from 'react-redux';
 import icon1L from '@/assets/bottle-size-img/1L.png';
 import { useDeleteCartMutation, useUpdateCartMutation } from '@/services/private/cart';
+import { addQuantity, removeFromCart, subQuantity } from '@/store/slices/cartSlice';
 
-function CartsObject({ id, name, totalQuantity, totalPrice, variation, size }) {
+function CartsObject({
+  id,
+  name,
+  productId,
+  variationsId,
+  sizeId,
+  totalQuantity,
+  totalPrice,
+  variation,
+  size,
+}) {
+  const { isAuthenticated } = useSelector(state => state.auth);
+  const dispatch = useDispatch();
   const [updateItemQuantityAndPrice] = useUpdateCartMutation();
   const [deleteItem] = useDeleteCartMutation();
-  const handleAddQuantity = () => {
-    updateItemQuantityAndPrice({ id, quantity: totalQuantity + 1 });
+  const payload = {
+    variations: variationsId,
+    size: sizeId,
+    product: productId,
   };
-  const handleSubQuantity = () => {
-    if (totalQuantity !== 1) {
-      updateItemQuantityAndPrice({ id, quantity: totalQuantity - 1 });
+  const handleAddQuantity = async () => {
+    if (isAuthenticated) {
+      const resp = await updateItemQuantityAndPrice({ id, quantity: totalQuantity + 1 });
+      if (!resp?.error) {
+        dispatch(addQuantity(payload));
+      }
+    } else {
+      dispatch(addQuantity(payload));
     }
   };
-  const handleRemoveItem = () => {
-    deleteItem(id);
+  const handleSubQuantity = async () => {
+    if (totalQuantity !== 1) {
+      if (isAuthenticated) {
+        const resp = await updateItemQuantityAndPrice({ id, quantity: totalQuantity - 1 });
+        if (!resp?.error) {
+          dispatch(subQuantity(payload));
+        }
+      } else {
+        dispatch(subQuantity(payload));
+      }
+    }
   };
+  const handleRemoveItem = async () => {
+    if (isAuthenticated) {
+      const resp = await deleteItem(id);
+      if (!resp?.error) {
+        dispatch(removeFromCart(payload));
+      }
+    } else {
+      dispatch(removeFromCart(payload));
+    }
+  };
+
   return (
     <Box className=" w-full flex gap-2 py-5 px-5 border-b border-dashed border-white">
       <Box className=" relative h-16 w-10 flex justify-end items-end">
@@ -55,10 +96,7 @@ function CartsObject({ id, name, totalQuantity, totalPrice, variation, size }) {
           </Box>
         </Box>
       </Box>
-      <Box
-        onClick={handleSubQuantity}
-        className=" h-5 w-5 flex justify-center items-center hover:bg-gray-800 rounded-full cursor-pointer"
-      >
+      <Box className=" h-5 w-5 flex justify-center items-center hover:bg-gray-800 rounded-full cursor-pointer">
         <Close
           onClick={handleRemoveItem}
           style={{ color: 'white', fontSize: '16px' }}
@@ -71,6 +109,9 @@ function CartsObject({ id, name, totalQuantity, totalPrice, variation, size }) {
 
 CartsObject.propTypes = {
   id: propTypes.number,
+  productId: propTypes.number,
+  variationsId: propTypes.number,
+  sizeId: propTypes.number,
   name: propTypes.string,
   totalQuantity: propTypes.number,
   totalPrice: propTypes.number,

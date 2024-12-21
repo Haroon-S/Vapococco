@@ -50,6 +50,7 @@ function Navbar({ toggleSidebar = () => {}, isPortal = false }) {
   const { checkSelectedLanguageText } = useGetSelectedLanguageText();
 
   const { isAuthenticated, user } = useSelector(state => state.auth);
+  const cartState = useSelector(state => state.cart);
   const { userType } = useGetUserRoles();
 
   // STATE HOOKS
@@ -73,8 +74,7 @@ function Navbar({ toggleSidebar = () => {}, isPortal = false }) {
   useHandleApiResponse(error, isSuccess, 'The account activation link has been sent to your email');
   useHandleApiResponse(loginError, loginSuccess, 'Logged In Successfully!');
 
-  const { data, isLoading, isFetching } = useGetCartQuery();
-  const loading = isLoading || isFetching;
+  const { data } = useGetCartQuery();
 
   const menuRef = useRef(null);
 
@@ -99,6 +99,9 @@ function Navbar({ toggleSidebar = () => {}, isPortal = false }) {
     setSelectedMenu(''); // Close the menu
   };
 
+  // console.table('cartState ==> ', cartState);
+  // console.table('cartData ==> ', data);
+
   // const modifiedMenuItem = useMemo(() => (selectedMenu ? menuItems[selectedMenu] : []), [selectedMenu]);
 
   return (
@@ -115,17 +118,16 @@ function Navbar({ toggleSidebar = () => {}, isPortal = false }) {
               PANIER
             </Typography>
           </Box>
-          {data?.items?.length > 0 && !loading && (
+          {cartState?.items?.length > 0 && (
             <Typography variant="body1" className=" text-white font-semibold ">
-              {data?.items?.length} article
+              {cartState?.items?.length} article
             </Typography>
           )}
-          {data?.items?.length === 0 && !loading && (
+          {cartState?.items?.length === 0 && (
             <Typography variant="body1" className=" text-white font-semibold ">
               0 article
             </Typography>
           )}
-          {loading && <CircularProgress size={22} />}
         </Box>
         <Box className=" flex justify-between mr-[180px]">
           <SearchInput />
