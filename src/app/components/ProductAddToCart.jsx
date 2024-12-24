@@ -1,8 +1,9 @@
 /* eslint-disable no-unused-vars */
-import { Box, Button, TextField } from '@mui/material';
+import { Box, Button, TextField, useMediaQuery } from '@mui/material';
 import propTypes from 'prop-types';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { ShoppingCart } from '@mui/icons-material';
 import StyledInputField from '@/shared/components/form/StyledInputField';
 import FormikField from '@/shared/components/form/FormikField';
 import { addToCart } from '@/store/slices/cartSlice';
@@ -20,6 +21,7 @@ function ProductAddToCart({
   handler,
   inStock,
 }) {
+  const isSmallScreen = useMediaQuery('(max-width:788px)');
   const { isAuthenticated } = useSelector(state => state.auth);
   const dispatch = useDispatch();
   const [addToCartItem] = useAddToCartMutation();
@@ -62,14 +64,20 @@ function ProductAddToCart({
         value={quantity}
         className=" max-h-7"
       />
-      <Button
-        variant="contained"
-        className="w-full max-h-7 bg-black hover:bg-neutral-800 text-white"
-        onClick={handleAddToCart}
-        // isDisabled={!inStock}
-      >
-        ADD
-      </Button>
+      {isSmallScreen ? (
+        <Box className=" bg-black px-2">
+          <ShoppingCart style={{ color: 'white', fontSize: '14px' }} />
+        </Box>
+      ) : (
+        <Button
+          variant="contained"
+          className="w-full max-h-7 bg-black hover:bg-neutral-800 text-white text-xs font-medium md:text-[15px]"
+          onClick={handleAddToCart}
+          isDisabled={!inStock}
+        >
+          ADD
+        </Button>
+      )}
     </Box>
   );
 }

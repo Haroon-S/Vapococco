@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useMemo } from 'react';
 import propTypes from 'prop-types';
 import MuiDrawer from '@mui/material/Drawer';
@@ -13,12 +14,16 @@ import {
   drawerContainerBoxStyles,
 } from '@/styles/mui/components/navbar-drawer-styles';
 import { border, contrastText } from '@/styles/common/colors';
-import { topbarItems } from '../../utilities/data';
+import { menuItems, topbarItems } from '../../utilities/data';
 import useGetUserRoles from '@/customHooks/useGetUserRoles';
+import useGetSelectedLanguageText from '@/customHooks/useGetSelectedLanguageText';
+import DrawerMenuItem from './DrawerMenuItem';
+import SearchInput from '../../common/SearchInput';
 
 function Drawer({ showNavbar, handleShowNavbar }) {
   const { isSupplier } = useGetUserRoles();
   const { userType } = useGetUserRoles();
+  const { checkSelectedLanguageText } = useGetSelectedLanguageText();
   const { isAuthenticated, user } = useSelector(state => state.auth);
 
   const modified = useMemo(() => {
@@ -42,34 +47,37 @@ function Drawer({ showNavbar, handleShowNavbar }) {
       >
         <Box className=" flex items-center justify-end w-full">
           {/* <SearchInput themeLight /> */}
+          <SearchInput />
           <Close sx={closeIconButtonStyles} className="ms-2" onClick={handleShowNavbar} />
         </Box>
 
-        <List onClick={handleShowNavbar}>
+        <List>
           {!isAuthenticated && (
             <>
-              <DrawerListItem path="/auth/signup" label="Sign up" />
-
-              <DrawerListItem path="/auth/signin" icon={<AccountCircleOutlined />} label="Sign in" />
+              <DrawerListItem
+                path="/my-products"
+                label={checkSelectedLanguageText('MES PRODUITS', 'MY PRODUCTS')}
+              />
+              <DrawerListItem
+                path="/orders"
+                label={checkSelectedLanguageText("MA LISTE D'ACHATS", 'CHART LIST')}
+              />
             </>
           )}
 
-          {modified?.map(item => (
-            <DrawerListItem key={item.path} label={item.title} icon={item.icon} path={item.path} />
-          ))}
+          <DrawerListItem
+            path="/promoted-offers"
+            label={checkSelectedLanguageText('OFFER DE LA SEMAINE', 'OFFER OF THE WEEK')}
+          />
+
+          <Divider sx={{ borderColor: border }} />
+
+          <DrawerMenuItem label="E-LIQUID" items={menuItems.eliquid} />
+          <Divider sx={{ borderColor: border }} />
+          <DrawerMenuItem label="DIY" items={menuItems.diy} />
+          <Divider sx={{ borderColor: border }} />
+          <DrawerMenuItem label="CBD" items={menuItems.cbd} />
         </List>
-
-        <Divider sx={{ borderColor: border }} />
-
-        {/* PRIVATE ROUTE LISTING */}
-        {isAuthenticated && (
-          <List onClick={handleShowNavbar}>
-            <DrawerListItem path={`/portal/profile/${user?.username}`} label="Profile" />
-
-            <DrawerListItem path={isSupplier ? '/portal/owner' : '/portal/client'} label="Dashboard" />
-
-          </List>
-        )}
       </Box>
     </MuiDrawer>
   );

@@ -63,18 +63,18 @@ function Product({
   return (
     <Box className=" w-full relative py-3 flex items-center justify-center" sx={{ backgroundColor: color }}>
       <Box className=" w-screen h-full absolute -z-10 " sx={{ backgroundColor: color }} />
-      <Box className=" w-[990px] mr-80 flex justify-between">
+      <Box className=" w-full md:w-[990px] md:mr-80 flex flex-col md:flex-row justify-between">
         <Box className=" flex gap-6 mx-0">
           <Box>
             <ExpandableImage
               src={primaryImage}
               alt="Image"
-              thumbnailClassName="w-64 h-64 object-cover rounded-lg"
+              thumbnailClassName=" w-20 h-20 md:w-64 md:h-64 object-cover rounded-lg"
               fullImageClassName="max-w-[90%] max-h-[90vh] object-contain"
               isProductImage
             />
           </Box>
-          <Box className=" w-44 flex gap-3">
+          <Box className=" w-full md:w-44 flex gap-3">
             <IconButton
               onClick={handleAddFavorite}
               className=" w-7 h-7 flex items-center justify-center bg-white hover:bg-gray-200 rounded-full"

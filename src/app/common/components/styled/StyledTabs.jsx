@@ -20,6 +20,10 @@ export const CustomTab = styled(Tab)(({ theme }) => ({
   borderBottomRightRadius: '0px',
   margin: '0 1px',
   textTransform: 'none',
+  '@media screen and (max-width: 768px)': {
+    fontWeight: '400',
+    padding: '1px 4px'
+  },
   '&.Mui-selected': {
     backgroundColor: 'black',
     color: 'white',

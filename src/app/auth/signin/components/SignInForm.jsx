@@ -37,8 +37,12 @@ function SignInForm({ toggle, closeModal, handler }) {
           const localCart = JSON.parse(localStorage.getItem('cart')) || {};
           await createTokenCookie(signInResp?.data);
           dispatch(onLoggedIn(signInResp?.data));
-          if (localCart?.items?.length > 0) {
-            await Promise.all(localCart?.items?.map(item => addToCart(item)));
+          if (Array.isArray(localCart?.items) && localCart.items.length > 0) {
+            try {
+              await Promise.all(localCart.items.map(item => addToCart(item)));
+            } catch (error) {
+              console.error('Error adding items to cart:', error);
+            }
           }
           window.location.href = '/';
         }
@@ -58,7 +62,7 @@ function SignInForm({ toggle, closeModal, handler }) {
             <Grid item xs={12}>
               <Box className=" flex flex-col items-center mt-4">
                 <Typography
-                  className="flex mb-1"
+                  className="flex flex-wrap mb-1"
                   sx={{
                     fontSize: { xs: '14px', md: '16px' },
                     color: 'black',
@@ -76,7 +80,7 @@ function SignInForm({ toggle, closeModal, handler }) {
                 </Typography>
               </Box>
             </Grid>
-            <Box className=" flex items-center gap-4">
+            <Box className=" flex flex-wrap items-center gap-4">
               <SubmitBtn label="Confirm" className="my-3 font-bold uppercase" isLoading={isSubmitting} />
               <Link
                 href="/auth/forgot-password"

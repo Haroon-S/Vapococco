@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { border, dark, grey, primary } from '@/styles/common/colors';
 
 const miniVariantWidth = '220px';
@@ -87,7 +88,8 @@ export const getSidebarWrapperStyles = (isSidebarCollapsed, drawerWidth) => ({
   width: isSidebarCollapsed ? miniVariantWidth : drawerWidth,
 
   '@media screen and (max-width: 768px)': {
-    width: isSidebarCollapsed ? miniVariantWidth : 0,
+    width: '100%',
+    marginRight: '0px',
   },
 });
 
@@ -98,7 +100,8 @@ export const getBoxWrapperStyles = isSidebarCollapsed => ({
   transition: '0.2s ease-in-out',
 
   '@media screen and (max-width: 768px)': {
-    marginLeft: isSidebarCollapsed ? miniVariantWidth : 0,
+    marginLeft: 0,
+    marginTop: '50px'
   },
 });
 

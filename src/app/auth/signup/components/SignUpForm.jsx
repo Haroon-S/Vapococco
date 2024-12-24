@@ -112,7 +112,7 @@ function SignUpForm({ toggle, closeModal, handler }) {
               <FormikField type="text" name="vat" placeholder="Vat Number" />
             </Grid>
             <Grid item xs={12} md={7}>
-              <Box className=" flex items-center gap-3 mt-5">
+              <Box className=" flex flex-wrap items-center gap-3 mt-5">
                 <Typography>KBIS (less than 3 months)</Typography>
                 <FormikFileField btnVariant="contained" minimal name="image" />
               </Box>
@@ -121,7 +121,7 @@ function SignUpForm({ toggle, closeModal, handler }) {
               <Box className=" flex flex-col items-end h-full">
                 <Typography
                   sx={{ fontSize: '16px', color: 'black', fontWeight: '600' }}
-                  className="flex mb-1"
+                  className="flex flex-wrap mb-1"
                 >
                   Already have an Account?{' '}
                   <Button

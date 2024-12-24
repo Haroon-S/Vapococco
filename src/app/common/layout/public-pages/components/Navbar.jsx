@@ -42,6 +42,8 @@ import { useLoginMutation, useSignUpMutation } from '@/services/public/auth';
 import useHandleApiResponse from '@/customHooks/useHandleApiResponse';
 import { useGetCartQuery } from '@/services/private/cart';
 import useGetSelectedLanguageText from '@/customHooks/useGetSelectedLanguageText';
+import useToggle from '@/customHooks/useToggle';
+import CartModal from '@/app/common/components/CartModal';
 
 function Navbar({ toggleSidebar = () => {}, isPortal = false }) {
   const router = useRouter();
@@ -58,6 +60,7 @@ function Navbar({ toggleSidebar = () => {}, isPortal = false }) {
   const [showNavbar, setShowNavbar] = useState(false);
   const [selectedMenu, setSelectedMenu] = useState('');
   const [isHovering, setIsHovering] = useState(false);
+  const [openCart, toggleCart] = useToggle();
 
   // MEMO
   const currentMenuItems = useMemo(() => {
@@ -111,7 +114,7 @@ function Navbar({ toggleSidebar = () => {}, isPortal = false }) {
       className={styles.navbarContainer}
     >
       <Box sx={{ height: 'fit-content', position: 'relative' }} className={styles.topbar}>
-        <Box className=" absolute -top-5 right-0 w-44 bg-black flex flex-col items-center justify-center gap-2 p-5 rounded-b-full rounded-t-none">
+        <Box className=" absolute -top-5 right-0 w-44 bg-black hidden md:flex flex-col items-center justify-center gap-2 p-5 rounded-b-full rounded-t-none">
           <Box className=" flex items-center gap-2">
             <ShoppingCart style={{ color: grey }} />
             <Typography variant="h6" className=" text-grey font-medium">
@@ -129,26 +132,28 @@ function Navbar({ toggleSidebar = () => {}, isPortal = false }) {
             </Typography>
           )}
         </Box>
-        <Box className=" flex justify-between mr-[180px]">
-          <SearchInput />
+        <Box className=" flex justify-between md:mr-[180px]">
+          <Box className=" block md:hidden">
+            <Menu className="block xl:hidden cursor-pointer" onClick={handleShowNavbar} />
+          </Box>
+          <Box component={Link} href="/" className=" md:hidden px-3">
+            <Image src={logo.src} alt="Logo" width={100} height={100} />
+          </Box>
+          <Box className=" hidden md:block">
+            <SearchInput />
+          </Box>
           <Box className=" flex items-start gap-1">
-            {/* <Image
-              src={uk.src}
-              alt="country icon"
-              width={20}
-              height={20}
-            /> */}
-            <ErrorBoundary errorComponent={<Error />}>
+            {/* <ErrorBoundary errorComponent={<Error />}>
               <GoogleTranslator />
-            </ErrorBoundary>
-            <Link href="/">
+            </ErrorBoundary> */}
+            <Link href="/" className=" hidden md:block">
               <Box className=" bg-[#e5dcd3] rounded-full flex justify-center items-center w-10 h-10">
                 <Call style={{ fontSize: '20px' }} />
               </Box>
             </Link>
             <Box
               onClick={() => (isAuthenticated ? router.push('/orders') : toggleModalOpen('signin'))}
-              className=" bg-[#e5dcd3] rounded-full flex justify-center items-center w-10 h-10 cursor-pointer"
+              className=" bg-[#e5dcd3] rounded-full hidden md:flex justify-center items-center w-10 h-10 cursor-pointer"
             >
               <Inventory style={{ fontSize: '20px' }} />
             </Box>
@@ -158,9 +163,15 @@ function Navbar({ toggleSidebar = () => {}, isPortal = false }) {
             >
               <User style={{ fontSize: '20px' }} />
             </Box>
+            <Box
+              onClick={toggleCart}
+              className=" bg-[#e5dcd3] rounded-full md:hidden flex justify-center items-center w-10 h-10 cursor-pointer"
+            >
+              <ShoppingCart style={{ fontSize: '20px' }} />
+            </Box>
           </Box>
         </Box>
-        <Box className=" w-full mt-8 flex justify-center items-center gap-8">
+        <Box className=" w-full mt-8 hidden md:flex justify-center items-center gap-8">
           {isAuthenticated && (
             <NavLinkItem
               id="my-products"
@@ -191,13 +202,7 @@ function Navbar({ toggleSidebar = () => {}, isPortal = false }) {
             menu
           />
           <Box component={Link} href="/" className="overflow-hidden px-16">
-            <Image
-              src={logo.src}
-              alt="Logo"
-              width={200}
-              height={200}
-              // className="animate-slide-down"
-            />
+            <Image src={logo.src} alt="Logo" width={200} height={200} />
           </Box>
           <NavLinkItem
             id="chart-list"
@@ -260,6 +265,13 @@ function Navbar({ toggleSidebar = () => {}, isPortal = false }) {
                 )}
               </Box>
             </AuthModalHeader>
+          </Box>
+        </Modal>
+
+        <Modal open={openCart} onClose={toggleCart}>
+          <Box sx={fileViewModalStyles}>
+            <ModalHeader title="Cart" onClose={toggleCart} />
+            <CartModal />
           </Box>
         </Modal>
       </Box>

@@ -21,11 +21,11 @@ function ProductsSection() {
     <Box>
       <Box className=" w-full flex items-center justify-center">
         <CustomTabs value={activeTab} onChange={handleTabChange}>
-          <CustomTab wrapped label={checkSelectedLanguageText('NOUVEAUTES', 'NEW')} className=" text-base normal-case notranslate" />
+          <CustomTab wrapped label={checkSelectedLanguageText('NOUVEAUTES', 'NEW')} className=" text-xs md:text-base normal-case notranslate" />
 
-          <CustomTab wrapped label={checkSelectedLanguageText('INCONTOURNABLES', 'ESSENTIALS')} className=" text-base normal-case notranslate" />
+          <CustomTab wrapped label={checkSelectedLanguageText('INCONTOURNABLES', 'ESSENTIALS')} className=" text-xs md:text-base normal-case notranslate" />
 
-          <CustomTab wrapped label={checkSelectedLanguageText('PROMOTIONS', 'PROMOTIONS')} className=" text-base normal-case notranslate" />
+          <CustomTab wrapped label={checkSelectedLanguageText('PROMOTIONS', 'PROMOTIONS')} className=" text-xs md:text-base normal-case notranslate" />
         </CustomTabs>
       </Box>
       <Box className=" relative border-t-8 border-t-black w-full overflow-hidden flex flex-col justify-center items-center ">
@@ -38,7 +38,7 @@ function ProductsSection() {
         <TabPanel stateValue={activeTab} index={2}>
           <ProductList filter="is_promoted" />
         </TabPanel>
-        <Box className=" mr-[768px]">
+        <Box className=" flex md:justify-center px-2 md:mr-[768px]">
           <WhyUsSection />
         </Box>
         <Box className=" absolute top-0 ml-[990px] bg-black h-full">

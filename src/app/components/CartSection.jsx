@@ -90,7 +90,7 @@ function CartSection() {
         open={modalOpen}
         onClose={toggleModal}
       >
-        <Box sx={formModalStyles}>
+        <Box sx={{ ...formModalStyles, padding: '5px' }}>
           <ModalHeader title="Place Order" onClose={toggleModal} />
           <OrderFormModal orderData={orderData.data} toggle={toggleModal} handler={addPayment} />
         </Box>

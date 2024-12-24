@@ -36,7 +36,7 @@ function PrivateLayoutWrapper({ children }) {
       <Box className=" relative">
         <Navbar />
 
-        <Box className=" w-full flex justify-center">
+        <Box className=" w-full md:flex justify-center hidden">
           <Box sx={getSidebarWrapperStyles(true, drawerWidth)}>
             <Sidebar collapse />
           </Box>

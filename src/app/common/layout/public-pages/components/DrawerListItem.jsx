@@ -9,13 +9,12 @@ function DrawerListItem({
   className = ` ${styles.drawerLink}`,
   path = '/',
   handleClick = () => {},
-  icon = null
 }) {
   return (
     <ListItem className="px-0" onClick={handleClick}>
-      <Typography className="mx-2 flex-grow font-semibold" variant="body1">
+      <Typography className="mx-2 flex-grow font-semibold notranslate" variant="body1">
         <Link href={path} className={`${className}`}>
-          <span className=" mr-1">{icon}</span> {label}
+          {label}
         </Link>
       </Typography>
     </ListItem>
@@ -27,7 +26,6 @@ DrawerListItem.propTypes = {
   className: propTypes.string,
   path: propTypes.string,
   handleClick: propTypes.func,
-  icon: propTypes.element
 };
 
 export default DrawerListItem;

@@ -9,7 +9,7 @@ import HeroSlider from '@/app/components/HeroSlider';
 
 function HeroSection({ heading = '', heading2 = '', Description = '', imageSrc = '', showSearch = false, height = '400px' }) {
   return (
-    <Box className=" w-full pt-[130px]">
+    <Box className=" w-full pt-[60px] md:pt-[130px]">
       <HeroSlider />
     </Box>
   );

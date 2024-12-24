@@ -22,6 +22,9 @@
     top: 0;
     right: 0; 
     width: 100%;
+    @media screen and (max-width: 768px) {
+      padding: 10px 10px;
+    }
   }
 
 .topbar {
@@ -29,6 +32,7 @@
     width: 1150px;
     @media screen and (max-width: 768px) {
       padding: 10px 5px;
+      width: 100%;
     }
   }
   

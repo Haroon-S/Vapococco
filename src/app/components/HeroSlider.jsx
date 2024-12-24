@@ -17,7 +17,7 @@ function HeroSlider() {
   const images = [slide1, slide1, slide1];
   return (
     <Box className="relative w-full">
-      <Box className=" hidden absolute flex items-center justify-between z-50 w-full top-1/3 px-4">
+      <Box className=" hidden absolute items-center justify-between z-50 w-full top-1/3 px-4">
         <IconButton
           className="button-prev group"
           sx={{
@@ -67,7 +67,10 @@ function HeroSlider() {
             <Box
               className=" relative w-full"
               sx={{
-                height: '300px',
+                height: '130px',
+                '@media (min-width: 768px)': {
+                  height: '300px',
+                },
                 '@media (min-width: 2560px)': {
                   height: '500px',
                 },

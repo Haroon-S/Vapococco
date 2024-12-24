@@ -15,7 +15,7 @@ function ProductSelectionForm({ variations, sizes, product, productTitle, handle
   const toggle = () => setDropdownOpen(prev => !prev);
 
   return (
-    <Box className=" w-full">
+    <Box className=" w-full px-1">
       <Grid2 className=" w-full flex justify-end" container spacing={1}>
         <Grid2 className=" w-full flex justify-end" container xs={12}>
           <Grid2 xs={2}>
@@ -46,10 +46,10 @@ function ProductSelectionForm({ variations, sizes, product, productTitle, handle
               {sizes?.map(size => (
                 <Grid2 xs={2}>
                   <Box className=" text-center">
-                    <Typography variant="body1" className=" text-xl">
+                    <Typography variant="body1" className=" text-xs md:text-xl text-nowrap">
                       {size?.size}
                     </Typography>
-                    <Typography variant="body1" className=" text-xl font-bold">
+                    <Typography variant="body1" className=" text-xs md:text-xl font-semibold md:font-bold text-nowrap">
                       {size?.price}$
                     </Typography>
                   </Box>
@@ -60,7 +60,7 @@ function ProductSelectionForm({ variations, sizes, product, productTitle, handle
               <Grid2 className=" w-full flex justify-end" container xs={12} columnSpacing={1} rowSpacing={3}>
                 <Grid2 xs={2}>
                   <Box>
-                    <Typography variant="body1" className=" font-semibold">
+                    <Typography variant="body1" className=" text-sm md:text-base font-medium md:font-semibold">
                       {variation?.variation_name}
                     </Typography>
                   </Box>
