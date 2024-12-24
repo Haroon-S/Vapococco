@@ -143,9 +143,9 @@ function Navbar({ toggleSidebar = () => {}, isPortal = false }) {
             <SearchInput />
           </Box>
           <Box className=" flex items-start gap-1">
-            {/* <ErrorBoundary errorComponent={<Error />}>
+            <ErrorBoundary errorComponent={<Error />}>
               <GoogleTranslator />
-            </ErrorBoundary> */}
+            </ErrorBoundary>
             <Link href="/" className=" hidden md:block">
               <Box className=" bg-[#e5dcd3] rounded-full flex justify-center items-center w-10 h-10">
                 <Call style={{ fontSize: '20px' }} />
