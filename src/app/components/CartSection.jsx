@@ -72,7 +72,7 @@ function CartSection() {
               Total Price
             </Typography>
             <Typography variant="h6" className="text-white">
-              {cartState?.total_price}
+              {cartState?.total_price} $
             </Typography>
           </Box>
           <Button
@@ -90,7 +90,7 @@ function CartSection() {
         open={modalOpen}
         onClose={toggleModal}
       >
-        <Box sx={{ ...formModalStyles, padding: '5px' }}>
+        <Box sx={formModalStyles} className=" p-2 md:p-5">
           <ModalHeader title="Place Order" onClose={toggleModal} />
           <OrderFormModal orderData={orderData.data} toggle={toggleModal} handler={addPayment} />
         </Box>

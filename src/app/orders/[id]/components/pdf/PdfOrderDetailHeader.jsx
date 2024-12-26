@@ -26,7 +26,7 @@ function PdfOrderDetailHeader({ orderData }) {
         style={pdfReportTableHeadStyles.tableHeadCell}
       >
         <Text style={pdfReportTableHeadStyles.tableHeadText}>Total price</Text>
-        <Text style={pdfReportTableHeadStyles.tableText}>{orderData?.total_price}</Text>
+        <Text style={pdfReportTableHeadStyles.tableText}>{orderData?.total_price} $</Text>
       </View>
     </View>
   );

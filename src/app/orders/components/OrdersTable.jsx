@@ -78,7 +78,7 @@ function OrdersTable({ pagination, sorting, onPageChange, onRowsPerPageChange, o
 
                   <TableCell>{moment(item?.ordered_date).format('DD MMM,YYYY')}</TableCell>
 
-                  <TableCell>{item?.total_price}</TableCell>
+                  <TableCell>{item?.total_price} $</TableCell>
 
                   <TableCell>
                     <Button

@@ -63,7 +63,7 @@ function CartModal() {
             Total Price
           </Typography>
           <Typography variant="h6" className="text-white">
-            {cartState?.total_price}
+            {cartState?.total_price} $
           </Typography>
         </Box>
         <Button

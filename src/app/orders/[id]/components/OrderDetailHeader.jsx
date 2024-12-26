@@ -30,7 +30,7 @@ function OrderDetailHeader({ orderData }) {
           Total price
         </Typography>
         <Typography variant="body1" className=" text-themeSecondary">
-          {orderData?.total_price}
+          {orderData?.total_price} $
         </Typography>
       </Box>
       <Box>

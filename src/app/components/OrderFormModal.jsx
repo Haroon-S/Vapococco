@@ -14,14 +14,15 @@ import FormikFileField from '@/shared/components/form/FormikFileField';
 function OrderFormModal({ orderData, toggle, handler }) {
   const { user } = useSelector(state => state.auth);
 
+  console.log('Order Data ==> ', orderData);
+
   return (
     <Box className=" w-full">
       <Formik
         enableReinitialize
         initialValues={{ image: '' }}
         validationSchema={yup.object({
-          image: yup
-            .mixed().required('Must attach screenshot to Complete payment'),
+          image: yup.mixed().required('Must attach screenshot to Complete payment'),
         })}
         onSubmit={async (values, { resetForm }) => {
           if (values?.image) {
@@ -42,6 +43,14 @@ function OrderFormModal({ orderData, toggle, handler }) {
             <Box className=" w-full flex flex-col gap-3 justify-between items-center py-4 border-b-2 border-gray-400">
               <Box className=" w-full flex items-center justify-between">
                 <Typography variant="body1" className=" uppercase font-bold text-themeSecondary">
+                  Name
+                </Typography>
+                <Typography variant="body1">
+                  {`${user?.profile?.first_name} ${user?.profile?.last_name}`}
+                </Typography>
+              </Box>
+              <Box className=" w-full flex items-center justify-between">
+                <Typography variant="body1" className=" uppercase font-bold text-themeSecondary">
                   Shipped
                 </Typography>
                 <Typography variant="body1">
@@ -50,10 +59,22 @@ function OrderFormModal({ orderData, toggle, handler }) {
               </Box>
               <Box className=" w-full flex items-center justify-between">
                 <Typography variant="body1" className=" uppercase font-bold text-grey">
+                  Billing Address
+                </Typography>
+                <Typography variant="body1">{orderData?.shipping_address}</Typography>
+              </Box>
+              <Box className=" w-full flex items-center justify-between">
+                <Typography variant="body1" className=" uppercase font-bold text-grey">
+                  Account Number
+                </Typography>
+                <Typography variant="body1">1234 5678 9012 3456</Typography>
+              </Box>
+              <Box className=" w-full flex items-center justify-between">
+                <Typography variant="body1" className=" uppercase font-bold text-grey">
                   Order number
                 </Typography>
                 <Typography variant="body1" className=" text-themeSecondary">
-                  ORD-{orderData?.id}
+                  {orderData?.id}
                 </Typography>
               </Box>
               <Box className=" w-full flex items-center justify-between">
@@ -61,7 +82,14 @@ function OrderFormModal({ orderData, toggle, handler }) {
                   Total price
                 </Typography>
                 <Typography variant="body1" className=" text-themeSecondary">
-                  {orderData?.total_price}
+                  {orderData?.total_price} $
+                </Typography>
+              </Box>
+              <Box className=" w-full">
+                <Typography variant="body2" className=" uppercase font-semibold text-grey">
+                  Send the payment to this bank account and Upload screenshot for
+                  payment confirmation.
+                  <span className=" text-themeSecondary block">(Account number: 1234 5678 9012 3456)</span>
                 </Typography>
               </Box>
             </Box>
