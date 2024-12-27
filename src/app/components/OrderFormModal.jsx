@@ -14,8 +14,6 @@ import FormikFileField from '@/shared/components/form/FormikFileField';
 function OrderFormModal({ orderData, toggle, handler }) {
   const { user } = useSelector(state => state.auth);
 
-  console.log('Order Data ==> ', orderData);
-
   return (
     <Box className=" w-full">
       <Formik
@@ -73,8 +71,8 @@ function OrderFormModal({ orderData, toggle, handler }) {
                 <Typography variant="body1" className=" uppercase font-bold text-grey">
                   Order number
                 </Typography>
-                <Typography variant="body1" className=" text-themeSecondary">
-                  {orderData?.id}
+                <Typography variant="body1" className=" text-themeSecondary notranslate">
+                  ORD-{orderData?.id}
                 </Typography>
               </Box>
               <Box className=" w-full flex items-center justify-between">

@@ -36,7 +36,13 @@ function AuthWrapper({ children }) {
     } else if (isError) {
       const localCart = JSON.parse(localStorage.getItem('cart')) || {};
       if (Object.keys(localCart).length > 0) {
-        dispatch(initializeCart(localCart));
+        dispatch(
+          initializeCart({
+            items: localCart?.items,
+            quantity: localCart?.totalQuantity,
+            item_price: localCart?.total_price,
+          })
+        );
       }
       dispatch(onLoggedOut());
       deleteTokenCookie();

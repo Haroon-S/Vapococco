@@ -16,6 +16,7 @@ import useGetSelectedLanguageText from '@/customHooks/useGetSelectedLanguageText
 
 function CartSection() {
   const cartState = useSelector(state => state.cart);
+  const { isAuthenticated } = useSelector(state => state.auth);
   const { checkSelectedLanguageText } = useGetSelectedLanguageText();
   const [addOrder, { error, isSuccess, isLoading: orderLoading }] = useAddOrderMutation();
   const [addPayment, { error: paymentError, isSuccess: paymentSuccess }] = useAddOrderPaymentDetailMutation();
@@ -71,7 +72,7 @@ function CartSection() {
             <Typography variant="h6" className="text-white">
               Total Price
             </Typography>
-            <Typography variant="h6" className="text-white">
+            <Typography variant="h6" className="text-white notranslate">
               {cartState?.total_price} $
             </Typography>
           </Box>
@@ -79,7 +80,7 @@ function CartSection() {
             startIcon={orderLoading ? <CircularProgress size={20} /> : undefined}
             onClick={handleOrder}
             variant="contained"
-            disabled={!(cartState?.items?.length > 0) || orderLoading}
+            disabled={!(cartState?.items?.length > 0) || orderLoading || !isAuthenticated}
             className="text-black font-bold w-full mt-2 bg-white hover:text-white disabled:bg-themeMuted notranslate"
           >
             {checkSelectedLanguageText('MON PANIER', 'ORDER NOW')}
