@@ -31,25 +31,27 @@ function ProductAddToCart({
   };
 
   const handleAddToCart = async () => {
-    const payload = {
-      variations: variationId,
-      size: sizeId,
-      variation_name: variationName,
-      item_size: size,
-      item_price: parseInt(price, 10),
-      product_image: sizeImage,
-      product,
-      product_title: productTitle,
-      quantity: parseInt(quantity, 10),
-    };
-    dispatch(addToCart(payload));
-    if (isAuthenticated) {
-      await addToCartItem({
-        product,
+    if (quantity > 0) {
+      const payload = {
         variations: variationId,
         size: sizeId,
+        variation_name: variationName,
+        item_size: size,
+        item_price: parseInt(price, 10),
+        product_image: sizeImage,
+        product,
+        product_title: productTitle,
         quantity: parseInt(quantity, 10),
-      });
+      };
+      dispatch(addToCart(payload));
+      if (isAuthenticated) {
+        await addToCartItem({
+          product,
+          variations: variationId,
+          size: sizeId,
+          quantity: parseInt(quantity, 10),
+        });
+      }
     }
   };
 

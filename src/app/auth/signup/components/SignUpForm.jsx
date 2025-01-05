@@ -71,34 +71,34 @@ function SignUpForm({ toggle, closeModal, handler }) {
         <Form className=" flex flex-col items-center justify-center w-full gap-2 px-6 sm:px-0">
           <Grid justifyContent="center" alignItems="center" columnSpacing={2} rowGap={2} container>
             <Grid item xs={12} md={6}>
-              <FormikField type="text" name="email" placeholder="Type your email" />
+              <FormikField type="text" name="email" placeholder="Tapez votre email" />
             </Grid>
             <Grid item xs={12} md={6}>
-              <FormikField type="password" name="password" placeholder="Type your password" />
+              <FormikField type="password" name="password" placeholder="Tapez votre mot de passe" />
             </Grid>
             <Grid item xs={12} md={6}>
-              <FormikRadioButtons label="Title" name="title" options={titleOptions} />
+              <FormikRadioButtons label="Titre" name="title" options={titleOptions} />
             </Grid>
             <Grid item xs={12} md={6}>
-              <FormikField type="text" name="username" placeholder="Type your Username" />
+              <FormikField type="text" name="username" placeholder="Tapez votre nom d'utilisateur" />
             </Grid>
             <Grid item xs={12} md={6}>
-              <FormikField type="text" name="first_name" placeholder="First Name" />
+              <FormikField type="text" name="first_name" placeholder="Prénom" />
             </Grid>
             <Grid item xs={12} md={6}>
-              <FormikField type="text" name="last_name" placeholder="Last Name" />
+              <FormikField type="text" name="last_name" placeholder="Nom de famille" />
             </Grid>
             <Grid item xs={12} md={6}>
-              <FormikField type="text" name="company" placeholder="Company" />
+              <FormikField type="text" name="company" placeholder="Entreprise" />
             </Grid>
             <Grid item xs={12} md={6}>
-              <FormikField type="text" name="phone" placeholder="Phone Number" />
+              <FormikField type="text" name="phone" placeholder="Numéro de téléphone" />
             </Grid>
             <Grid item xs={12}>
               <FormikSelect
                 name="country"
                 options={countriesOptions}
-                placeholder="Country"
+                placeholder="les pays"
                 isRequired
                 style={formikAuthSelectStyles}
                 isStack
@@ -113,7 +113,7 @@ function SignUpForm({ toggle, closeModal, handler }) {
             </Grid>
             <Grid item xs={12} md={7}>
               <Box className=" flex flex-wrap items-center gap-3 mt-5">
-                <Typography>KBIS (less than 3 months)</Typography>
+                <Typography>KBIS (moins de 3 mois)</Typography>
                 <FormikFileField btnVariant="contained" minimal name="image" />
               </Box>
             </Grid>
@@ -123,19 +123,19 @@ function SignUpForm({ toggle, closeModal, handler }) {
                   sx={{ fontSize: '16px', color: 'black', fontWeight: '600' }}
                   className="flex flex-wrap mb-1"
                 >
-                  Already have an Account?{' '}
+                  Vous avez déjà un compte ?{' '}
                   <Button
                     variant="text"
                     onClick={() => toggle('signin')}
                     className=" text-blue-600 mx-2 p-0 mb-0 underline cursor-pointer"
                   >
-                    Sign in
+                    Se connecter
                   </Button>
                 </Typography>
               </Box>
             </Grid>
             <Grid item className=" mt-6">
-              <SubmitBtn label="REGISTER" isLoading={isSubmitting} />
+              <SubmitBtn label="REGISTRE" isLoading={isSubmitting} />
             </Grid>
           </Grid>
         </Form>

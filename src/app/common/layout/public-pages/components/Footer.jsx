@@ -18,12 +18,12 @@ function Footer({ footerText = '', footerBgColor = '', textColor = '', btnBg = '
       </Link>
       <Link href="/">
         <Typography variant="body1" className="text-xs md:text-base text-white">
-          General Terms and Conditions
+          Conditions générales
         </Typography>
       </Link>
       <Link href="/">
         <Typography variant="body1" className="text-xs md:text-base text-white">
-          Privacy Policy
+          politique de confidentialité
         </Typography>
       </Link>
       <Link href="/">

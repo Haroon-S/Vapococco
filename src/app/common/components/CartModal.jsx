@@ -53,14 +53,14 @@ function CartModal() {
             variant="body1"
             className=" text-black text-center h-full flex items-center justify-center"
           >
-            No Item Found!
+            Aucun article trouvé!
           </Typography>
         )}
       </Box>
       <Box className=" py-3 px-3">
         <Box className="w-full flex items-center justify-between">
           <Typography variant="h6" className="text-white">
-            Total Price
+            Prix total
           </Typography>
           <Typography variant="h6" className="text-white">
             {cartState?.total_price} $

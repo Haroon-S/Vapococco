@@ -61,7 +61,7 @@ function CartSection() {
               variant="body1"
               className=" text-white text-center h-full flex items-center justify-center"
             >
-              No Item Found!
+              Aucun article trouvé!
             </Typography>
           )}
         </Box>
@@ -70,7 +70,7 @@ function CartSection() {
         <Box className="sticky bottom-0 left-0 p-3 bg-black">
           <Box className="w-full flex items-center justify-between">
             <Typography variant="h6" className="text-white">
-              Total Price
+              Prix total
             </Typography>
             <Typography variant="h6" className="text-white notranslate">
               {cartState?.total_price} $

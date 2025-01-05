@@ -13,13 +13,13 @@ function OrderDetailHeader({ orderData }) {
     <Box className=" w-full flex justify-between items-center py-4 border-b-2 border-gray-400">
       <Box>
         <Typography variant="h6" className=" uppercase font-bold text-themeSecondary">
-          Shipped
+          Expédié
         </Typography>
         <Typography variant="body1">{moment(orderData?.ordered_date).format('DD MMM,YYYY')}</Typography>
       </Box>
       <Box>
         <Typography variant="h6" className=" uppercase font-bold text-grey">
-          Order number
+          Numéro de commande
         </Typography>
         <Typography variant="body1" className=" text-themeSecondary">
           ORD-{orderData?.id}
@@ -27,7 +27,7 @@ function OrderDetailHeader({ orderData }) {
       </Box>
       <Box>
         <Typography variant="h6" className=" uppercase font-bold text-grey">
-          Total price
+          Prix total
         </Typography>
         <Typography variant="body1" className=" text-themeSecondary">
           {orderData?.total_price} $
@@ -35,7 +35,7 @@ function OrderDetailHeader({ orderData }) {
       </Box>
       <Box>
         <Button onClick={() => addOrder({ order_id: orderData?.id })} variant="contained">
-          BUY AGAIN
+          ACHETER À NOUVEAU
         </Button>
       </Box>
     </Box>

@@ -143,9 +143,9 @@ function Navbar({ toggleSidebar = () => {}, isPortal = false }) {
             <SearchInput />
           </Box>
           <Box className=" flex items-start gap-1">
-            <ErrorBoundary errorComponent={<Error />}>
+            {/* <ErrorBoundary errorComponent={<Error />}>
               <GoogleTranslator />
-            </ErrorBoundary>
+            </ErrorBoundary> */}
             <Link href="/" className=" hidden md:block">
               <Box className=" bg-[#e5dcd3] rounded-full flex justify-center items-center w-10 h-10">
                 <Call style={{ fontSize: '20px' }} />
@@ -253,8 +253,8 @@ function Navbar({ toggleSidebar = () => {}, isPortal = false }) {
             <AuthModalHeader
               title={
                 modalOpen.type === 'signin'
-                  ? 'Access your business account'
-                  : 'Request access to business space'
+                  ? 'Accédez à votre compte professionnel'
+                  : "Demander l'accès à l'espace entreprise"
               }
             >
               <Box className=" w-full m-8 p-8 border-2 border-grey">

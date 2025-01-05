@@ -41,7 +41,7 @@ function OrderFormModal({ orderData, toggle, handler }) {
             <Box className=" w-full flex flex-col gap-3 justify-between items-center py-4 border-b-2 border-gray-400">
               <Box className=" w-full flex items-center justify-between">
                 <Typography variant="body1" className=" uppercase font-bold text-themeSecondary">
-                  Name
+                  Nom
                 </Typography>
                 <Typography variant="body1">
                   {`${user?.profile?.first_name} ${user?.profile?.last_name}`}
@@ -49,7 +49,7 @@ function OrderFormModal({ orderData, toggle, handler }) {
               </Box>
               <Box className=" w-full flex items-center justify-between">
                 <Typography variant="body1" className=" uppercase font-bold text-themeSecondary">
-                  Shipped
+                  Expédié
                 </Typography>
                 <Typography variant="body1">
                   {moment(orderData?.ordered_date).format('DD MMM,YYYY')}
@@ -57,19 +57,19 @@ function OrderFormModal({ orderData, toggle, handler }) {
               </Box>
               <Box className=" w-full flex items-center justify-between">
                 <Typography variant="body1" className=" uppercase font-bold text-grey">
-                  Billing Address
+                  adresse de facturation
                 </Typography>
                 <Typography variant="body1">{orderData?.shipping_address}</Typography>
               </Box>
               <Box className=" w-full flex items-center justify-between">
                 <Typography variant="body1" className=" uppercase font-bold text-grey">
-                  Account Number
+                  Numéro de compte
                 </Typography>
                 <Typography variant="body1">1234 5678 9012 3456</Typography>
               </Box>
               <Box className=" w-full flex items-center justify-between">
                 <Typography variant="body1" className=" uppercase font-bold text-grey">
-                  Order number
+                  Numéro de commande
                 </Typography>
                 <Typography variant="body1" className=" text-themeSecondary notranslate">
                   ORD-{orderData?.id}
@@ -77,7 +77,7 @@ function OrderFormModal({ orderData, toggle, handler }) {
               </Box>
               <Box className=" w-full flex items-center justify-between">
                 <Typography variant="body1" className=" uppercase font-bold text-grey">
-                  Total price
+                  Prix total
                 </Typography>
                 <Typography variant="body1" className=" text-themeSecondary">
                   {orderData?.total_price} $
@@ -85,14 +85,14 @@ function OrderFormModal({ orderData, toggle, handler }) {
               </Box>
               <Box className=" w-full">
                 <Typography variant="body2" className=" uppercase font-semibold text-grey">
-                  Send the payment to this bank account and Upload screenshot for
-                  payment confirmation.
-                  <span className=" text-themeSecondary block">(Account number: 1234 5678 9012 3456)</span>
+                  Envoyez le paiement sur ce compte bancaire et téléchargez une capture d&apos;écran pour la
+                  confirmation du paiement.
+                  <span className=" text-themeSecondary block">(Numéro de compte: 1234 5678 9012 3456)</span>
                 </Typography>
               </Box>
             </Box>
             <Box className=" py-4 flex items-center gap-3 mt-5">
-              <Typography>Payment Screenshot</Typography>
+              <Typography>Capture d&apos;écran de paiement</Typography>
               <FormikFileField btnVariant="contained" minimal name="image" />
             </Box>
             <Box className=" w-full flex justify-end">

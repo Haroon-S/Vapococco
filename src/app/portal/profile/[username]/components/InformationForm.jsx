@@ -44,32 +44,32 @@ function InformationForm({ username }) {
           <Grid justifyContent="center" alignItems="center" columnSpacing={2} rowGap={2} container>
             <Grid item xs={12}>
               <Box className=" w-full flex flex-col justify-center items-center">
-                <Typography className=" text-sm text-[#a6a6a6]">Title</Typography>
+                <Typography className=" text-sm text-[#a6a6a6]">Titre</Typography>
                 <Box>
                   <FormikRadioButtons name="title" options={titleOptions} />
                 </Box>
               </Box>
             </Grid>
             <Grid item xs={12} md={6}>
-              <FormikField type="text" name="first_name" placeholder="First Name" />
+              <FormikField type="text" name="first_name" placeholder="Prénom" />
             </Grid>
             <Grid item xs={12} md={6}>
-              <FormikField type="text" name="last_name" placeholder="Last Name" />
+              <FormikField type="text" name="last_name" placeholder="Nom de famille" />
             </Grid>
             <Grid item xs={12} md={6}>
-              <FormikField type="text" name="company" placeholder="Company" />
+              <FormikField type="text" name="company" placeholder="Entreprise" />
             </Grid>
             <Grid item xs={12} md={6}>
-              <FormikField type="text" name="email" placeholder="Type your email" />
+              <FormikField type="text" name="email" placeholder="Tapez votre email" />
             </Grid>
             <Grid item xs={12} md={12}>
-              <FormikField type="text" name="address" placeholder="Type your address" />
+              <FormikField type="text" name="address" placeholder="Tapez votre adresse" />
             </Grid>
             <Grid item xs={12} md={6}>
-              <FormikField type="password" name="password" placeholder="Password" />
+              <FormikField type="password" name="password" placeholder="Mot de passe" />
             </Grid>
             <Grid item xs={12} md={6}>
-              <FormikField type="password" name="confirmPassword" placeholder="Confirm Password" />
+              <FormikField type="password" name="confirmPassword" placeholder="Confirmez le mot de passe" />
             </Grid>
             <Grid item className=" mt-6">
               <SubmitBtn label="SAVE" isLoading={isSubmitting} />

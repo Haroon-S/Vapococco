@@ -52,10 +52,10 @@ function SignInForm({ toggle, closeModal, handler }) {
         <Form className=" flex flex-col items-center justify-center w-full px-6 sm:px-0">
           <Grid justifyContent="center" alignItems="center" columnSpacing={2} rowGap={2} container>
             <Grid item xs={12}>
-              <FormikField type="text" name="email" placeholder="Enter your email" />
+              <FormikField type="text" name="email" placeholder="Entrez votre email" />
             </Grid>
             <Grid item xs={12}>
-              <FormikField type="password" name="password" placeholder="Enter your password" />
+              <FormikField type="password" name="password" placeholder="Entrez votre mot de passe" />
             </Grid>
           </Grid>
           <Grid justifyContent="center" alignItems="center" columnSpacing={2} rowGap={2} container>
@@ -69,13 +69,13 @@ function SignInForm({ toggle, closeModal, handler }) {
                     fontWeight: { xs: '500', md: '600' },
                   }}
                 >
-                  {'Don\'t have an account?'}
+                  Vous n&apos;avez pas de compte ?
                   <Button
                     variant="text"
                     onClick={() => toggle('signup')}
                     className=" text-blue-600 mx-2 p-0 mb-0 underline cursor-pointer"
                   >
-                    Register Now!
+                    Inscrivez-vous maintenant!
                   </Button>
                 </Typography>
               </Box>
@@ -86,7 +86,7 @@ function SignInForm({ toggle, closeModal, handler }) {
                 href="/auth/forgot-password"
                 className="my-3 font-bold uppercase py-2 px-4 bg-grey text-white hover:bg-black transition-all duration-300 rounded hover:text-white"
               >
-                Forgot Password?
+                Mot de passe oublié?
               </Link>
             </Box>
           </Grid>

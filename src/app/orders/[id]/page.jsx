@@ -38,10 +38,10 @@ function OrderDetail({ params: { id } }) {
       <Box className=" mt-[260px] max-w-[1440px] w-full">
         <Box className=" flex justify-between items-center">
           <Typography variant="pageTitle" className=" text-start">
-            Order
+            Commande
           </Typography>
           <Button onClick={handleExportToPdf} disabled={exportingPdf} variant="contained">
-            Export Invoice {exportingPdf && <CircularProgress size="16px" />}
+            Facture d&apos;exportation {exportingPdf && <CircularProgress size="16px" />}
           </Button>
         </Box>
         <Box className=" mt-4">

@@ -30,14 +30,14 @@ function useGetSidebarItems() {
       {
         id: v4(),
         path: '/portal/profile',
-        title: 'MY PROFILE',
+        title: 'MON PROFIL',
         order: 0,
         permissions: [SUPPLIER, CLIENT, ADMIN],
       },
       {
         id: v4(),
         path: null,
-        title: 'DISCONNECT',
+        title: 'DÉCONNEXION',
         order: 1,
         onClick: logout,
         permissions: [CLIENT, SUPPLIER],

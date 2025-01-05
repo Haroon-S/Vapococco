@@ -1,19 +1,19 @@
 export const OrderTableHeadCells = [
   {
     id: 'id',
-    label: 'Order',
+    label: 'Commande',
   },
   {
     id: 'ordered_date',
-    label: 'Order Date',
+    label: 'Date de commande',
   },
   {
     id: 'total_price',
-    label: 'Total Price',
+    label: 'Prix total',
   },
   {
     id: 'actions',
-    label: 'Actions',
+    label: 'Actes',
   },
 ];
 

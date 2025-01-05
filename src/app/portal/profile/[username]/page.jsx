@@ -13,7 +13,7 @@ function UserProfile() {
       <Box className=" relative border-t border-t-themePrimary flex flex-col justify-center items-center">
         <Box className=" bg-white px-2 absolute -top-4">
           <Typography variant="h5" className=" uppercase font-extrabold">
-            My information
+            Mes informations
           </Typography>
         </Box>
         <Box className=" mt-20">

@@ -18,7 +18,7 @@ function ProductsSection({ searchParams }) {
   const rowsPerPage = 6;
   const [page, setPage] = useState(1);
 
-  const { data, isLoading, isFetching } = useGetProductsQuery({
+  const { data, isLoading, isFetching, isError } = useGetProductsQuery({
     ...initValues,
     offset: (page - 1) * rowsPerPage,
     page,
@@ -58,7 +58,7 @@ function ProductsSection({ searchParams }) {
               />
             ))}
 
-          {!loading && data?.results?.length === 0 && (
+          {((!loading && data?.results?.length === 0) || isError) && (
             <Box p={2} sx={{ height: '30vh' }} className=" w-full flex justify-center items-center">
               <Typography variant="body1">No Record Found!</Typography>
             </Box>

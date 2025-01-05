@@ -36,8 +36,8 @@ function ProductFilterForm({ onFormSubmit = () => {}, isLoading = false, searchP
   useEffect(() => {
     if (searchParams) {
       setInitValues({
-        sub_category: searchParams?.category || '',
-        sub_category__category: searchParams?.subCategory || '',
+        sub_category: searchParams?.sub_category || '',
+        sub_category__category: searchParams?.sub_category__category || '',
       });
     }
   }, [searchParams]);
@@ -53,7 +53,7 @@ function ProductFilterForm({ onFormSubmit = () => {}, isLoading = false, searchP
                 name="sub_category"
                 options={categoriesOptions}
                 className=" shadow-md"
-                placeholder="Category"
+                placeholder="Catégorie"
                 isPortal
               />
               <Box sx={{ minWidth: { xs: '100%', md: '300px' } }}>
@@ -61,45 +61,45 @@ function ProductFilterForm({ onFormSubmit = () => {}, isLoading = false, searchP
                   className=" shadow-md"
                   onChange={newValue => handleSearch(newValue, resetForm)}
                   name="search"
-                  placeholder="Search services..."
+                  placeholder="Services de recherche..."
                 />
               </Box>
               <FormikSelect
                 name="sub_category__category"
                 options={subCategoriesOptions}
                 className=" shadow-md"
-                placeholder="Sub Category"
+                placeholder="Sous-catégorie"
                 isPortal
               />
             </Box>
             <Box className=" pt-4 flex justify-between gap-16 w-full border-t border-gray-800">
-              <FormikCheckbox muiSize="small" label="IN STOCK" name="in_stock" />
-              <FormikCheckbox muiSize="small" label="NEW" name="is_new" />
+              <FormikCheckbox muiSize="small" label="EN STOCK" name="in_stock" />
+              <FormikCheckbox muiSize="small" label="NOUVEAU" name="is_new" />
               <FormikCheckbox muiSize="small" label="PROMOS" name="is_promoted" />
-              <FormikCheckbox muiSize="small" label="FAVORITE" name="favorite" />
+              <FormikCheckbox muiSize="small" label="PRÉFÉRÉ" name="favorite" />
               <Box>
                 {isFilterApplied(values) && (
-                <Box className=" flex items-center gap-3">
-                  <SubmitBtn
-                    size="small"
-                    label="Search"
-                    variant="contained"
-                    type="submit"
-                    isLoading={isLoading}
-                  />
-                  <Button
-                    size="small"
-                    variant="contained"
-                    disabled={isLoading}
-                    color="secondary"
-                    onClick={async () => {
-                      onFormSubmit(searchFilterFormInitialValue);
-                      resetForm({ values: searchFilterFormInitialValue });
-                    }}
-                  >
-                    Clear
-                  </Button>
-                </Box>
+                  <Box className=" flex items-center gap-3">
+                    <SubmitBtn
+                      size="small"
+                      label="Recherche"
+                      variant="contained"
+                      type="submit"
+                      isLoading={isLoading}
+                    />
+                    <Button
+                      size="small"
+                      variant="contained"
+                      disabled={isLoading}
+                      color="secondary"
+                      onClick={async () => {
+                        onFormSubmit(searchFilterFormInitialValue);
+                        resetForm({ values: searchFilterFormInitialValue });
+                      }}
+                    >
+                      Clair
+                    </Button>
+                  </Box>
                 )}
               </Box>
             </Box>
