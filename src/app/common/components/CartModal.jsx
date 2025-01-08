@@ -75,11 +75,11 @@ function CartModal() {
         >
           {checkSelectedLanguageText('MON PANIER', 'ORDER NOW')}
         </Button>
+        <Typography variant="body1" className=" mt-2">
+          Login First to place the order
+        </Typography>
       </Box>
-      <Modal
-        open={modalOpen}
-        onClose={toggleModal}
-      >
+      <Modal open={modalOpen} onClose={toggleModal}>
         <Box sx={formModalStyles}>
           <ModalHeader title="Place Order" onClose={toggleModal} />
           <OrderFormModal orderData={orderData.data} toggle={toggleModal} handler={addPayment} />

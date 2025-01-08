@@ -38,7 +38,7 @@ function ProductsSection() {
         <TabPanel stateValue={activeTab} index={2}>
           <ProductList filter="is_promoted" />
         </TabPanel>
-        <Box className=" flex md:justify-center px-2 md:mr-[768px]">
+        <Box className=" flex md:justify-center px-2">
           <WhyUsSection />
         </Box>
         <Box className=" absolute top-0 ml-[990px] bg-black h-full">

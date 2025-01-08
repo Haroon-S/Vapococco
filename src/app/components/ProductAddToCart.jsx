@@ -4,6 +4,7 @@ import propTypes from 'prop-types';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ShoppingCart } from '@mui/icons-material';
+import { useSnackbar } from 'notistack';
 import StyledInputField from '@/shared/components/form/StyledInputField';
 import FormikField from '@/shared/components/form/FormikField';
 import { addToCart } from '@/store/slices/cartSlice';
@@ -21,10 +22,11 @@ function ProductAddToCart({
   handler,
   inStock,
 }) {
+  const { enqueueSnackbar } = useSnackbar();
   const isSmallScreen = useMediaQuery('(max-width:788px)');
   const { isAuthenticated } = useSelector(state => state.auth);
   const dispatch = useDispatch();
-  const [addToCartItem] = useAddToCartMutation();
+  const [addToCartItem, { isLoading }] = useAddToCartMutation();
   const [quantity, setQuantity] = useState(0);
   const handleQuantity = e => {
     setQuantity(e.target.value);
@@ -43,14 +45,20 @@ function ProductAddToCart({
         product_title: productTitle,
         quantity: parseInt(quantity, 10),
       };
-      dispatch(addToCart(payload));
       if (isAuthenticated) {
-        await addToCartItem({
+        const resp = await addToCartItem({
           product,
           variations: variationId,
           size: sizeId,
           quantity: parseInt(quantity, 10),
         });
+        if (!resp?.error) {
+          dispatch(addToCart(payload));
+        } else {
+          enqueueSnackbar(resp?.error?.data?.message, { variant: 'error' });
+        }
+      } else {
+        dispatch(addToCart(payload));
       }
     }
   };
@@ -75,7 +83,7 @@ function ProductAddToCart({
           variant="contained"
           className="w-full max-h-7 bg-black hover:bg-neutral-800 text-white text-xs font-medium md:text-[15px]"
           onClick={handleAddToCart}
-          isDisabled={!inStock}
+          isDisabled={!inStock || isLoading}
         >
           ADD
         </Button>

@@ -39,8 +39,8 @@ function AuthWrapper({ children }) {
         dispatch(
           initializeCart({
             items: localCart?.items,
-            quantity: localCart?.totalQuantity,
-            item_price: localCart?.total_price,
+            totalQuantity: localCart?.totalQuantity,
+            total_price: localCart?.total_price,
           })
         );
       }

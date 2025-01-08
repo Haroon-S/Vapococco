@@ -2,7 +2,7 @@
 
 'use client';
 
-import { Box, Button, CircularProgress, Modal, Typography } from '@mui/material';
+import { Box, Button, CircularProgress, Modal, Tooltip, Typography } from '@mui/material';
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import CartsObject from './CartsObject';
@@ -76,21 +76,35 @@ function CartSection() {
               {cartState?.total_price} $
             </Typography>
           </Box>
-          <Button
-            startIcon={orderLoading ? <CircularProgress size={20} /> : undefined}
-            onClick={handleOrder}
-            variant="contained"
-            disabled={!(cartState?.items?.length > 0) || orderLoading || !isAuthenticated}
-            className="text-black font-bold w-full mt-2 bg-white hover:text-white disabled:bg-themeMuted notranslate"
-          >
-            {checkSelectedLanguageText('MON PANIER', 'ORDER NOW')}
-          </Button>
+          {isAuthenticated && (
+            <Button
+              startIcon={orderLoading ? <CircularProgress size={20} /> : undefined}
+              onClick={handleOrder}
+              variant="contained"
+              className="text-black font-bold w-full mt-2 bg-white hover:text-white disabled:bg-themeMuted notranslate"
+              disabled={!(cartState?.items?.length > 0) || orderLoading}
+            >
+              {checkSelectedLanguageText('MON PANIER', 'ORDER NOW')}
+            </Button>
+          )}
+          {!isAuthenticated && (
+            <Tooltip placement="top" title="Login First to place the order">
+              <span>
+                <Button
+                  startIcon={orderLoading ? <CircularProgress size={20} /> : undefined}
+                  onClick={handleOrder}
+                  variant="contained"
+                  className="text-black font-bold w-full mt-2 bg-white hover:text-white disabled:bg-themeMuted notranslate"
+                  disabled
+                >
+                  MON PANIER
+                </Button>
+              </span>
+            </Tooltip>
+          )}
         </Box>
       </Box>
-      <Modal
-        open={modalOpen}
-        onClose={toggleModal}
-      >
+      <Modal open={modalOpen} onClose={toggleModal}>
         <Box sx={formModalStyles} className=" p-2 md:p-5">
           <ModalHeader title="Place Order" onClose={toggleModal} />
           <OrderFormModal orderData={orderData.data} toggle={toggleModal} handler={addPayment} />

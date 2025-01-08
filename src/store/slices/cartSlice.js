@@ -18,8 +18,8 @@ const cartSlice = createSlice({
 
       state.items = cartData?.items;
 
-      state.totalQuantity += cartData?.quantity || 0;
-      state.total_price += (cartData?.item_price || 0) * (cartData?.quantity || 0);
+      state.totalQuantity = cartData?.totalQuantity || 0;
+      state.total_price = (Number(cartData?.total_price ?? 0));
 
       localStorage.setItem('cart', JSON.stringify(state));
     },
@@ -57,7 +57,7 @@ const cartSlice = createSlice({
       }
 
       state.totalQuantity += quantity;
-      state.total_price += itemPrice * quantity;
+      state.total_price += Number(itemPrice) * Number(quantity);
 
       const localState = {
         items: state.items,
@@ -78,7 +78,7 @@ const cartSlice = createSlice({
       if (index !== -1) {
         const item = state.items[index];
         state.totalQuantity -= item.quantity;
-        state.total_price -= item.item_price * item.quantity;
+        state.total_price -= Number(item.item_price) * Number(item.quantity);
         state.items.splice(index, 1);
       }
       localStorage.setItem('cart', JSON.stringify(state));
@@ -93,7 +93,7 @@ const cartSlice = createSlice({
       if (selectedItem) {
         selectedItem.quantity += 1;
         state.totalQuantity += 1;
-        state.total_price += selectedItem.item_price;
+        state.total_price += Number(selectedItem.item_price);
       }
       localStorage.setItem('cart', JSON.stringify(state));
     },
@@ -106,7 +106,7 @@ const cartSlice = createSlice({
       if (selectedItem) {
         selectedItem.quantity -= 1;
         state.totalQuantity -= 1;
-        state.total_price -= selectedItem.item_price;
+        state.total_price -= Number(selectedItem.item_price);
       }
       localStorage.setItem('cart', JSON.stringify(state));
     },

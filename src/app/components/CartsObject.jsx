@@ -1,10 +1,11 @@
 /* eslint-disable no-unused-vars */
-import { Box, Typography } from '@mui/material';
+import { Box, Button, Typography } from '@mui/material';
 import propTypes from 'prop-types';
 import Image from 'next/image';
 import React, { useState } from 'react';
 import { Add, Close, Remove } from '@mui/icons-material';
 import { useDispatch, useSelector } from 'react-redux';
+import { useSnackbar } from 'notistack';
 import icon1L from '@/assets/bottle-size-img/1L.png';
 import { useDeleteCartMutation, useUpdateCartMutation } from '@/services/private/cart';
 import { addQuantity, removeFromCart, subQuantity } from '@/store/slices/cartSlice';
@@ -21,8 +22,9 @@ function CartsObject({
   size,
 }) {
   const { isAuthenticated } = useSelector(state => state.auth);
+  const { enqueueSnackbar } = useSnackbar();
   const dispatch = useDispatch();
-  const [updateItemQuantityAndPrice] = useUpdateCartMutation();
+  const [updateItemQuantityAndPrice, { isLoading }] = useUpdateCartMutation();
   const [deleteItem] = useDeleteCartMutation();
   const payload = {
     variations: variationsId,
@@ -34,6 +36,8 @@ function CartsObject({
       const resp = await updateItemQuantityAndPrice({ id, quantity: totalQuantity + 1 });
       if (!resp?.error) {
         dispatch(addQuantity(payload));
+      } else {
+        enqueueSnackbar(resp?.error?.data?.message, { variant: 'error' });
       }
     } else {
       dispatch(addQuantity(payload));
@@ -45,6 +49,8 @@ function CartsObject({
         const resp = await updateItemQuantityAndPrice({ id, quantity: totalQuantity - 1 });
         if (!resp?.error) {
           dispatch(subQuantity(payload));
+        } else {
+          enqueueSnackbar(resp?.error?.data?.message, { variant: 'error' });
         }
       } else {
         dispatch(subQuantity(payload));
@@ -56,6 +62,8 @@ function CartsObject({
       const resp = await deleteItem(id);
       if (!resp?.error) {
         dispatch(removeFromCart(payload));
+      } else {
+        enqueueSnackbar(resp?.error?.data?.message, { variant: 'error' });
       }
     } else {
       dispatch(removeFromCart(payload));
@@ -80,19 +88,19 @@ function CartsObject({
         </Box>
         <Box className=" relative w-24 py-1 flex items-center bg-white rounded-3xl text-black mt-2 text-center ">
           <Box
-            onClick={handleSubQuantity}
             className=" absolute left-1 h-5 w-5 flex justify-center items-center bg-black rounded-full cursor-pointer"
           >
-            <Remove style={{ color: 'white', fontSize: '12px' }} />
+            <Button onClick={handleSubQuantity} disabled={isLoading && isAuthenticated}>
+              <Remove style={{ color: 'white', fontSize: '12px' }} />
+            </Button>
           </Box>
           <Box className=" w-full">
             <Typography variant="body2">{totalQuantity}</Typography>
           </Box>
-          <Box
-            onClick={handleAddQuantity}
-            className=" absolute right-1 h-5 w-5 flex justify-center items-center bg-black rounded-full cursor-pointer"
-          >
-            <Add style={{ color: 'white', fontSize: '12px' }} />
+          <Box className=" absolute right-1 h-5 w-5 flex justify-center items-center bg-black rounded-full cursor-pointer">
+            <Button onClick={handleAddQuantity} disabled={isLoading && isAuthenticated}>
+              <Add style={{ color: 'white', fontSize: '12px' }} />
+            </Button>
           </Box>
         </Box>
       </Box>
