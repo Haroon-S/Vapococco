@@ -33,8 +33,8 @@ function CartSection() {
   };
 
   return (
-    <Box className="sticky bg-black h-full flex justify-center p-3">
-      <Box className="h-full min-w-[275px] relative border border-white py-2 flex flex-col overflow-hidden">
+    <Box className="sticky bg-white h-full flex justify-center p-3">
+      <Box className="h-full min-w-[275px] relative border border-black py-2 flex flex-col overflow-hidden">
         {/* Scrollable Content */}
         <Box className="flex-1 overflow-y-scroll">
           {/* <CartsObject /> */}
@@ -59,7 +59,7 @@ function CartSection() {
           {cartState?.items?.length === 0 && (
             <Typography
               variant="body1"
-              className=" text-white text-center h-full flex items-center justify-center"
+              className=" text-black text-center h-full flex items-center justify-center"
             >
               Aucun article trouvé!
             </Typography>
@@ -67,12 +67,12 @@ function CartSection() {
         </Box>
 
         {/* Sticky Footer */}
-        <Box className="sticky bottom-0 left-0 p-3 bg-black">
+        <Box className="sticky bottom-0 left-0 p-3 bg-white">
           <Box className="w-full flex items-center justify-between">
-            <Typography variant="h6" className="text-white">
+            <Typography variant="h6" className="text-black">
               Prix total
             </Typography>
-            <Typography variant="h6" className="text-white notranslate">
+            <Typography variant="h6" className="text-black notranslate">
               {cartState?.total_price} $
             </Typography>
           </Box>
@@ -81,7 +81,7 @@ function CartSection() {
               startIcon={orderLoading ? <CircularProgress size={20} /> : undefined}
               onClick={handleOrder}
               variant="contained"
-              className="text-black font-bold w-full mt-2 bg-white hover:text-white disabled:bg-themeMuted notranslate"
+              className="text-white font-bold w-full mt-2 bg-black hover:text-white disabled:bg-themeMuted notranslate"
               disabled={!(cartState?.items?.length > 0) || orderLoading}
             >
               {checkSelectedLanguageText('MON PANIER', 'ORDER NOW')}
@@ -94,7 +94,7 @@ function CartSection() {
                   startIcon={orderLoading ? <CircularProgress size={20} /> : undefined}
                   onClick={handleOrder}
                   variant="contained"
-                  className="text-black font-bold w-full mt-2 bg-white hover:text-white disabled:bg-themeMuted notranslate"
+                  className="text-white font-bold w-full mt-2 bg-black hover:text-white disabled:bg-themeMuted notranslate"
                   disabled
                 >
                   MON PANIER

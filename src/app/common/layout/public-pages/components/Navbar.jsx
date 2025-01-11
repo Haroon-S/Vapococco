@@ -116,7 +116,9 @@ function Navbar({ toggleSidebar = () => {}, isPortal = false }) {
       <Box sx={{ height: 'fit-content', position: 'relative' }} className={styles.topbar}>
         <Box className=" absolute -top-5 right-0 w-44 bg-black hidden md:flex flex-col items-center justify-center gap-2 p-5 rounded-b-full rounded-t-none">
           <Box className=" flex items-center gap-2">
-            <ShoppingCart style={{ color: grey }} />
+            <Box className=" cursor-pointer" onClick={toggleCart}>
+              <ShoppingCart style={{ color: grey }} />
+            </Box>
             <Typography variant="h6" className=" text-grey font-medium">
               PANIER
             </Typography>
@@ -269,7 +271,7 @@ function Navbar({ toggleSidebar = () => {}, isPortal = false }) {
         </Modal>
 
         <Modal open={openCart} onClose={toggleCart}>
-          <Box sx={fileViewModalStyles}>
+          <Box sx={{ ...formModalStyles, height: '90%' }}>
             <ModalHeader title="Cart" onClose={toggleCart} />
             <CartModal />
           </Box>

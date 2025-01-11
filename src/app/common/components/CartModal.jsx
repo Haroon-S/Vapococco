@@ -1,4 +1,4 @@
-import { Box, Button, CircularProgress, Modal, Typography } from '@mui/material';
+import { Box, Button, CircularProgress, Modal, Tooltip, Typography } from '@mui/material';
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import CartsObject from '@/app/components/CartsObject';
@@ -11,6 +11,7 @@ import OrderFormModal from '@/app/components/OrderFormModal';
 
 function CartModal() {
   const cartState = useSelector(state => state.cart);
+  const { isAuthenticated } = useSelector(state => state.auth);
   const { checkSelectedLanguageText } = useGetSelectedLanguageText();
   const [addOrder, { error, isSuccess, isLoading: orderLoading }] = useAddOrderMutation();
   const [addPayment, { error: paymentError, isSuccess: paymentSuccess }] = useAddOrderPaymentDetailMutation();
@@ -27,8 +28,8 @@ function CartModal() {
   };
 
   return (
-    <Box className=" bg-black rounded-xl">
-      <Box className="flex-1 overflow-y-scroll">
+    <Box className=" bg-white rounded-xl h-[80%]">
+      <Box className="">
         {/* <CartsObject /> */}
         {cartState?.items?.length > 0 &&
           cartState?.items?.map(item => (
@@ -59,25 +60,44 @@ function CartModal() {
       </Box>
       <Box className=" py-3 px-3">
         <Box className="w-full flex items-center justify-between">
-          <Typography variant="h6" className="text-white">
+          <Typography variant="h6" className="text-black">
             Prix total
           </Typography>
-          <Typography variant="h6" className="text-white">
+          <Typography variant="h6" className="text-black">
             {cartState?.total_price} $
           </Typography>
         </Box>
-        <Button
-          startIcon={orderLoading ? <CircularProgress size={20} /> : undefined}
-          onClick={handleOrder}
-          variant="contained"
-          disabled={!(cartState?.items?.length > 0) || orderLoading}
-          className="text-black font-bold w-full mt-2 bg-white hover:text-white disabled:bg-themeMuted notranslate"
-        >
-          {checkSelectedLanguageText('MON PANIER', 'ORDER NOW')}
-        </Button>
-        <Typography variant="body1" className=" mt-2">
-          Login First to place the order
-        </Typography>
+        {isAuthenticated && (
+          <Button
+            startIcon={orderLoading ? <CircularProgress size={20} /> : undefined}
+            onClick={handleOrder}
+            variant="contained"
+            className="text-white font-bold w-full mt-2 bg-black hover:text-white disabled:bg-themeMuted notranslate"
+            disabled={!(cartState?.items?.length > 0) || orderLoading}
+          >
+            {checkSelectedLanguageText('MON PANIER', 'ORDER NOW')}
+          </Button>
+        )}
+        {!isAuthenticated && (
+          <Tooltip placement="top" title="Login First to place the order">
+            <span>
+              <Button
+                startIcon={orderLoading ? <CircularProgress size={20} /> : undefined}
+                onClick={handleOrder}
+                variant="contained"
+                className="text-white font-bold w-full mt-2 bg-black hover:text-white disabled:bg-themeMuted notranslate"
+                disabled
+              >
+                MON PANIER
+              </Button>
+            </span>
+          </Tooltip>
+        )}
+        {!isAuthenticated && (
+          <Typography variant="body1" className=" md:hidden mt-2">
+            Login First to place the order
+          </Typography>
+        )}
       </Box>
       <Modal open={modalOpen} onClose={toggleModal}>
         <Box sx={formModalStyles}>
