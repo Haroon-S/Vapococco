@@ -5,6 +5,7 @@
 import { Box, Button, CircularProgress, Modal, Tooltip, Typography } from '@mui/material';
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
+import { useRouter } from 'next/navigation';
 import CartsObject from './CartsObject';
 import { useAddOrderMutation, useAddOrderPaymentDetailMutation } from '@/services/private/orders';
 import useHandleApiResponse from '@/customHooks/useHandleApiResponse';
@@ -15,6 +16,7 @@ import OrderFormModal from './OrderFormModal';
 import useGetSelectedLanguageText from '@/customHooks/useGetSelectedLanguageText';
 
 function CartSection() {
+  const router = useRouter();
   const cartState = useSelector(state => state.cart);
   const { isAuthenticated } = useSelector(state => state.auth);
   const { checkSelectedLanguageText } = useGetSelectedLanguageText();
@@ -26,10 +28,8 @@ function CartSection() {
   const [orderData, setOrderData] = useState({});
   const toggleModal = () => setModalOpen(prev => !prev);
 
-  const handleOrder = async () => {
-    const resp = await addOrder();
-    setOrderData(resp);
-    toggleModal();
+  const handleOrder = () => {
+    router.push('/checkout');
   };
 
   return (

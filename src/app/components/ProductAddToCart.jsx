@@ -27,7 +27,7 @@ function ProductAddToCart({
   const { isAuthenticated } = useSelector(state => state.auth);
   const dispatch = useDispatch();
   const [addToCartItem, { isLoading }] = useAddToCartMutation();
-  const [quantity, setQuantity] = useState(0);
+  const [quantity, setQuantity] = useState(1);
   const handleQuantity = e => {
     setQuantity(e.target.value);
   };
@@ -68,9 +68,15 @@ function ProductAddToCart({
       <StyledInputField
         name="quantity"
         // disabled={!inStock}
-        type="text"
+        type="number"
+        min={1}
         placeholder={variationId}
-        onChange={handleQuantity}
+        onChange={e => {
+          const value = parseInt(e.target.value, 10);
+          if (value >= 0 || e.target.value === '') {
+            handleQuantity(e); // Call your existing handler
+          }
+        }}
         value={quantity}
         className=" max-h-7"
       />
