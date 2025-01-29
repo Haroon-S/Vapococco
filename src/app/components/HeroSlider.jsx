@@ -1,3 +1,5 @@
+/* eslint-disable react/no-array-index-key */
+
 'use client';
 
 import Image from 'next/image';
@@ -62,8 +64,8 @@ function HeroSlider() {
         loop
         modules={[Autoplay, Navigation]}
       >
-        {images?.map(item => (
-          <SwiperSlide>
+        {images?.map((item, index) => (
+          <SwiperSlide key={index}>
             <Box
               className=" relative w-full"
               sx={{

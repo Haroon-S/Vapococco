@@ -28,6 +28,7 @@ function ProductList({ filter }) {
         data?.results?.length > 0 &&
         data?.results?.map(item => (
           <Product
+            key={item?.id}
             id={item?.id}
             isFavorite={item?.is_favorite}
             inStock={item?.is_in_stock}

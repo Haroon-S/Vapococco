@@ -33,10 +33,10 @@ function ProductsSection() {
           <ProductList filter="is_new" />
         </TabPanel>
         <TabPanel stateValue={activeTab} index={1}>
-          <ProductList filter="is_essential" />
+          {/* <ProductList filter="is_essential" /> */}
         </TabPanel>
         <TabPanel stateValue={activeTab} index={2}>
-          <ProductList filter="is_promoted" />
+          {/* <ProductList filter="is_promoted" /> */}
         </TabPanel>
         <Box className=" flex md:justify-center px-2">
           <WhyUsSection />

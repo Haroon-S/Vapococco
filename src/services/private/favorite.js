@@ -27,17 +27,6 @@ export const productApi = privateAPi.injectEndpoints({
       }),
       invalidatesTags: ['GetFavoriteProducts'],
     }),
-
-    updateServiceStatus: build.mutation({
-      query: body => ({
-        url: `/api/service/services/${body?.slug}/`,
-        method: 'PATCH',
-        body: {
-          service_status: body.status,
-        },
-      }),
-      invalidatesTags: ['GetService', 'GetServiceById'],
-    }),
   }),
 });
 
@@ -45,5 +34,4 @@ export const {
   useGetFavoriteProductsQuery,
   useAddFavoriteProductsMutation,
   useDeleteFavoriteProductsMutation,
-  useUpdateServiceStatusMutation,
 } = productApi;
