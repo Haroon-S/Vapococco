@@ -28,11 +28,11 @@ function ExpandableImage({
       {/* Thumbnail Image */}
       {isProductImage ? (
         <Box className=" relative h-24 w-24 flex justify-end items-end">
-          <Image src={src} alt={alt} className=" object-contain cursor-pointer" fill onClick={handleOpen} />
+          <Image src={src || ''} alt={alt} className=" object-contain cursor-pointer" fill onClick={handleOpen} />
         </Box>
       ) : (
         <Box className=" relative h-16 w-full flex justify-end items-end">
-          <Image src={src} alt={alt} className=" object-contain cursor-pointer" fill onClick={handleOpen} />
+          <Image src={src || ''} alt={alt} className=" object-contain cursor-pointer" fill onClick={handleOpen} />
         </Box>
       )}
 
