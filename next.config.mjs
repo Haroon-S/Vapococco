@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ['vapococo.com'],
+    domains: ['backend.vapococo.com'],
   },
   experimental: {
     serverActions: {

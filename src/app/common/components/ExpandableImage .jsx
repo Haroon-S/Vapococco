@@ -8,7 +8,7 @@ import Image from 'next/image';
 import { Close } from '@mui/icons-material';
 
 function ExpandableImage({
-  src,
+  src = '',
   alt,
   isProductImage = false,
   fullImageClassName = 'w-full h-[90vh] max-h-[90vh] object-contain',
