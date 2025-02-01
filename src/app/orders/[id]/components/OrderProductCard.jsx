@@ -5,10 +5,12 @@ import Image from 'next/image';
 import React from 'react';
 
 function OrderProductCard({ image, title, description, price, quantity }) {
+  console.log('image ==> ', image);
+
   return (
     <Box className=" w-full flex justify-between ">
       <Box className=" flex gap-4">
-        <Image src={image?.src} height={80} width={80} />
+        <Image src={image} height={80} width={80} />
         <Typography variant="body1" fontWeight={600}>{title}</Typography>
         <Typography variant="body1">{description}</Typography>
       </Box>

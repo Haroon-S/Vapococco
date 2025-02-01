@@ -5,6 +5,7 @@ import moment from 'moment';
 import { pdfTableRowStyles } from '@/styles/pdf/OrderPdfDocStyles';
 
 function PdfOrderDetailTableBody({ orderData }) {
+  console.log('orderData ID ==> ', orderData);
   return (
     <View style={pdfTableRowStyles.tableRow}>
       <View style={pdfTableRowStyles.tableCol1}>

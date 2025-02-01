@@ -39,15 +39,16 @@ function ExportPdfInvoice({ orderData }) {
             <Text style={docStyles.InfoText}>{orderData?.billing_phone}</Text>
           </View>
         </View>
-        <ExportPdfOrdersDetailTable />
+        <ExportPdfOrdersDetailTable orderData={orderData} />
         <ExportPdfOrders orderData={orderData} />
-        <ExportPdfOrderTotalCard totalPrice={orderData?.total_price} />
+        <View style={{ width: '100%', display: 'flex', flexDirection: 'row', justifyContent: 'flex-end' }}>
+          <ExportPdfOrderTotalCard totalPrice={orderData?.total_price} />
+        </View>
         <View style={{ width: '50%', display: 'flex', gap: '2px', marginTop: '20px' }}>
           <Text style={textStyles}>INFORMATION POUR VIREMENT BANCAIRE</Text>
           <Text style={textStyles}>BANQUE : POUYANNE</Text>
           <Text style={textStyles}>IBAN : FR76 1198 9000 0983 9959 0010 106</Text>
-          <Text style={textStyles}>BIC : POUYFR21
-          </Text>
+          <Text style={textStyles}>BIC : POUYFR21</Text>
         </View>
       </Page>
     </Document>
