@@ -1,11 +1,10 @@
 import { StyleSheet } from '@react-pdf/renderer';
-import { primary } from '../common/colors';
 
 // CONSTANTS
 const COL_WIDTH = 33.33;
-const COL_WIDTH1 = 80;
+const COL_WIDTH1 = 25;
 
-const textStyles = {
+export const textStyles = {
   color: 'black',
   fontSize: '10pt',
 };
@@ -24,23 +23,61 @@ export const docStyles = StyleSheet.create({
 
   logoContainer: {
     width: '100%',
+    height: '100px',
     marginBottom: '10px',
   },
 
   logo: {
-    maxWidth: '110px',
+    width: '150px',
+    height: '70px',
   },
 
   headerBox: {
     width: '100%',
+    display: 'flex',
+    flexDirection: 'row',
     textAlign: 'center',
   },
 
+  InfoBox: {
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'row',
+  },
+
+  Info1: {
+    width: '100%',
+    flexBasis: '50%',
+  },
+  Info2: {
+    width: '100%',
+    flexBasis: '50%',
+  },
+
+  InfoHeading: {
+    color: 'black',
+    fontSize: '14px',
+    fontFamily: 'Helvetica-Bold',
+    marginTop: '30px',
+    marginBottom: '16px',
+  },
+
+  InfoText: {
+    marginVertical: '5px',
+    textTransform: 'uppercase',
+    color: 'black',
+    fontSize: '16px',
+    fontWeight: 'normal',
+  },
+
   heading: {
-    color: primary,
-    fontSize: '25px',
-    fontWeight: 'bold',
-    textDecoration: 'underline',
+    color: 'black',
+    fontSize: '18px',
+  },
+  subHeading: {
+    color: '#a5a6ab',
+    fontSize: '16px',
+    fontWeight: 'semibold',
   },
   watermarkContainer: {
     position: 'absolute',
@@ -55,8 +92,8 @@ export const pdfReportTableStyles = StyleSheet.create({
   table: {
     width: 'auto',
     marginTop: '20px',
-    padding: '10px',
     border: '2px solid grey',
+    borderTop: '0px',
   },
 
   tableBody: {
@@ -71,19 +108,18 @@ export const pdfReportTableStyles = StyleSheet.create({
 
 export const pdfReportTableHeadStyles = StyleSheet.create({
   tableHead: {
+    backgroundColor: '#f0f0f0',
     width: '100%',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
     flexDirection: 'row',
-    borderBottom: '2px solid grey',
-    Bottom: '3px',
   },
 
   tableHeadCell1: {
-    width: `${COL_WIDTH}%`,
+    width: `${COL_WIDTH1}%`,
     padding: '10px 5px',
-    textAlign: 'left',
+    textAlign: 'center',
     color: 'black',
   },
 
@@ -100,15 +136,21 @@ export const pdfReportTableHeadStyles = StyleSheet.create({
     color: 'black',
   },
 
-  tableHeadText: { ...textStyles, color: 'black', fontSize: '16px', marginBottom: '4px' },
-  tableText: { ...textStyles, fontSize: '14px', color: 'black', },
+  tableHeadText: {
+    ...textStyles,
+    color: 'black',
+    fontSize: '14px',
+    marginBottom: '2px',
+    fontFamily: 'Helvetica-Bold'
+  },
+  tableText: { ...textStyles, fontSize: '14px', color: 'black' },
 });
 
 export const pdfTableRowStyles = StyleSheet.create({
   tableRow: {
     width: '100%',
     paddingHorizontal: '5px',
-    paddingVertical: '20px',
+    paddingVertical: '10px',
     display: 'flex',
     gap: '4px',
     alignItems: 'center',
@@ -119,21 +161,23 @@ export const pdfTableRowStyles = StyleSheet.create({
   },
 
   tableCol1: {
-    width: `${COL_WIDTH1}%`,
+    width: `${COL_WIDTH}%`,
     display: 'flex',
     gap: '5px',
     alignItems: 'center',
-    justifyContent: 'flex-start',
+    justifyContent: 'center',
     flexDirection: 'row',
-    textAlign: 'left',
+    textAlign: 'center',
   },
 
   tableCol2: {
-    width: '20%',
+    width: `${COL_WIDTH}%`,
     display: 'flex',
+    gap: '5px',
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'row',
+    textAlign: 'center',
   },
 
   tableCol: {
@@ -145,7 +189,7 @@ export const pdfTableRowStyles = StyleSheet.create({
     padding: '5px',
   },
 
-  text: { ...textStyles, fontSize: '14px' },
+  text: { ...textStyles, fontSize: '12px' },
 });
 
 export const pdfDocumentFooterStyles = StyleSheet.create({
@@ -162,5 +206,36 @@ export const pdfDocumentFooterStyles = StyleSheet.create({
   footerText: {
     fontSize: '9px',
     color: 'grey',
+  },
+});
+
+export const pdfReportCardStyles = StyleSheet.create({
+  card: {
+    marginTop: '20px',
+    width: '50%',
+    display: 'flex',
+    gap: '4px',
+    alignItems: 'center',
+    flexDirection: 'row',
+    border: '1px solid black',
+  },
+
+  cardLeft: {
+    display: 'flex',
+    gap: '10px',
+    flexBasis: '50%',
+    backgroundColor: '#f0f0f0',
+    padding: '10px'
+  },
+  cardRight: {
+    display: 'flex',
+    gap: '10px',
+    flexBasis: '50%',
+    backgroundColor: 'white',
+    padding: '10px'
+  },
+
+  cardText: {
+    ...textStyles, fontSize: '12px', textAlign: 'right'
   },
 });

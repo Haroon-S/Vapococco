@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Grid2 from '@mui/material/Unstable_Grid2';
+import { pdf } from '@react-pdf/renderer';
 import FormikFileField from '@/shared/components/form/FormikFileField';
 import SubmitBtn from '@/app/common/components/SubmitBtn';
 import { checkoutFormValSchema, checkoutInitValues } from './formUtils';
@@ -13,6 +14,7 @@ import { useAddOrderMutation, useAddOrderPaymentDetailMutation } from '@/service
 import useHandleApiResponse from '@/customHooks/useHandleApiResponse';
 import FormikField from '@/shared/components/form/FormikField';
 import { clearCart } from '@/store/slices/cartSlice';
+import ExportPdfInvoice from '@/app/orders/[id]/components/pdf/ExportPdfInvoice';
 
 function CheckoutForm() {
   const router = useRouter();
@@ -35,6 +37,9 @@ function CheckoutForm() {
             formData.append('image', values?.image, values?.image?.name);
             const orderResp = await addOrder(values);
             if (orderResp?.data) {
+              const doc = <ExportPdfInvoice orderData={orderResp?.data} />;
+              const pdfBlob = await pdf(doc).toBlob();
+              formData.append('receipt', pdfBlob, 'Order-Invoice.pdf');
               formData.append('user', user?.profile?.id);
               formData.append('order', orderResp?.data?.id);
               const paymentResp = await addPayment(formData);

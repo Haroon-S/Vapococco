@@ -15,10 +15,11 @@ function ExportPdfOrders({ orderData }) {
         {orderData?.items?.map(item => (
           <PdfOrderProductCard
             key={item?.id}
-            title={item?.product_title}
+            title={`${item?.item_variation} - ${item?.product_title}`}
             description={item?.product_description}
             image={item?.product_image}
-            price={item?.item_price}
+            unitPrice={item?.item_price}
+            price={`${(item?.quantity ?? 1) * Number(item?.item_price)}`}
             quantity={item?.quantity}
           />
         ))}

@@ -5,30 +5,31 @@ import PropTypes from 'prop-types';
 import { Image, Text, View } from '@react-pdf/renderer';
 import { pdfTableRowStyles } from '@/styles/pdf/OrderPdfDocStyles';
 
-function PdfOrderProductCard({ image, title, description, price, quantity }) {
+function PdfOrderProductCard({ title, unitPrice, price, quantity }) {
   return (
     <View style={pdfTableRowStyles.tableRow}>
-      <View style={pdfTableRowStyles.tableCol1}>
-        {image?.src && (
-          <View>
-            <Image style={{ maxWidth: '50px' }} src={image?.src} />
-          </View>
-        )}
+      <View style={pdfTableRowStyles.tableCol2}>
         <Text style={pdfTableRowStyles.text}>{title}</Text>
-        <Text style={pdfTableRowStyles.text}>{description}</Text>
       </View>
 
       <View style={pdfTableRowStyles.tableCol2}>
-        <Text style={pdfTableRowStyles.text}>{price}€</Text>
+        <Text style={pdfTableRowStyles.text}>{unitPrice}$</Text>
+      </View>
+
+      <View style={pdfTableRowStyles.tableCol2}>
+        <Text style={pdfTableRowStyles.text}>{quantity}</Text>
+      </View>
+
+      <View style={pdfTableRowStyles.tableCol2}>
+        <Text style={pdfTableRowStyles.text}>{price}$</Text>
       </View>
     </View>
   );
 }
 
 PdfOrderProductCard.propTypes = {
-  image: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
+  unitPrice: PropTypes.string.isRequired,
   price: PropTypes.string.isRequired,
   quantity: PropTypes.string.isRequired,
 };

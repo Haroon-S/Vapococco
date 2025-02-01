@@ -4,7 +4,7 @@
 import { Box, Button, CircularProgress, Typography } from '@mui/material';
 import PropTypes from 'prop-types';
 import React, { useMemo } from 'react';
-import { pdf } from '@react-pdf/renderer';
+import { pdf, PDFViewer } from '@react-pdf/renderer';
 import { saveAs } from 'file-saver';
 import OrderDetailHeader from './components/OrderDetailHeader';
 import OrderProductCard from './components/OrderProductCard';
@@ -36,7 +36,7 @@ function OrderDetail({ params: { id } }) {
   };
 
   return (
-    <Box className=" min-h-screen pb-20 px-20 flex justify-center">
+    <Box className=" min-h-screen pb-20 px-20 flex flex-col items-center justify-center">
       <Box className=" mt-[260px] max-w-[1440px] w-full">
         <Box className=" flex justify-between items-center">
           <Typography variant="pageTitle" className=" text-start">

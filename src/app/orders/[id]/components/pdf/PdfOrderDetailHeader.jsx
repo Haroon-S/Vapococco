@@ -1,39 +1,24 @@
 import React from 'react';
-import propTypes from 'prop-types';
 import { Text, View } from '@react-pdf/renderer';
-import moment from 'moment';
 import { pdfReportTableHeadStyles } from '@/styles/pdf/OrderPdfDocStyles';
 
-function PdfOrderDetailHeader({ orderData }) {
+function PdfOrderDetailHeader() {
   return (
     <View style={pdfReportTableHeadStyles.tableHead}>
-      <View
-        key={orderData?.id}
-        style={pdfReportTableHeadStyles.tableHeadCell}
-      >
-        <Text style={pdfReportTableHeadStyles.tableHeadText}>Expédié</Text>
-        <Text style={pdfReportTableHeadStyles.tableText}>{moment(orderData?.ordered_date).format('DD MMM,YYYY')}</Text>
+      <View style={pdfReportTableHeadStyles.tableHeadCell1}>
+        <Text style={pdfReportTableHeadStyles.tableHeadText}>Produit</Text>
       </View>
-      <View
-        key={orderData?.id}
-        style={pdfReportTableHeadStyles.tableHeadCell}
-      >
-        <Text style={pdfReportTableHeadStyles.tableHeadText}>Numéro de commande</Text>
-        <Text style={pdfReportTableHeadStyles.tableText}>ORD-{orderData?.id}</Text>
+      <View style={pdfReportTableHeadStyles.tableHeadCell1}>
+        <Text style={pdfReportTableHeadStyles.tableHeadText}>Prix unitaire (HT)</Text>
       </View>
-      <View
-        key={orderData?.id}
-        style={pdfReportTableHeadStyles.tableHeadCell}
-      >
-        <Text style={pdfReportTableHeadStyles.tableHeadText}>Prix total</Text>
-        <Text style={pdfReportTableHeadStyles.tableText}>{orderData?.total_price} $</Text>
+      <View style={pdfReportTableHeadStyles.tableHeadCell1}>
+        <Text style={pdfReportTableHeadStyles.tableHeadText}>Quantit é</Text>
+      </View>
+      <View style={pdfReportTableHeadStyles.tableHeadCell1}>
+        <Text style={pdfReportTableHeadStyles.tableHeadText}>Total (HT)</Text>
       </View>
     </View>
   );
 }
-
-PdfOrderDetailHeader.propTypes = {
-  orderData: propTypes.object.isRequired,
-};
 
 export default PdfOrderDetailHeader;

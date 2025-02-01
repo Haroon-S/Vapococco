@@ -66,7 +66,7 @@ function OrdersTable({ pagination, sorting, onPageChange, onRowsPerPageChange, o
                   <TableCell>
                     <Stack direction="row" alignItems="center" gap="12px">
                       <Image
-                        src={item?.items[0]?.product_image ? item?.items[0]?.product_image : ''}
+                        src={item?.items[0]?.product_image ? `http://backend.vapococo.com/${item?.items[0]?.product_image}` : ''}
                         alt="Image"
                         width={70}
                         height={70}
