@@ -26,11 +26,13 @@ import { OrderTableHeadCells } from '../utilities/data';
 import TableLoaders from '@/app/common/loaders/TableLoaders';
 import EmptyRecordTable from '@/app/common/components/EmptyRecordTable';
 import withTable from '@/HOC/withTable';
-import { useAddOrderAgainMutation, useGetOrdersQuery } from '@/services/private/orders';
+import { useAddBankDetailsMutation, useAddOrderAgainMutation, useGetOrdersQuery } from '@/services/private/orders';
 import useHandleApiResponse from '@/customHooks/useHandleApiResponse';
 
 function OrdersTable({ pagination, sorting, onPageChange, onRowsPerPageChange, onRequestSort }) {
   const [addOrder, { error, isSuccess }] = useAddOrderAgainMutation();
+  const [send, { error: emailError, isSuccess: sendSuccess }] = useAddBankDetailsMutation();
+  useHandleApiResponse(emailError, sendSuccess, 'Mail Sent Successfully!');
   useHandleApiResponse(error, isSuccess, 'Order Placed successfully!');
   const router = useRouter();
   const { order, orderBy } = sorting;
@@ -40,6 +42,14 @@ function OrdersTable({ pagination, sorting, onPageChange, onRowsPerPageChange, o
   const sortedData = handleSort(data, getComparator(order, orderBy));
 
   const loading = isLoading || isFetching;
+
+  const handleOrderAgain = async (e, id) => {
+    e.stopPropagation();
+    const resp = addOrder({ order_id: id });
+    if (!resp?.error) {
+      await send({ order_id: resp?.data?.id });
+    }
+  };
 
   return (
     <Paper sx={{ borderRadius: '10px' }} className=" p-3">
@@ -82,10 +92,7 @@ function OrdersTable({ pagination, sorting, onPageChange, onRowsPerPageChange, o
 
                   <TableCell>
                     <Button
-                      onClick={e => {
-                        e.stopPropagation();
-                        addOrder({ order_id: item?.id });
-                      }}
+                      onClick={e => handleOrderAgain(e, item?.id)}
                       variant="contained"
                     >
                       BUY AGAIN

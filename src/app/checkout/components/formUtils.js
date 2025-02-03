@@ -11,7 +11,6 @@ export const checkoutInitValues = {
   email: '',
   phone: '',
   shipping_address: '',
-  image: '',
 };
 
 export const checkoutFormValSchema = Yup.object({
@@ -25,5 +24,4 @@ export const checkoutFormValSchema = Yup.object({
   email: Yup.string().required('Required!'),
   phone: Yup.string().required('Required!'),
   shipping_address: Yup.string().required('Required!'),
-  image: Yup.mixed().required('Must attach screenshot to Complete payment'),
 });

@@ -5,8 +5,6 @@ import Image from 'next/image';
 import React from 'react';
 
 function OrderProductCard({ image, title, description, price, quantity }) {
-  console.log('image ==> ', image);
-
   return (
     <Box className=" w-full flex justify-between ">
       <Box className=" flex gap-4">

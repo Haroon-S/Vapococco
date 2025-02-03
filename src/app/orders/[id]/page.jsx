@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import React, { useMemo } from 'react';
 import { pdf, PDFViewer } from '@react-pdf/renderer';
 import { saveAs } from 'file-saver';
+import Link from 'next/link';
 import OrderDetailHeader from './components/OrderDetailHeader';
 import OrderProductCard from './components/OrderProductCard';
 import { useGetOrdersByNumberQuery } from '@/services/private/orders';
@@ -42,9 +43,18 @@ function OrderDetail({ params: { id } }) {
           <Typography variant="pageTitle" className=" text-start">
             Commande
           </Typography>
-          <Button onClick={handleExportToPdf} disabled={exportingPdf || isLoading} variant="contained">
-            Facture d&apos;exportation {(exportingPdf || isLoading) && <CircularProgress size="16px" />}
-          </Button>
+          <Box className=" flex gap-4">
+            {orderByIdData?.payment_status === 'Pending' && (
+              <Link href={`/checkout/payment/${orderByIdData?.id}`}>
+                <Button variant="contained" color="secondary">
+                  Send Payment
+                </Button>
+              </Link>
+            )}
+            <Button onClick={handleExportToPdf} disabled={exportingPdf || isLoading} variant="contained">
+              Facture d&apos;exportation {(exportingPdf || isLoading) && <CircularProgress size="16px" />}
+            </Button>
+          </Box>
         </Box>
         <Box className=" mt-4">
           <Box className=" border-2 border-gray-400 p-3">

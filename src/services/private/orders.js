@@ -56,7 +56,7 @@ export const ordersApi = privateAPi.injectEndpoints({
       query: body => ({
         url: `/dashboard/orders/${body?.orderNumber}/`,
         method: 'PATCH',
-        body
+        body,
       }),
       invalidatesTags: ['GetOrders', 'GetOrdersByNumber'],
     }),
@@ -65,7 +65,7 @@ export const ordersApi = privateAPi.injectEndpoints({
       query: body => ({
         url: `/dashboard/cancel-order-status/${body?.orderNumber}/`,
         method: 'PATCH',
-        body
+        body,
       }),
       invalidatesTags: ['GetOrders', 'GetOrdersByNumber'],
     }),
@@ -88,6 +88,14 @@ export const ordersApi = privateAPi.injectEndpoints({
       }),
       invalidatesTags: ['GetOrders', 'GetOrdersByNumber'],
     }),
+
+    addBankDetails: build.mutation({
+      query: body => ({
+        url: '/products/send-bank-details/',
+        method: 'POST',
+        body,
+      }),
+    }),
   }),
 });
 
@@ -101,4 +109,5 @@ export const {
   useUpdateCancelOrderStatusMutation,
   useUpdateOrderPaymentStatusMutation,
   useUpdateOrderMutation,
+  useAddBankDetailsMutation,
 } = ordersApi;
